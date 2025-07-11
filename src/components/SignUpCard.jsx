@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SignUpCard = ({ onSwitch }) => {
   return (
-    <div className="w-full max-w-[420px] absolute  bg-white rounded-[32px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-6 sm:px-8 py-8">
+    <div className="w-full max-w-[420px]  absolute  bg-white rounded-[32px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-6 sm:px-8 py-8">
       
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-black">Welcome!</h2>
