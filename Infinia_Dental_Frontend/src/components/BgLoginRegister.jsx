@@ -10,10 +10,9 @@ const BgLoginRegister = () => {
   const [isLogin, setIsLogin] = useState(false); 
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="relative min-h-screen w-full flex flex-col md:flex-row">
       
       <div className="relative w-full md:w-1/2 bg-[#EFCD78] overflow-hidden">
-        {/* Logo */}
         <div className="absolute top-5 left-6 z-10 w-[158px]">
           <img src={logo} alt="Infinia Logo" className="w-full h-auto" />
         </div>
@@ -23,12 +22,6 @@ const BgLoginRegister = () => {
           alt="Ellipse"
           className="absolute top-0 left-0 w-[60%] opacity-50"
         />
-
-        <img
-          src={gradient}
-          alt="Gradient Overlay"
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
-        />
       </div>
 
       <div className="relative w-full md:w-1/2 bg-white min-h-screen flex items-center justify-center px-6 py-10">
@@ -36,8 +29,14 @@ const BgLoginRegister = () => {
           src={righttable}
           alt="People working"
           className="hidden lg:block absolute bottom-0 right-0 w-[250px] pointer-events-none"
-        />
-
+        />        
+      </div>
+      <img
+        src={gradient}
+        alt="Gradient Overlay"
+        className="absolute top-0 left-0 w-full h-full opacity-50 z-15"
+      />
+      <div className="absolute inset-0 flex items-center justify-center z-20 p-4">
         {isLogin ? (
           <LoginCard onSwitch={() => setIsLogin(!isLogin)} />
         ) : (
