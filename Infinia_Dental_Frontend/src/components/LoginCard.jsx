@@ -2,7 +2,7 @@ import React from "react";
 
 const LoginCard = ({ onSwitch }) => {
   return (
-    <div className="w-full  max-w-[409px] absolute  bg-white rounded-[40px] shadow-[0px_4px_35px_rgba(0,0,0,0.08)] px-6 sm:px-10 py-10">
+    <div className="w-full  max-w-[409px] absolute   bg-white rounded-[40px] shadow-[0px_4px_35px_rgba(0,0,0,0.08)] px-6 sm:px-10 py-10">
       
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-black">Welcome!</h2>
