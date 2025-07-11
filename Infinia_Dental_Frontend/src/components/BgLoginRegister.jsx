@@ -38,7 +38,7 @@ const BgLoginRegister = () => {
           className="hidden lg:block absolute bottom-0 right-0 w-[250px] pointer-events-none"
         />
 
-        {isLogin ? (
+     {isLogin ? (
           <LoginCard onSwitch={() => setIsLogin(!isLogin)} />
         ) : (
           <SignUpCard onSwitch={() => setIsLogin(!isLogin)} />
