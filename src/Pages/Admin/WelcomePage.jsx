@@ -3,6 +3,8 @@ import WelcomeNavbar from '../../components/welcome/WelcomeNavbar';
 import CardYellowBlackComp from '../../components/welcome/CardYellowBlackComp';
 import WelcomeChartComp from '../../components/welcome/WelcomeChartComp';
 import TodayOverviewComp from '../../components/welcome/TodayOverviewComp';
+import RecentActivitiesComp from '../../components/welcome/RecentActivitesComp';
+import WhatNewComp from '../../components/welcome/WhatNewComp';
 
 const WelcomePage = () => {
   return (
@@ -10,7 +12,12 @@ const WelcomePage = () => {
       <WelcomeNavbar />
       <CardYellowBlackComp />
       <WelcomeChartComp />
+      <div className='flex gap-5 '>
+
       <TodayOverviewComp/>
+      <RecentActivitiesComp/>
+      </div>
+      <WhatNewComp/>
       
     </div>
   );
