@@ -6,7 +6,7 @@ import WorkAnnivers from '../../assets/svgs/WelcomePage/WorkAnnivers'
 
 const TodayOverviewComp = () => {
   return (
-     <div className="bg-white rounded-lg shadow-sm p-6 w-full max-w-sm text-[#111827]">
+     <div className="bg-white rounded-lg shadow-sm p-6 w-[577px] text-[#111827]">
       <h2 className="text-[18px] font-semibold mb-6">Today's Overview</h2>
 
       <div className="flex gap-3 items-start mb-6">
@@ -15,7 +15,10 @@ const TodayOverviewComp = () => {
         </div>
         <div>
           <p className="text-[16px] font-medium">Birthdays Today</p>
+          <div>
+
           <p className="text-[14px] mt-1">Sarah Johnson</p>
+          </div>
           <p className="text-[12px] text-[#6B7280]">Marketing</p>
         </div>
       </div>
@@ -23,7 +26,7 @@ const TodayOverviewComp = () => {
       
       <div className="flex justify-between items-start mb-6">
         <div className="flex gap-3">
-          <div className="bg-[#F3C85C] rounded p-2">
+          <div className="bg-[#F3C85C] rounded p-2 h-fit">
             <LeaveToday/>
             
           </div>
@@ -38,7 +41,7 @@ const TodayOverviewComp = () => {
 
       <div className="flex justify-between items-start">
         <div className="flex gap-3">
-          <div className="bg-[#F3C85C] rounded p-2">
+          <div className="bg-[#F3C85C] rounded p-2 h-fit">
             <WorkAnnivers/>
            
           </div>
