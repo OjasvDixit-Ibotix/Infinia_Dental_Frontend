@@ -5,9 +5,11 @@ import righttable from "../assets/images/right-table.svg";
 import logo from "../assets/images/logo.svg";
 import LoginCard from "../components/LoginCard";
 import SignUpCard from "../components/SignUpCard";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const BgLoginRegister = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const [isSignup, setIsSignup] = useState(false);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col md:flex-row">
@@ -39,10 +41,10 @@ const BgLoginRegister = () => {
       />
 
       <div className="absolute  inset-0 flex items-center justify-center   z-20 p-4">
-        {isLogin ? (
-          <LoginCard onSwitch={() => setIsLogin(!isLogin)} />
+        {isSignup ? (
+          <SignUpCard onSwitch={()=> setIsSignup(!isSignup)} />
         ) : (
-          <SignUpCard onSwitch={() => setIsLogin(!isLogin)} />
+          <LoginCard onSwitch={()=> setIsSignup(!isSignup)} />
         )}
       </div>
     </div>
