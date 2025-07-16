@@ -81,24 +81,20 @@ const EmployeeProfileCard = () => {
             key={idx}
             className="bg-white rounded-xl border border-[#F3C85C] p-5 w-full shadow-sm relative"
           >
-            {/* Checkbox */}
             <input
               type="checkbox"
               className="absolute top-4 left-4 h-4 w-4 accent-[#F3C85C]"
             />
 
-            {/* Avatar */}
             <div className="flex justify-center mt-2">
               <div className="w-12 h-12 bg-[#444] text-white font-semibold text-sm rounded-full flex items-center justify-center">
                 {emp.initials}
               </div>
             </div>
 
-            {/* Name & ID */}
             <h2 className="text-[15px] font-medium text-center mt-3">{emp.name}</h2>
             <p className="text-xs text-center text-[#6B7280]">{emp.empId}</p>
 
-            {/* Status */}
             <div className="mt-2 flex justify-center">
               <span
                 className={`text-xs px-3 py-[2px] rounded-full ${statusColors[emp.status]}`}
@@ -107,7 +103,6 @@ const EmployeeProfileCard = () => {
               </span>
             </div>
 
-            {/* Details */}
             <div className="text-[13px] mt-5 space-y-[6px]">
               <div className="flex justify-between">
                 <span className="text-[#6B7280]">Role:</span>
@@ -123,7 +118,6 @@ const EmployeeProfileCard = () => {
               </div>
             </div>
 
-            {/* Attendance */}
             <div className="mt-4">
               <div className="flex justify-between text-sm mb-1">
                 <span className="text-[#111827]">Attendance</span>
