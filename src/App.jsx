@@ -8,16 +8,27 @@ import LoginCard from './components/LoginCard';
 import SignUpCard from './components/SignUpCard';
 import Layout from './components/Layout';
 import EmployeeProductPage from './Pages/Admin/EmployeeProductPage';
-
+import SeminarAndEventPage from './Pages/Admin/SeminarAndEventPage';
+import EmpFormsDocsPage from './Pages/Admin/EmpFormsDocsPage';
+import EmpDirectoryPage from './Pages/Admin/EmpDirectoryPage';
+import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage'
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<BgLoginRegister />} /> */}
+
+             <Route path="/" element={<BgLoginRegister />} />
+             <Route  path='/dashboard'  element={<WelcomePage/>} />
              <Route  element={<Layout/>}>
-             <Route index path='/'  element={<EmployeeProductPage/>} />
-             </Route>
+             <Route  path='/employee-details'  element={<EmployeeRecordsPage/>} />
+             <Route  path='/leave-request'  element={<EmployeeLeave/>} />
+             <Route  path='/employee-handbook'  element={<EmployeehandBooksPage/>} />
+             <Route  path='/products'  element={<EmployeeProductPage/>} />
+             <Route  path='/seminars-events'  element={<SeminarAndEventPage/>} />
+             <Route  path='/forms'  element={<EmpFormsDocsPage/>} />
+             <Route  path='/directory'  element={<EmpDirectoryPage/>} />
+          </Route>
       </Routes>
     </Router>
   );
