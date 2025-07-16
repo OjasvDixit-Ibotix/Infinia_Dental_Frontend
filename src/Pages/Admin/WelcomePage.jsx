@@ -8,17 +8,15 @@ import WhatNewComp from '../../components/welcome/WhatNewComp';
 
 const WelcomePage = () => {
   return (
-    <div className= "bg-[#EAEAEA]  px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-9 min-h-screen flex flex-col items-center gap-8 w-full  ">
+    <div className="bg-[#EAEAEA] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-9 min-h-screen flex flex-col gap-8 w-full">
       <WelcomeNavbar />
       <CardYellowBlackComp />
       <WelcomeChartComp />
-      <div className='flex gap-5 '>
-
-      <TodayOverviewComp/>
-      <RecentActivitiesComp/>
+      <div className="flex flex-col lg:flex-row gap-5 w-full">
+        <TodayOverviewComp />
+        <RecentActivitiesComp />
       </div>
-      <WhatNewComp/>
-      
+      <WhatNewComp />
     </div>
   );
 };
