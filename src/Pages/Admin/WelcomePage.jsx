@@ -8,7 +8,7 @@ import WhatNewComp from '../../components/welcome/WhatNewComp';
 
 const WelcomePage = () => {
   return (
-    <div className="flex flex-col items-center px-4 sm:px-6 md:px-7 py-6 gap-8 w-full max-w-[1440px] mx-auto">
+    <div className= "bg-[#EAEAEA]  px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-9 min-h-screen flex flex-col items-center gap-8 w-full  ">
       <WelcomeNavbar />
       <CardYellowBlackComp />
       <WelcomeChartComp />
