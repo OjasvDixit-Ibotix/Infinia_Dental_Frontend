@@ -9,16 +9,14 @@ import RecentActivity from '../../components/EmployeeRecords/RecentActivity';
 const EmployeeRecordsPage = () => {
   return (
     <>
-      <Navbar />
+       
       <EmployeeHeader />
 
       <div className="flex flex-col lg:flex-row gap-6 mt-6 ">
-        {/* Left Section */}
         <div className="w-full lg:w-[72%]">
           <EmployeeProfileCard />
         </div>
 
-        {/* Right Sidebar */}
         <div className="w-full lg:w-[28%] space-y-4">
           <EmplSummaryCard />
           <ByDepartment />

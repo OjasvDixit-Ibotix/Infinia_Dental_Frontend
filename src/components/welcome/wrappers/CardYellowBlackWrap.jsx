@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CardYellowBlackWrap = ({ logos, logodesc,bgColor ,textColor}) => {
+const CardYellowBlackWrap = ({ logos, logodesc,bgColor ,textColor,navigateTo}) => {
+  const navigate = useNavigate();
   return (
-  <div
-  className={`flex flex-col items-start w-full max-w-[198px] h-[130px] rounded-[8px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-[2px]`}
+  <div onClick={()=>navigate(navigateTo)} 
+  className={`cursor-pointer flex flex-col items-start w-full max-w-[198px] h-[130px] rounded-[8px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-[2px]`}
   style={{ backgroundColor: `#${bgColor}` }}
 >
   <div className="flex flex-col items-center p-3 gap-[11.25px] self-stretch">

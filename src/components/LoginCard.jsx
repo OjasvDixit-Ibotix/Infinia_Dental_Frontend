@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LoginCard = ({ onSwitch }) => {
   return (
@@ -47,10 +48,12 @@ const LoginCard = ({ onSwitch }) => {
           Forgot Password
         </div>
       </div>
-
-      <button className="w-full bg-[#2C2C2C] text-white py-3 rounded-lg shadow hover:opacity-90 transition mt-4">
-        Log in
-      </button>
+        <Link to='/dashboard'>
+            <button className="w-full bg-[#2C2C2C] text-white py-3 rounded-lg shadow hover:opacity-90 transition mt-4">
+            Log in
+          </button>
+        </Link>
+      
     </div>
   );
 };
