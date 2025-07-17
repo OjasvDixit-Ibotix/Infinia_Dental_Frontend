@@ -9,27 +9,21 @@ import ContactHrCard from '../../components/EmployeeHandBook/ContactHrCard'
 
 const EmployeehandBooksPage = () => {
   return (
-    <> 
-    <EmpHandBookHeader/>
-    <div className='flex flex-col gap-[18px]'> 
-    <EmpHandBookFilter/>
-    <div>
-    <div className='flex  h-fit gap-[12px]'>
-         <HandBookSectionsComp/>
-         <div className='flex gap-3 flex-col'>
-
-           <QuickActions/>
-           <RecentlyUpdated/>
-           <HRNoticeboard/>
-           <ContactHrCard/>
-         </div>
-
+    <div className='flex flex-col gap-4 md:gap-[18px] w-full'>
+      <EmpHandBookHeader/>
+      <EmpHandBookFilter/>
+      <div>
+        <div className='flex flex-col lg:flex-row gap-3 md:gap-[12px] h-fit w-full'>
+          <HandBookSectionsComp/>
+          <div className='flex gap-2 md:gap-3 flex-col mt-3 lg:mt-0'>
+            <QuickActions/>
+            <RecentlyUpdated/>
+            <HRNoticeboard/>
+            <ContactHrCard/>
+          </div>
+        </div>
+      </div>
     </div>
-
-    </div>
-    </div>
-      
-    </>
   )
 }
 

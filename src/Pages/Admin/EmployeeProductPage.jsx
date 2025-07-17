@@ -5,15 +5,11 @@ import ProductResourceComp from '../../components/ProductCataloge/ProductResourc
 
 const EmployeeProductPage = () => {
   return (
-    <>
-    <ProductHeaderComp/>
-    <div className='flex flex-col gap-9'>
-
-    <ProductsCardList/>
-    <ProductResourceComp/>
+    <div className='flex flex-col gap-6 md:gap-9 w-full'>
+      <ProductHeaderComp/>
+      <ProductsCardList/>
+      <ProductResourceComp/>
     </div>
-
-    </>
   )
 }
 

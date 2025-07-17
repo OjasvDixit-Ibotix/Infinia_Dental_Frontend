@@ -3,10 +3,10 @@ import EmpDirectoryHeaderComp from '../../components/EmployeeDirectory/EmpDirect
 import EmpDirectoryCards from '../../components/EmployeeDirectory/EmpDirectoryCards'
 const EmpDirectoryPage = () => {
   return (
-    <>
-    <EmpDirectoryHeaderComp/>
-    <EmpDirectoryCards/>
-    </>
+    <div className="flex flex-col gap-4 sm:gap-6 w-full">
+      <EmpDirectoryHeaderComp/>
+      <EmpDirectoryCards/>
+    </div>
   )
 }
 
