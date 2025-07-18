@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChartCardWrap = ({logo,desc,total}) => {
   return (
-    <div className="flex flex-col items-start gap-4 w-[160px] h-[180px] sm:w-[220px] sm:h-[200px] md:w-[286px] md:h-[254px] p-3 sm:p-5 flex-shrink-0 rounded-[20px] border-t-[3px] border-t-[rgba(239,205,120,0.5)] bg-[rgba(255,255,255,0.7)] shadow-[0_4px_8px_rgba(239,205,120,0.2)] backdrop-blur-[6px] transition-all duration-200">
+    <div className="flex flex-col items-start gap-4 w-[160px] h-[180px] sm:w-[220px] sm:h-[200px] md:w-[259px] md:h-[254px] p-3 sm:p-5 flex-shrink-0 rounded-[20px] border-t-[3px] border-t-[rgba(239,205,120,0.5)] bg-[rgba(255,255,255,0.7)] shadow-[0_4px_8px_rgba(239,205,120,0.2)] backdrop-blur-[6px] transition-all duration-200">
       <div className='flex justify-between items-center self-stretch'>
         <div className="flex flex-col items-start p-2 sm:p-3 rounded-[16px] bg-[#444444] shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]">
                 {logo}

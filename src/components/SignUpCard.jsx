@@ -5,22 +5,22 @@ const SignUpCard = ({ onSwitch }) => {
   return (
     <div className="w-full max-w-[420px] bg-white rounded-[28px] sm:rounded-[32px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-8 mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-lg sm:text-xl font-semibold text-black">Welcome!</h2>
+        <h2 className="text-lg sm:text-xl  text-black  font-normal  font-[Poppins]  text-[20px]  leading-normal">Welcome!</h2>
         <p className="text-xs sm:text-sm text-[#ABABAB]">
           Have an account?{" "}
           <span
             onClick={onSwitch}
-            className="text-[#EFCD78] font-semibold cursor-pointer"
+            className="text-[#EFCD78] font-semibold cursor-pointer "
           >
             Log in
           </span>
         </p>
       </div>
-      <h1 className="text-2xl sm:text-[34px] font-normal font-[Poppins] text-black leading-tight mb-6">
+      <h1 className="text-2xl sm:text-[34px]  font-[Poppins]  leading-tight mb-6 text-black font-poppins text-[55px] font-medium ">
         Sign up
       </h1>
       <div className="mb-5">
-        <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-black mb-2">
+        <label htmlFor="email" className=" mb-2 text-black font-poppins text-[16px] font-normal leading-normal block text-xs sm:text-sm">
           Enter your username or email address
         </label>
         <input
@@ -33,7 +33,7 @@ const SignUpCard = ({ onSwitch }) => {
       </div>
       <div className="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
         <div className="w-full sm:w-1/2">
-          <label htmlFor="username" className="block text-xs sm:text-sm font-medium text-black mb-2">
+          <label htmlFor="username" className="mb-2 text-black font-poppins text-[16px] font-normal leading-normal block text-xs sm:text-sm">
             User name
           </label>
           <input
@@ -45,7 +45,7 @@ const SignUpCard = ({ onSwitch }) => {
           />
         </div>
         <div className="w-full sm:w-1/2">
-          <label htmlFor="contact" className="block text-xs sm:text-sm font-medium text-black mb-2">
+          <label htmlFor="contact" className="mb-2 text-black font-poppins text-[16px] font-normal leading-normal block text-xs sm:text-sm">
             Contact Number
           </label>
           <input
@@ -58,7 +58,7 @@ const SignUpCard = ({ onSwitch }) => {
         </div>
       </div>
       <div className="mb-4">
-        <label htmlFor="password" className="block text-xs sm:text-sm font-medium text-black mb-2">
+        <label htmlFor="password" className="mb-2 text-black font-poppins text-[16px] font-normal leading-normal block text-xs sm:text-sm">
           Enter your Password
         </label>
         <input

@@ -3,7 +3,7 @@ import EmployehandBookYellow from '../../assets/svgs/WelcomePage/EmployehandBook
 import HandBookSectionWrap from './wrapper/HandBookSectionWrap'
 const HandBookSectionsComp = () => {
   return (
-    <div class="flex flex-col p-6 w-[856px]  items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
+    <div class="flex flex-col p-6 w-[816px]  items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
           <div className='flex items-center gap-[10px] self-stretch'>
              <div className=" p-[10px] gap-[10px] flex items-center justify-center bg-[#444] rounded-md">
         <EmployehandBookYellow/>
@@ -12,11 +12,11 @@ const HandBookSectionsComp = () => {
   Handbook Sections
 </h3>
 
-       <div className="flex flex-col items-end flex-1 min-w-[74.69px] pl-[645.062px]">
+       <div className="flex flex-col items-end flex-1 min-w-[74.69px] ">
         <div className='flex items-center px-[11px] py-[3px] rounded-full bg-[#F1F5F9] '>
-            <p className="text-[#444] font-[400] text-[12px] leading-[16px] tracking-[-0.6px] font-[Segoe UI Symbol]">
-8 section
-</p>
+            <p className=" text-[#444] font-[400] text-[12px] leading-[16px] tracking-[-0.6px] font-[Segoe UI Symbol]">
+              8 section
+              </p>
 
         </div>
        </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmpLeaveHeader = () => {
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-5 py-6 ">
+    <div className="w-full px-4 sm:px-6 lg:px-0 py-6 ">
       <div className="max-w-screen-xl mx-auto">
         <h1 className="text-[#444] text-[30px] leading-[36px] font-normal font-[Segoe UI Symbol]"
 >Employee Leave</h1>

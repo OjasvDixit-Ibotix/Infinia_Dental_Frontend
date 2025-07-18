@@ -3,7 +3,7 @@ import EmployehandBookYellow from "../../assets/svgs/WelcomePage/EmployehandBook
 
 const EmpHandBookHeader = () => {
   return (
-    <div className="flex items-center gap-3 p-4 rounded-lg w-full">
+    <div className="flex items-center gap-3   rounded-lg w-full">
       <div className="w-10 h-10 flex items-center justify-center bg-[#444] rounded-md">
         <EmployehandBookYellow/>
       </div>

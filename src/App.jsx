@@ -12,6 +12,7 @@ import SeminarAndEventPage from './Pages/Admin/SeminarAndEventPage';
 import EmpFormsDocsPage from './Pages/Admin/EmpFormsDocsPage';
 import EmpDirectoryPage from './Pages/Admin/EmpDirectoryPage';
 import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage'
+import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
 
              <Route path="/" element={<BgLoginRegister />} />
              <Route  path='/dashboard'  element={<WelcomePage/>} />
+             <Route  path='/emp-dashboard'  element={<EmpWelcomePage/>} />
+
              <Route  element={<Layout/>}>
              <Route  path='/employee-details'  element={<EmployeeRecordsPage/>} />
              <Route  path='/leave-request'  element={<EmployeeLeave/>} />
@@ -28,6 +31,8 @@ const App = () => {
              <Route  path='/seminars-events'  element={<SeminarAndEventPage/>} />
              <Route  path='/forms'  element={<EmpFormsDocsPage/>} />
              <Route  path='/directory'  element={<EmpDirectoryPage/>} />
+
+             
           </Route>
       </Routes>
     </Router>

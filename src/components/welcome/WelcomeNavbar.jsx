@@ -1,5 +1,7 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
+import NotificationIcon from '../../assets/svgs/WelcomePage/NotificationIcon';
+import LogOutIcon from '../../assets/svgs/WelcomePage/LogOutIcon';
 
 const WelcomeNavbar = () => {
   return (
@@ -18,6 +20,18 @@ const WelcomeNavbar = () => {
             </p>
           </div>
         </div>
+        <div className="flex items-center">
+          <div className="flex h-[36px] py-[0px] px-[12px] content-center items-center">
+            <NotificationIcon/>
+
+          </div>
+            <div className="flex h-[36px] py-[0px] px-[12px] content-center items-center">
+            <LogOutIcon/>
+            
+          </div>
+        </div>
+
+
       </div>
 
       <SearchBar placeholder="Search employees, reports, leaves..." />
