@@ -12,7 +12,7 @@ const BgLoginRegister = () => {
   const [isSignup, setIsSignup] = useState(false);
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col md:flex-row">
+    <div className=" overflow-y-hidden relative min-h-screen w-full flex flex-col md:flex-row">
       
       <div className="relative w-full h-1/2 md:h-auto md:w-1/2 bg-[#EFCD78] overflow-hidden flex flex-col min-h-[460px] md:min-h-screen">
         <div className="z-10 w-[120px] sm:w-[158px] mx-auto mt-6 md:mt-2 md:ml-4 md:mx-0 md:absolute md:top-5 md:left-6">
