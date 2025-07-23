@@ -13,6 +13,8 @@ import EmpFormsDocsPage from './Pages/Admin/EmpFormsDocsPage';
 import EmpDirectoryPage from './Pages/Admin/EmpDirectoryPage';
 import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage'
 import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
+import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
+import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 
 const App = () => {
   return (
@@ -31,7 +33,10 @@ const App = () => {
              <Route  path='/seminars-events'  element={<SeminarAndEventPage/>} />
              <Route  path='/forms'  element={<EmpFormsDocsPage/>} />
              <Route  path='/directory'  element={<EmpDirectoryPage/>} />
+             <Route  path='/promotions'  element={<EmpPromotionsPage/>} />
 
+
+              <Route path= '/emp' element={<EmptimesheetPage/>}></Route>
              
           </Route>
       </Routes>

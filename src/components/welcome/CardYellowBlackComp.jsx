@@ -12,17 +12,16 @@ import EmployeDetails from '../../assets/svgs/WelcomePage/EmployeDetails';
 
 const CardYellowBlackComp = () => {
   return (
-    <div className="flex mx-auto flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 md:gap-6 lg:gap-8 ">
-      
-      <CardYellowBlackWrap navigateTo ='/employee-details' logos={<EmployeDetails />} logodesc="Employee Details" bgColor="EFCD78" textColor="444" />
+    <div className=" flex flex-wrap content-center mx-auto  gap-4 sm:gap-5 md:gap-6 lg:gap-7">
+      <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmployeDetails />} logodesc="Employee Details" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequest />} logodesc="Leave Request" bgColor="444" textColor="FFF" />
-      <CardYellowBlackWrap navigateTo="/check-attendance" logos={<CheckAttendance />} logodesc="Check Attendance" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap  navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Handbook" bgColor="444" textColor="FFF" />
+      {/* <CardYellowBlackWrap navigateTo="/check-attendance" logos={<CheckAttendance />} logodesc="Check Attendance" bgColor="EFCD78" textColor="444" /> */}
       <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="Products" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap  navigateTo="/seminars-events" logos={<SeminarEvent />} logodesc="Seminars & Events" bgColor="444" textColor="FFF" />
-      <CardYellowBlackWrap navigateTo="/promotions"  logos={<Promotions />} logodesc="Promotions" bgColor="EFCD78" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/seminars-events" logos={<SeminarEvent />} logodesc="Seminars & Events" bgColor="444" textColor="FFF" />
+      <CardYellowBlackWrap navigateTo="/promotions" logos={<Promotions />} logodesc="Promotions" bgColor="EFCD78" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Handbook" bgColor="444" textColor="FFF" />
+      <CardYellowBlackWrap navigateTo="/directory" logos={<Directory />} logodesc="Directory" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/forms" logos={<Forms />} logodesc="Forms" bgColor="444" textColor="FFF" />
-      <CardYellowBlackWrap  navigateTo="/directory" logos={<Directory />} logodesc="Directory" bgColor="EFCD78" textColor="444" />
     </div>
   );
 };

@@ -68,5 +68,18 @@ button:focus-visible {
 } */
 @import "tailwindcss";
 
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
+@tailwind utilities;
+
+
 /* @tailwind utilities; */
 
+@layer components {
+  .commonCardCss {
+
+    /* @apply rounded-2xl bg-white/60 shadow-lg backdrop-blur-sm; */
+    
+    @apply rounded-2xl bg-[rgba(255,255,255,0.60)] shadow-[0px_4px_12px_0px_rgba(0,0,0,0.10)] backdrop-blur-[2px];
+  }
+}

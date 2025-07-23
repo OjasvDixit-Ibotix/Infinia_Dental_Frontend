@@ -5,7 +5,7 @@ import LogOutIcon from '../../assets/svgs/WelcomePage/LogOutIcon';
 
 const WelcomeNavbar = () => {
   return (
-    <div className="flex flex-col gap-3 rounded-[20px] w-full max-w-[1336px] mx-auto ">
+    <div className="flex flex-col gap-3 rounded-[20px] w-full max-w-[1130px] mx-auto ">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2 sm:gap-4">
         <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-[12px] bg-[#444]">
