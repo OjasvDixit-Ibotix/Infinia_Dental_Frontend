@@ -1,9 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { signupSchema } from "../utils/validations/authSchemas";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const SignUpCard = ({ onSwitch }) => {
+         
+  const {
+        register,handleSubmit, formState:{errors}
+    }= useForm({
+      resolver:zodResolver(signupSchema)
+    })
+     
+     const formSubmit = (data) => {
+      console.log("Form Data:", data);
+    };
+     
+
   return (
-    <div className="w-full  max-w-[420px] bg-white rounded-[28px] sm:rounded-[32px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-7 mx-auto">
+    <div className="w-full  max-w-[420px] bg-white rounded-[28px] sm:rounded-[32px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-5 mx-auto">
          
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg sm:text-xl text-black font-normal font-[Poppins] text-[20px] leading-normal">
@@ -42,6 +57,7 @@ const SignUpCard = ({ onSwitch }) => {
               Admin
             </label>
           </div>
+
           <div className="flex items-center">
             <input
               id="role-employee"
@@ -60,7 +76,9 @@ const SignUpCard = ({ onSwitch }) => {
           </div>
         </div>
       </div>
-      
+
+      <form onSubmit={handleSubmit(formSubmit)}>
+
       <div className="mb-5">
         <label
           htmlFor="email"
@@ -72,9 +90,14 @@ const SignUpCard = ({ onSwitch }) => {
           id="email"
           name="email"
           type="text"
-          placeholder="Username or email address"
+          placeholder="Username or email address"  {...register('email')}
           className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-[#C0C0C0] rounded-md outline-none focus:border-[#3b82f6] text-xs sm:text-sm"
         />
+           {
+            errors.email &&(
+              <p  className="text-red-500 text-xs mt-1"> {errors.email.message}</p>
+            )
+          }
       </div> 
       <div className="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
         <div className="w-full sm:w-1/2">
@@ -85,12 +108,18 @@ const SignUpCard = ({ onSwitch }) => {
             User name
           </label>
           <input
+          {...register('name')}
             id="username"
             name="username"
-            type="text"
+            type="text"  
             placeholder="User name"
             className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-[#C0C0C0] rounded-md outline-none text-xs sm:text-sm"
           />
+             {
+            errors.name &&(
+              <p  className="text-red-500 text-xs mt-1"> {errors.name.message}</p>
+            )
+          }
         </div>
         <div className="w-full sm:w-1/2">
           <label
@@ -100,12 +129,18 @@ const SignUpCard = ({ onSwitch }) => {
             Contact Number
           </label>
           <input
+          {...register('number')}
             id="contact"
             name="contact"
             type="text"
             placeholder="Contact Number"
             className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-[#C0C0C0] rounded-md outline-none text-xs sm:text-sm"
           />
+             {
+            errors.number &&(
+              <p  className="text-red-500 text-xs mt-1"> {errors.number.message}</p>
+            )
+          }
         </div>
       </div>
 
@@ -118,16 +153,24 @@ const SignUpCard = ({ onSwitch }) => {
           Enter your Password
         </label>
         <input
+        {...register('password')}
           id="password"
           name="password"
           type="password"
           placeholder="Password"
           className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-[#C0C0C0] rounded-md outline-none text-xs sm:text-sm"
         />
+         {
+            errors.password &&(
+              <p  className="text-red-500 text-xs mt-1"> {errors.password.message}</p>
+            )
+          }
       </div>
       <button className="w-full bg-[#2C2C2C] text-white py-2 sm:py-3 rounded-lg shadow hover:opacity-90 transition mt-4 text-xs sm:text-base">
         Sign Up
       </button>
+      </form>
+
     </div>
   );
 };
