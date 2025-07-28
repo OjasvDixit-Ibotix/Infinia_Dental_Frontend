@@ -10,8 +10,8 @@ const EmpWelcomePage = () => {
   return (
    <div className="bg-[#EAEAEA] px-2 sm:px-4 md:px-8 lg:px-12 xl:px-20 py-4 sm:py-8 min-h-screen flex flex-col gap-6 w-full">
       <WelcomeNavbar />
-      <CardYellowBlackComp />
-      <WelcomeChartComp />
+      <CardYellowBlackComp/>
+      {/* <WelcomeChartComp /> */}
       <div className="flex mx-auto justify-center flex-col lg:flex-row gap-4 w-full ">
         <TodayOverviewComp />
         <RecentActivitiesComp />

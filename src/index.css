@@ -68,12 +68,9 @@ button:focus-visible {
 } */
 @import "tailwindcss";
 
-@import "tailwindcss/preflight";
+/* @import "tailwindcss/preflight";
 @import "tailwindcss/components";
-@tailwind utilities;
-
-
-/* @tailwind utilities; */
+@tailwind utilities; */
 
 @layer components {
   .commonCardCss {

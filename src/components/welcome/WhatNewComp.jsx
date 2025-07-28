@@ -28,7 +28,7 @@ const cards = [
 const WhatNewComp = () => {
   return (
     <div className="max-w-[1200px] mx-auto px-4">
-      <h2 className="text-xl font-semibold mb-6">What’s New?</h2>
+      <h2 className="text-xl mb-6 text-[#444] font-normal text-[24px] leading-[24px] tracking-[-0.6px] font-[Segoe UI Symbol]">What’s New?</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cards.map((card, idx) => (
           <div key={idx} className="rounded-lg overflow-hidden shadow-sm border border-gray-200 bg-white">
