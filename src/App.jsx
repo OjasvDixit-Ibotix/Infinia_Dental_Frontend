@@ -15,6 +15,7 @@ import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage'
 import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
 import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
 import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
+import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
 
 const App = () => {
 
@@ -36,8 +37,11 @@ const App = () => {
              <Route  path='/forms'  element={<EmpFormsDocsPage/>} />
              <Route  path='/directory'  element={<EmpDirectoryPage/>} />
              <Route  path='/promotions'  element={<EmpPromotionsPage/>} />
-             <Route path= '/emp' element={<EmptimesheetPage/>}></Route>
-             
+
+                 //! Emp Routes
+             <Route path= '/my-time' element={<EmptimesheetPage/>}></Route>
+             <Route path= '/request-leave' element={<EmpRequestLeavePage/>}></Route>
+       
           </Route>
       </Routes>
     </Router>

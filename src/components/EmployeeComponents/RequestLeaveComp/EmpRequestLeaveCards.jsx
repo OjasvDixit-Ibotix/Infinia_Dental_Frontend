@@ -35,7 +35,7 @@ const EmpRequestLeaveCards = () => {
   ]
 
   return (
-    <div className="flex flex-wrap gap-4 w-full">
+    <div className="flex flex-wrap gap-3 w-full">
       {leaveData.map((leave, idx) => (
         <RequestLeaveCardWrap
           key={idx}
