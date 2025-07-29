@@ -12,6 +12,8 @@ import EmployeDetails from '../../assets/svgs/WelcomePage/EmployeDetails';
 import ClockIcon from '../../assets/svgs/WelcomePage/ClockIcon';
 import PolicyContolaSvg from '../../assets/svgs/WelcomePage/PolicyContolaSvg';
 import PolicyControlBlackSvg from '../../assets/svgs/WelcomePage/policyControlBlackSvg';
+import TotalEmpl from '../../assets/svgs/WelcomePage/TotalEmpl';
+import MyProfileIcon from '../../assets/svgs/EmpWelocomePageSvgs/MyProfileIcon';
 const CardYellowBlackComp = () => {
   return (
 
@@ -43,7 +45,7 @@ const CardYellowBlackComp = () => {
 </svg>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
 
       <CardYellowBlackWrap navigateTo="/my-time" logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
-      <CardYellowBlackWrap navigateTo="/my-time" logos={<PolicyControlBlackSvg/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap navigateTo="/my-time" logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
 
     </div>
   );

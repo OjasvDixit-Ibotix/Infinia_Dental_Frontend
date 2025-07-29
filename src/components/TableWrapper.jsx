@@ -2,7 +2,7 @@ import React from 'react';
 
 const TableWrapper = ({ title, columns, rows, statusColorMap = {} }) => {
   return (
-    <div className="w-full bg-gray-100 rounded-2xl p-6 shadow-sm">
+    <div className="w-full bg-[#FFFFFF99] rounded-2xl p-6 shadow-sm">
       {title && <h2 className="text-lg font-semibold text-gray-800 mb-4">{title}</h2>}
 
       <div className="overflow-x-auto">
