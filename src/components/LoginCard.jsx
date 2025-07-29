@@ -18,9 +18,9 @@ const LoginCard = ({ onSwitch }) => {
    
 
   return (
-    <div className="w-full max-w-[409px] bg-white rounded-[32px] sm:rounded-[40px] shadow-[0px_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 md:px-10 py-8 sm:py-10 mx-auto">
+    <div className="w-full max-w-[500px] bg-white rounded-[28px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-7 mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-lg sm:text-xl font-normal text-black font-[Poppins]  text-[20px]  leading-normal">Welcome!</h2>
+        <h2 className="text-lg sm:text-xl font-normal text-black font-[Poppins] text-[20px] leading-normal">Welcome!</h2>
         <p className="text-xs sm:text-sm text-[#ABABAB]">
           No Account?{" "}
           <span
@@ -31,13 +31,13 @@ const LoginCard = ({ onSwitch }) => {
           </span>
         </p>
       </div>
-       <h1 className="text-2xl sm:text-[34px]  font-[Poppins]  leading-tight mb-6 text-black font-poppins text-[55px] font-medium ">
+       <h1 className="text-2xl sm:text-[34px]   leading-tight mb-6 text-black font-[Poppins] text-[55px] font-medium ">
         Log in
       </h1>
 
      <form onSubmit={handleSubmit(formSubmit)}>
         <div className="mb-5">
-          <label htmlFor="email" className="block text-xs sm:text-sm  mb-2 text-black font-poppins text-[16px] font-normal leading-normal">
+          <label htmlFor="email" className="block text-xs sm:text-sm  mb-2 text-black font-[Poppins] text-[16px] font-normal leading-normal">
             Enter your username or email address 
           </label>
           <input
@@ -53,7 +53,7 @@ const LoginCard = ({ onSwitch }) => {
           }
         </div>
         <div className="mb-4">
-          <label htmlFor="password"  className=" text-black font-poppins text-[16px] font-normal leading-normal block text-xs sm:text-sm  mb-2">
+          <label htmlFor="password"  className=" text-black font-[Poppins] text-[16px] font-normal leading-normal block text-xs sm:text-sm  mb-2">
             Enter your Password
           </label>
           <input
