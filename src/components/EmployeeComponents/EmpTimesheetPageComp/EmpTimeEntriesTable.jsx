@@ -6,6 +6,7 @@ import LeaveToday from "../../../assets/svgs/WelcomePage/LeaveToday";
 import TimeEventsIcon from "../../../assets/svgs/EmpTimesheet/TimeEventsIcon";
 import FilterIcon from "../../../assets/svgs/EmpTimesheet/FilterIcon";
 import ExportIcon from "../../../assets/svgs/EmpTimesheet/ExportIcon";
+import { useNavigate } from "react-router-dom";
 
 const timeEntries = [
   {
@@ -43,6 +44,7 @@ const timeEntries = [
 ];
 
 const  EmpTimeEntriesTable=()=> {
+  const navigate= useNavigate()
   return (
     <>
     <div className="flex flex-col gap-7 ">
@@ -113,17 +115,17 @@ const  EmpTimeEntriesTable=()=> {
 
    <div className="flex items-center gap-4">
         
-        <div className="h-16 flex justify-center items-center gap-2 bg-[#444444] px-5 py-2 rounded-xl">
+        <div onClick={()=>navigate('/request-leave')}  className="h-16 cursor-pointer flex justify-center items-center gap-2 bg-[#444444] px-5 py-2 rounded-xl">
             <span className="font-normal text-lg text-center text-white">
             Request Leave
             </span>
         </div>
 
-        <div className="h-16 flex flex-col pl-6">
-            <div className="h-16 flex justify-center items-center gap-2 bg-[#efcd78] px-5 py-2 rounded-xl">
-            <span className="font-normal text-lg text-center text-[#444444]">
-                Leave Balance Overview
-            </span>
+        <div  className=" h-16 flex flex-col pl-6">
+            <div className="h-16 flex justify-center cursor-pointer items-center gap-2 bg-[#efcd78] px-5 py-2 rounded-xl">
+              <span className="font-normal text-lg text-center text-[#444444]">
+                  Leave Balance Overview
+              </span>
             </div>
         </div>
      </div>
