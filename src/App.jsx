@@ -24,6 +24,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+           
 
              <Route path="/" element={<BgLoginRegister setUserType={setUserType} />} />
              <Route path='/dashboard'  element={<WelcomePage  userType={userType}/>} />

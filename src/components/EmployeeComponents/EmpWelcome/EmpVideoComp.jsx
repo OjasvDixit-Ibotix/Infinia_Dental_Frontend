@@ -6,7 +6,7 @@ const EmpVideoComp = () => {
     <div
       className={`
         relative 
-        h-[292px] 
+        h-[242px] 
         w-full 
         flex-shrink-0 
         self-stretch 

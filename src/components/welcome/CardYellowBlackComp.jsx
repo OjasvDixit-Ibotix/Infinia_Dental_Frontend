@@ -17,31 +17,39 @@ import MyProfileIcon from '../../assets/svgs/EmpWelocomePageSvgs/MyProfileIcon';
 import EmpResourcesicon from '../../assets/svgs/EmpWelocomePageSvgs/EmpResourcesicon';
 import AllAoutProductsIcon from '../../assets/svgs/EmpWelocomePageSvgs/AllAoutProductsIcon';
 import EmpClockIcon from '../../assets/svgs/EmpWelocomePageSvgs/EmpClockIcon';
+import LeaveRequestBlackIcon from '../../assets/svgs/WelcomePage/LeaveRequestBlackIcon';
+import EmpDetailsIcon from '../../assets/svgs/WelcomePage/EmpDetailsIcon';
 const CardYellowBlackComp = () => {
   return (
 
     <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7">
       
-      {/* <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmployeDetails />} logodesc="Employee Details" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequest />} logodesc="Leave Request" bgColor="444" textColor="FFF" />
-      <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="Products" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap navigateTo="/seminars-events" logos={<SeminarEvent />} logodesc="Seminars & Events" bgColor="444" textColor="FFF" />
+      <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmpDetailsIcon />} logodesc="Employee Details" bgColor="444" textColor="FFF" />
+
+
+      <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Resources" bgColor="EFC878" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="All about Products" bgColor="444" textColor="FFF" />
+      <CardYellowBlackWrap navigateTo="/profile" logos={<MyProfileIcon />} logodesc="My Profile" bgColor="EFC878" textColor="444" />
+
+
+      
+      {/* <CardYellowBlackWrap navigateTo="/seminars-events" logos={<SeminarEvent />} logodesc="Seminars & Events" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/promotions" logos={<Promotions />} logodesc="Promotions" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Handbook" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/directory" logos={<Directory />} logodesc="Directory" bgColor="EFCD78" textColor="444" />
-      <CardYellowBlackWrap navigateTo="/forms" logos={<Forms />} logodesc="Forms" bgColor="444" textColor="FFF" /> */}
-  
+      <CardYellowBlackWrap navigateTo="/forms" logos={<Forms />} logodesc="Forms" bgColor="444" textColor="FFF" />
+   */}
 
       {/* Employeee cards */}
 
 
-      <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
+      {/* <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
       <CardYellowBlackWrap  logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
 
       <CardYellowBlackWrap  logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
 
       <CardYellowBlackWrap logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
-      <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" />  */}
 
     </div>
   );
