@@ -19,18 +19,30 @@ import AllAoutProductsIcon from '../../assets/svgs/EmpWelocomePageSvgs/AllAoutPr
 import EmpClockIcon from '../../assets/svgs/EmpWelocomePageSvgs/EmpClockIcon';
 import LeaveRequestBlackIcon from '../../assets/svgs/WelcomePage/LeaveRequestBlackIcon';
 import EmpDetailsIcon from '../../assets/svgs/WelcomePage/EmpDetailsIcon';
+import { useSelector } from 'react-redux';
 const CardYellowBlackComp = () => {
-  return (
 
-    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7">
-      
-      <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
+  const {user} = useSelector((state)=>state.auth)
+  console.log('in card',user);
+  
+  
+  return ( 
+
+    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7 max-w-[1130px] mx-auto">
+        
+      {
+        user?.user_type==='admin' &&(
+          <>
+            <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmpDetailsIcon />} logodesc="Employee Details" bgColor="444" textColor="FFF" />
-
-
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Resources" bgColor="EFC878" textColor="444" />
       <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="All about Products" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/profile" logos={<MyProfileIcon />} logodesc="My Profile" bgColor="EFC878" textColor="444" />
+          </>
+        )
+      }
+
+    
 
 
       
@@ -42,14 +54,21 @@ const CardYellowBlackComp = () => {
 
       {/* Employeee cards */}
 
-
-      {/* <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
+    {
+      user?.user_type === 'employee' &&(
+        <>
+           <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
       <CardYellowBlackWrap  logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
 
       <CardYellowBlackWrap  logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
 
       <CardYellowBlackWrap logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
-      <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" />  */}
+      <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+        </>
+      )
+    }
+
+   
 
     </div>
   );

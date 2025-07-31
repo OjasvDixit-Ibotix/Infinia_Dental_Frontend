@@ -1,8 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/validations/authSchemas";
+import { useDispatch , useSelector} from "react-redux";
+import { loginUser } from "../slices/auth/authSlice";
+import { toast } from "sonner";
 const LoginCard = ({ onSwitch }) => {
 
 
@@ -11,12 +14,27 @@ const LoginCard = ({ onSwitch }) => {
   }= useForm({
     resolver:zodResolver(loginSchema)
   })
-   
-   const formSubmit = (data) => {
-    console.log("Form Data:", data);
+  
+  const { loading, error } = useSelector((state) => state.auth);
+
+
+  const dispatch = useDispatch();
+   const navigate= useNavigate();
+
+    const formSubmit = async (data) => {
+    
+    try {
+      await dispatch(loginUser(data)).unwrap();
+      
+      toast.success('Log In successfully');
+      navigate('/dashboard');
+
+    } catch (error) {
+      toast.error(error.message || 'Failed to log in');
+    }
   };
    
-
+     
   return (
     <div className="w-full max-w-[500px] bg-white rounded-[28px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-7 mx-auto">
       <div className="flex justify-between items-center mb-6">

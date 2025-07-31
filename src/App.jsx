@@ -16,6 +16,7 @@ import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
 import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
 import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
+import { Toaster } from 'sonner';
 
 const App = () => {
 
@@ -45,6 +46,7 @@ const App = () => {
        
           </Route>
       </Routes>
+      <Toaster richColors position="top-right" />
     </Router>
   );
 };

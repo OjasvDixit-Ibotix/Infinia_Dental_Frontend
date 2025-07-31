@@ -19,6 +19,8 @@ const EmpVideoComp = () => {
         before:rounded-3xl 
         before:bg-#00000080
         before:content-['']
+        mx-auto
+        max-w-[1130px]
       `}
      
       style={{ backgroundImage: `url(${photo})` }}

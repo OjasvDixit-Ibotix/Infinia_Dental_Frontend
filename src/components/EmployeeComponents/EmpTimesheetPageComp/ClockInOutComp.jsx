@@ -2,13 +2,16 @@ import React from 'react'
 import ClockIcon from '../../../assets/svgs/WelcomePage/ClockIcon'
 import ClockInsvg from '../../../assets/svgs/EmpTimesheet/ClockInsvg'
 import ClockOutSvg from '../../../assets/svgs/EmpTimesheet/ClockOutSvg'
+import { useDispatch } from 'react-redux'
 
 const ClockInOutComp = () => {
+  const dispatch = useDispatch()
   return (
+    
    <div className=" commonCardCss p-8 ">
   <div className="flex flex-col gap-6 self-stretch">
 
-    <div className="flex justify-center items-center gap-0 self-stretch">
+    <div onClick={()=>dispatch()} className="flex justify-center items-center gap-0 self-stretch">
       <div className="h-16 flex justify-center items-center gap-2 bg-emerald-600 px-5 py-2 rounded-xl">
         <div className="h-4 w-7 flex flex-col pr-3">
           <div className="h-4 w-4 flex flex-col justify-center items-center">
