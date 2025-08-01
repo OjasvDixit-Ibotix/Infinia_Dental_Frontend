@@ -34,11 +34,12 @@ export const loginUser = createAsyncThunk(
 
 
 const loadUserFromStorage = () => {
+
   try {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
     if (token && user) {
-      return { token, user, isAuthenticated: true };
+      return { token, user, islogin: true };
     }
     else{
       toast.warning('Could not load data')
@@ -46,7 +47,7 @@ const loadUserFromStorage = () => {
   } catch (e) {
     console.error("Could not load user data from storage", e);
   }
-  return { token: null, user: null, isAuthenticated: false };
+  return { token: null, user: null, islogin: false };
 };
 
 
@@ -66,7 +67,7 @@ const authSlice = createSlice({
       localStorage.removeItem('user');
       state.user = null;
       state.token = null;
-      state.isAuthenticated = false;
+      state.islogin = false;
       state.loading = false;
       state.error = null;
     },
@@ -79,8 +80,9 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         const { user, token } = action.payload;
+        console.log(user,token)
         state.loading = false;
-        state.isAuthenticated = true;
+        state.islogin = true;
         state.user = user;
         state.token = token;
         localStorage.setItem('user', JSON.stringify(user));
@@ -88,7 +90,7 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.isAuthenticated = false;
+        state.islogin = false;
         state.error = action.payload;
       })
 
@@ -99,15 +101,15 @@ const authSlice = createSlice({
       .addCase(signUpUser.fulfilled, (state, action) => {
         const { user, token } = action.payload;
         state.loading = false;
-        state.isAuthenticated = true;
+        state.isLogin = true;
         state.user = user;
-        // state.token = token;
-        // localStorage.setItem('user', JSON.stringify(user));
+        state.token = token;
+        localStorage.setItem('user', JSON.stringify(user));
         // localStorage.setItem('token', token);
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;
-        state.isAuthenticated = false;
+        state.islogin = false;
         state.error = action.payload;
       });
   }
