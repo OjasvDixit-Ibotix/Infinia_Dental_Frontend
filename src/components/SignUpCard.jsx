@@ -85,7 +85,7 @@ const SignUpCard = ({ onSwitch }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2   gap-4">
           <div>
             <label className="text-xs text-black block mb-1">Email</label>
             <input {...register("email")} placeholder="Email" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />

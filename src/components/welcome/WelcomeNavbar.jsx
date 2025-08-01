@@ -17,10 +17,10 @@ const WelcomeNavbar = () => {
           </div>
           <div className="flex flex-col">
             <p className="text-[#444] font-[400] text-[18px] sm:text-[20px] md:text-[24px] leading-[26px] sm:leading-[28px] md:leading-[32px] font-[Segoe UI Symbol]">
-              Welcome, {user?.user_type ==='admin'? 'Admin' : user?.name}!
+              Welcome, {user?.user_type ==='admin'&& user?.name}!
             </p>
             <p className="text-[#444] font-[400] text-[13px] sm:text-[14px] leading-[18px] sm:leading-[20px] font-[Segoe UI Symbol]">
-              Infinia Dental {user_type?.user_type==='admin'?'admin':'employee'} Portal
+              Infinia Dental {user?.user_type==='admin'?'admin':'employee'} Portal
             </p>
           </div>
         </div>

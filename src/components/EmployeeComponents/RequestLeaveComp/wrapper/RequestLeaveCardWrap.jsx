@@ -5,7 +5,7 @@ const RequestLeaveCardWrap = ({ logo, daysleft, typeofleave, noOfDaysUsed, perce
 
   return (
    
-    <div className="flex flex-col  w-full max-w-sm bg-white p-4 sm:p-6 rounded-2xl shadow-md">
+    <div className="flex flex-col flex-1 bg-white p-4 sm:p-6 rounded-2xl shadow-md">
       <div className="flex flex-col gap-4 self-stretch">
 
         <div className="flex items-center justify-between self-stretch">
