@@ -2,7 +2,7 @@ import React from 'react';
 
 const EmpReqLeaveHeader = () => {
   return (
-    <div className="w-full max-w-[1336px] flex items-center justify-between">
+    <div className="w-full  flex items-center justify-between">
       <div className="flex flex-col gap-1">
         <div>
           <span className="font-normal text-3xl text-[#444444]">

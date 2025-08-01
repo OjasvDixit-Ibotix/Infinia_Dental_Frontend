@@ -28,7 +28,7 @@ const CardYellowBlackComp = () => {
   
   return ( 
 
-    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7 max-w-[1130px] mx-auto">
+    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7  w-full mx-auto">
         
       {
         user?.user_type==='admin' &&(

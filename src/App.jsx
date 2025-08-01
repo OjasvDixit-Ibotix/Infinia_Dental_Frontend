@@ -17,7 +17,7 @@ import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
 import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
 import { Toaster } from 'sonner';
-
+import PrivateRoute from './utils/PrivateRoute';
 const App = () => {
 
   const [ userType, setUserType] = useState('employee');
@@ -25,26 +25,36 @@ const App = () => {
   return (
     <Router>
       <Routes>
-           
+                  <Route 
+                    path="/dashboard"
+                    element={
+                      <PrivateRoute>
+                        <WelcomePage  userType={userType} />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route 
+                    path="/"
+                    element={
+                        <BgLoginRegister  />
+                      
+                    }
+                  />
 
-             <Route path="/" element={<BgLoginRegister setUserType={setUserType} />} />
-             <Route path='/dashboard'  element={<WelcomePage  userType={userType}/>} />
-             {/* <Route  path='/emp-dashboard'  element={<EmpWelcomePage/>} /> */}
-             <Route  element={<Layout/>}>
-             <Route  path='/employee-details'  element={<EmployeeRecordsPage/>} />
-             <Route  path='/leave-request'  element={<EmployeeLeave/>} />
-             <Route  path='/employee-handbook'  element={<EmployeehandBooksPage/>} />
-             <Route  path='/products'  element={<EmployeeProductPage/>} />
-             <Route  path='/seminars-events'  element={<SeminarAndEventPage/>} />
-             <Route  path='/forms'  element={<EmpFormsDocsPage/>} />
-             <Route  path='/directory'  element={<EmpDirectoryPage/>} />
-             <Route  path='/promotions'  element={<EmpPromotionsPage/>} />
-
-                 //! Emp Routes
-             <Route path= '/my-time' element={<EmptimesheetPage/>}></Route>
-             <Route path= '/request-leave' element={<EmpRequestLeavePage/>}></Route>
-       
+          <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+            <Route path="/employee-details" element={<EmployeeRecordsPage />} />
+            <Route path="/leave-request" element={<EmployeeLeave />} />
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
+            <Route path="/products" element={<EmployeeProductPage />} />
+            <Route path="/seminars-events" element={<SeminarAndEventPage />} />
+            <Route path="/forms" element={<EmpFormsDocsPage />} />
+            <Route path="/directory" element={<EmpDirectoryPage />} />
+            <Route path="/promotions" element={<EmpPromotionsPage />} />
+            {/* Emp Routes */}
+            <Route path="/my-time" element={<EmptimesheetPage />} />
+            <Route path="/request-leave" element={<EmpRequestLeavePage />} />
           </Route>
+
       </Routes>
       <Toaster richColors position="top-right" />
     </Router>

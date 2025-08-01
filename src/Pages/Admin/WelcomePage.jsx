@@ -15,7 +15,10 @@ const WelcomePage = () => {
     const {user_type} = useSelector((state) => state.auth);
       
   return (
-    <div className="bg-[rgb(234,234,234)]  px-2 sm:px-4 md:px-8 lg:px-12 xl:px-20 py-4 sm:py-8 min-h-screen flex flex-col gap-6 w-full">
+    <div className="w-full  bg-[rgb(234,234,234)]">
+
+    <div className="max-w-[1450px] mx-auto  px-2 sm:px-4 md:px-8 lg:px-12 xl:px-20 py-4 sm:py-8 min-h-screen flex flex-col gap-6 ">
+    
       <WelcomeNavbar />
       <EmpVideoComp/>
       <CardYellowBlackComp />
@@ -37,11 +40,13 @@ const WelcomePage = () => {
 
       </div> */}
 
-      <div className="flex mx-auto max-w-[1130px] justify-center flex-row lg:flex-row gap-4 w-full">
+      <div className="flex mx-auto  justify-center flex-row lg:flex-row gap-4 w-full">
       <EmpCalendar/>
       <WhatNewComp />      
       </div>
     </div>
+    </div>
+
   );
 };
 

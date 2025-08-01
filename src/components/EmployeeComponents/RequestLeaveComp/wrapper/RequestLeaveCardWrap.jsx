@@ -1,38 +1,42 @@
 import React from 'react';
 
 const RequestLeaveCardWrap = ({ logo, daysleft, typeofleave, noOfDaysUsed, percentRemain, leaveleftoutof, totalleave }) => {
-  const progressPercentage = ((totalleave - daysleft) / totalleave) * 100;
+  const progressPercentage = totalleave > 0 ? ((totalleave - daysleft) / totalleave) * 100 : 0;
 
   return (
-    <div className="  flex flex-col w-full md:w-1/3  lg:w-1/4 min-w-[359px]  bg-white p-6 rounded-2xl">
-      <div className="flex flex-col gap-4 self-stretch p-4">
+   
+    <div className="flex flex-col  w-full max-w-sm bg-white p-4 sm:p-6 rounded-2xl shadow-md">
+      <div className="flex flex-col gap-4 self-stretch">
 
         <div className="flex items-center justify-between self-stretch">
-          <div className="w-[44px] h-[44px] flex justify-center items-center bg-[#444444] rounded-lg">
-            <div className="w-6 h-6">
+          <div className="w-11 h-11 flex justify-center items-center bg-[#444444] rounded-lg flex-shrink-0">
+            <div className="w-6 h-6 text-white"> 
               {logo}
             </div>
           </div>
 
           <div className="flex flex-col items-end">
-            <span className="text-2xl text-[#444444]">{daysleft}</span>
-            <span className="text-sm text-[#444444]">Days Left</span>
+            <span className="text-2xl sm:text-3xl font-semibold text-[#444444]">{daysleft}</span>
+            <span className="text-sm text-gray-500">Days Left</span>
           </div>
         </div>
 
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
-            <span className="text-sm text-[#444444]">{typeofleave}</span>
-            <span className="text-sm text-[#efcd78]">{leaveleftoutof}</span>
+            <span className="text-sm font-medium text-[#444444]">{typeofleave}</span>
+            <span className="text-sm font-semibold text-[#efcd78]">{leaveleftoutof}</span>
           </div>
 
-          <div className="w-full h-2 bg-gray-200 rounded-full">
-            <div className="h-2 bg-[#efcd78] rounded-full" style={{ width: `${progressPercentage}%` }} />
+          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div 
+              className="h-2 bg-[#efcd78] rounded-full transition-width duration-500" 
+              style={{ width: `${progressPercentage}%` }} 
+            />
           </div>
 
           <div className="flex justify-between">
-            <span className="text-xs text-[#444444]">Used: {noOfDaysUsed} days</span>
-            <span className="text-xs text-[#444444]">{percentRemain} remaining</span>
+            <span className="text-xs text-gray-500">Used: {noOfDaysUsed} days</span>
+            <span className="text-xs text-gray-500">{percentRemain} remaining</span>
           </div>
         </div>
       </div>

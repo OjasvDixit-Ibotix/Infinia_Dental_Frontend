@@ -7,7 +7,7 @@ import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow';
 
 const EmpTimeStats = () => {
   return (
-    <div className="flex flex-col gap-6 self-stretch w-[304px]">
+    <div className="flex flex-col gap-6 self-stretch w-[304px] lg:w-[468px]">
 
       <div className= "commonCardCss flex flex-col items-center gap-4 self-stretch  pt-6 rounded-2xl">
         <div className="flex items-center gap-2  w-[245px] h-[46px]">
