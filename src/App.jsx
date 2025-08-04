@@ -18,12 +18,16 @@ import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
 import { Toaster } from 'sonner';
 import PrivateRoute from './utils/PrivateRoute';
+import ScrollToTop from './utils/ScrollToTop';
+import EmpLeaveBalance from './Pages/Employee/EmpLeaveBalance';
 const App = () => {
 
   const [ userType, setUserType] = useState('employee');
   
+  
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
                   <Route 
                     path="/dashboard"
@@ -53,6 +57,8 @@ const App = () => {
             {/* Emp Routes */}
             <Route path="/my-time" element={<EmptimesheetPage />} />
             <Route path="/request-leave" element={<EmpRequestLeavePage />} />
+            <Route path="/leave-balance" element={<EmpLeaveBalance />} />
+
           </Route>
 
       </Routes>
