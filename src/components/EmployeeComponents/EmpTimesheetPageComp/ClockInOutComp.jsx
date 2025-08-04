@@ -11,7 +11,7 @@ const ClockInOutComp = () => {
   const intervalRef = useRef(null);
 
   const authHeader = {
-    username: "ad11@gmail.com",
+    username: "a9a@gmail.com",
     password: "asdf1234",
   };
 
@@ -27,7 +27,7 @@ const ClockInOutComp = () => {
       const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
 
     const res=   await axios.post(
-        'https://1c5324a0f21f.ngrok-free.app/clock-in',
+        'https://3feb0b4cc6b5.ngrok-free.app/clock-in',
         {},
         {
           headers: {
@@ -35,6 +35,7 @@ const ClockInOutComp = () => {
           },
         }
       );
+      console.log(res.data)
 
       setIsClockedIn(true);
       toast.success(res.data.message)
@@ -42,7 +43,7 @@ const ClockInOutComp = () => {
       intervalRef.current = setInterval(() => setSeconds((s) => s + 1), 1000);
     } catch (err) {
       console.error('Clock In Error:', err);
-      toast.error(err.message)
+      toast.error(err.response.data.error)
     }
   };
 
@@ -51,7 +52,7 @@ const ClockInOutComp = () => {
       const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
 
     const res=   await axios.post(
-        'https://1c5324a0f21f.ngrok-free.app/clock-out',
+        'https://3feb0b4cc6b5.ngrok-free.app/clock-out',
         {},
         {
           headers: {
@@ -69,8 +70,38 @@ const ClockInOutComp = () => {
     }
   };
 
-  useEffect(() => {
-    return () => clearInterval(intervalRef.current);
+ useEffect(() => {
+    const checkClockInStatus = async () => {
+      try {
+        const res = await axios.get('https://3feb0b4cc6b5.ngrok-free.app/time-entries', {
+          headers: apiHeaders,
+        });
+
+        if (res.data && res.data.status === 'ongoing') {
+          const clockInTime = new Date(res.data.clock_in);
+          const now = new Date();
+          const elapsedSeconds = Math.floor((now - clockInTime) / 1000);
+          
+          setIsClockedIn(true);
+          startTimer(elapsedSeconds);
+        }
+      } catch (error) {
+        // A 404 error is expected if the user is not clocked in.
+        if (error.response && error.response.status === 404) {
+          console.log('No active clock-in session found.');
+        } else {
+          console.error('Failed to check clock-in status:', error);
+        }
+      } finally {
+        // Finished checking, so we can display the component
+        setIsLoading(false);
+      }
+    };
+
+    checkClockInStatus();
+
+    // Cleanup function to stop the timer if the component is removed
+    return () => stopTimer();
   }, []);
 
   return (
