@@ -57,7 +57,6 @@ const initialState = {
   error: null,
 };
 
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -101,11 +100,11 @@ const authSlice = createSlice({
       .addCase(signUpUser.fulfilled, (state, action) => {
         const { user, token } = action.payload;
         state.loading = false;
-        state.isLogin = true;
+        state.islogin = true;
         state.user = user;
         state.token = token;
         localStorage.setItem('user', JSON.stringify(user));
-        // localStorage.setItem('token', token);
+        localStorage.setItem('token', token);
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;

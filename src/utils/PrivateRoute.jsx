@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const PrivateRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
-  const [isunauth,setUnAuth] = useState(false);
+  // ✅ SINGLE SOURCE OF TRUTH: Only get login status from Redux.
+  const islogin = useSelector((state) => state.auth.islogin);
+  const loading = useSelector((state) => state.auth.loading);
+  const location = useLocation();
 
-  useEffect(()=>{
-    if(!token || !user){
-      toast.error('You are unauthorized');
-      console.log('heuhfu');
-      
-      setUnAuth(true);
+  useEffect(() => {
+   
+    if (!loading && !islogin && location.pathname !== '/') {
+        toast.error('You must be logged in to view this page.');
     }
-  },[token])
+  }, [islogin, loading, location.pathname]);
 
-    if (token ||user) {
-      return children;
-    }
-    
-  if(isunauth){
 
-    return <Navigate to="/"  />;
+  if (loading) {
+    return <div>Loading...</div>; 
   }
-  return null; 
 
+  if (islogin) {
+    return children;
+  }
+  
+  return <Navigate to="/" replace />;
 };
 
 export default PrivateRoute;

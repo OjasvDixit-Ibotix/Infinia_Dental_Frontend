@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect, use } from "react";
 import ellipse1 from "../assets/images/Ellipse1.svg";
 import gradient from "../assets/images/bg-gradient.png";
 import righttable from "../assets/images/right-table.svg";
 import logo from "../assets/images/logo.svg";
 import LoginCard from "../components/LoginCard";
 import SignUpCard from "../components/SignUpCard";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const BgLoginRegister = () => {
-  const navigate = useNavigate();
+  const navigate= useNavigate()
+  const islogin = useSelector((state)=>state.auth.islogin);
   const [isSignup, setIsSignup] = useState(false);
+
+  const handleSwitch = useCallback(() => {
+    setIsSignup((prevIsSignup) => !prevIsSignup);
+  }, []);
+
+  useEffect(()=>{
+    if(islogin){
+        navigate('/dashboard')
+    }
+  },[islogin,navigate])
 
   return (
     <div className=" overflow-y-hidden relative min-h-screen w-full flex flex-col md:flex-row">
@@ -20,28 +32,28 @@ const BgLoginRegister = () => {
         </div>
         <img
           src={ellipse1}
-          alt="Ellipse"
+          alt=""
           className="absolute top-0 left-0 w-[60%] opacity-50 hidden sm:block"
         />
       </div>
       <div className="relative w-full h-1/2 md:h-auto md:w-1/2 bg-white flex items-center justify-center px-6 py-10 min-h-[60px] md:min-h-screen">
         <img
           src={righttable}
-          alt="People working"
+          alt="People working" 
           className="absolute bottom-0 right-0 w-[180px] lg:w-[300px] pointer-events-none hidden md:block"
         />
       </div>
       <img
         src={gradient}
-        alt="Gradient Overlay"
+        alt=""
         className="absolute top-0 left-0 w-full h-full opacity-50 z-15 pointer-events-none select-none"
       />
       <div className="absolute inset-0 flex items-center justify-center z-20 p-2 sm:p-4">
         <div className="w-full max-w-[420px]">
           {isSignup ? (
-            <SignUpCard onSwitch={() => setIsSignup(!isSignup)} />
+            <SignUpCard onSwitch={handleSwitch} />
           ) : (
-            <LoginCard onSwitch={() => setIsSignup(!isSignup)} />
+            <LoginCard onSwitch={handleSwitch} />
           )}
         </div>
       </div>

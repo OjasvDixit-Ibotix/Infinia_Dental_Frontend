@@ -138,7 +138,7 @@ const SignUpCard = ({ onSwitch }) => {
           )}
         </div>
 
-        {error && <p className="text-red-500 text-xs text-center mt-4">{error}</p>}
+        {/* {error && <p className="text-red-500 text-xs text-center mt-4">{error}</p>} */}
 
         <button
           type="submit"

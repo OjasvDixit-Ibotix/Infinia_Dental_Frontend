@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +36,7 @@ const LoginCard = ({ onSwitch }) => {
    
      
   return (
+    
     <div className="w-full max-w-[500px] bg-white rounded-[28px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-7 mx-auto">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg sm:text-xl font-normal text-black font-[Poppins] text-[20px] leading-normal">Welcome!</h2>
@@ -101,4 +102,4 @@ const LoginCard = ({ onSwitch }) => {
   );
 };
 
-export default LoginCard;
+export default memo(LoginCard);
