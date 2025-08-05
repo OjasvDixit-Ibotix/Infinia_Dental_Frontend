@@ -4,10 +4,8 @@ import TimeEventsIcon from "../../../assets/svgs/EmpTimesheet/TimeEventsIcon";
 import FilterIcon from "../../../assets/svgs/EmpTimesheet/FilterIcon";
 import ExportIcon from "../../../assets/svgs/EmpTimesheet/ExportIcon";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-// --- Helper Functions to format data from the API ---
+import apiClient from "../../../utils/api/api";
 
-// Formats "2025-08-04" to "Aug 4, 2025"
 const formatDate = (dateString) => {
   if (!dateString) return "--";
   const date = new Date(dateString);
@@ -18,7 +16,6 @@ const formatDate = (dateString) => {
   });
 };
 
-// Formats "2025-08-04T05:24:01.537807" to "10:54 AM" (adjusts for your local timezone)
 const formatTime = (dateTimeString) => {
   if (!dateTimeString) return "--";
   const date = new Date(dateTimeString);
@@ -29,12 +26,10 @@ const formatTime = (dateTimeString) => {
   });
 };
 
-// Formats "ongoing" to "Ongoing"
 const formatStatus = (status) => {
     if (!status) return "--";
     return status.charAt(0).toUpperCase() + status.slice(1);
 }
-
 
 const EmpTimeEntriesTable = () => {
   const navigate = useNavigate();
@@ -43,29 +38,39 @@ const EmpTimeEntriesTable = () => {
   const [error, setError] = useState(null);
   
   useEffect(() => {
+
     const fetchTimeEntries = async () => {
       try {
-        const authHeader = { username: "a9a@gmail.com", password: "asdf1234" };
-        const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
-        
-        const response = await axios.get("https://3feb0b4cc6b5.ngrok-free.app/time-entries", {
-          headers: {
-            Authorization: basicAuth,
-          },
-        }    
-        );
-        console.log('dwdw',response.data);
       
-        const formattedEntries = response.data.time_entries.map((entry) => ({
-          date: formatDate(entry.date),
-          clockIn: formatTime(entry.clock_in),
-          clockOut: formatTime(entry.clock_out),
-          totalHours: entry.total_hours ? `${entry.total_hours.toFixed(1)}h` : "--",
-          status: formatStatus(entry.status),
-          notes: entry.notes ?? "--",
-        }));
+        // const authHeader = { username: "a34a@gmail.com", password: "asdf1234" };
+        // const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
+        
+        const response = await apiClient.get("/time-entries");
+        //     , {
+        //   headers: {
+        //     "ngrok-skip-browser-warning": "true",
+        //     Authorization: basicAuth,
+        //   },
+        // });
 
-        setTimeEntries(formattedEntries);
+        console.log('dwdw',response.data);
+        
+
+        if (response.data && response.data.time_entries) {
+          const formattedEntries = response.data.time_entries.map((entry) => ({
+            id: entry.id, 
+            date: formatDate(entry.date),
+            clockIn: formatTime(entry.clock_in),
+            clockOut: formatTime(entry.clock_out),
+            totalHours: entry.total_hours ? `${entry.total_hours.toFixed(1)}h` : "--",
+            status: formatStatus(entry.status),
+            notes: entry.notes ?? "--",
+          }));
+          setTimeEntries(formattedEntries);     
+        } else {
+            setTimeEntries([]);
+        }
+
       } catch (e) {
         console.error("Failed to fetch time entries:", e);
         setError(e.message);
@@ -115,10 +120,13 @@ const EmpTimeEntriesTable = () => {
                 <div className="flex items-center justify-center h-[55px]">Loading entries...</div>
             ) : error ? (
                 <div className="flex items-center justify-center h-[55px] text-red-500">Failed to load data.</div>
+            ) : timeEntries.length === 0 ? (
+                <div className="flex items-center justify-center h-[55px]">No time entries found.</div>
             ) : (
-                timeEntries.map((entry, idx) => (
+                timeEntries.map((entry) => (
               <div
-                key={idx}
+                // BEST PRACTICE: Use a unique ID from the data as the key
+                key={entry.id}
                 className="flex items-center border-t border-slate-200 h-[55px]"
               >
                 <div className="px-2 w-full max-w-[150px] min-w-[130px]">

@@ -9,7 +9,7 @@ const Navbar = () => {
         <path d="M8.00065 12.6663L3.33398 7.99967L8.00065 3.33301" stroke="#444" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M12.6673 8H3.33398" stroke="#444" strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="text-[#444] text-xs sm:text-sm md:text-base leading-[20px] font-[Segoe UI Symbol]" >
+      <span className="text-[#444] text-xs sm:text-sm md:text-base leading-[20px] fontSans" >
         Back to Dashboard  
       </span>
     </div>

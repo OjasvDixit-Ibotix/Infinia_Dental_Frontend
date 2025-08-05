@@ -1,119 +1,146 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import ClockIcon from '../../../assets/svgs/WelcomePage/ClockIcon';
 import ClockInsvg from '../../../assets/svgs/EmpTimesheet/ClockInsvg';
 import ClockOutSvg from '../../../assets/svgs/EmpTimesheet/ClockOutSvg';
-import axios from 'axios';
 import { toast } from 'sonner';
+import apiClient from '../../../utils/api/api';
 
 const ClockInOutComp = () => {
   const [isClockedIn, setIsClockedIn] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const intervalRef = useRef(null);
 
-  const authHeader = {
-    username: "a9a@gmail.com",
-    password: "asdf1234",
-  };
+  // const authHeader = {
+  //   username: "a34a@gmail.com",
+  //   password: "asdf1234",
+  // };
+
+  // const apiConfig = useMemo(() => {
+  //   const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
+  //   return {
+  //     headers: {
+  //       "ngrok-skip-browser-warning": "true",
+  //       Authorization: basicAuth,
+  //     },
+  //   };
+  // }, []);
 
   const formatTime = (secs) => {
     const h = String(Math.floor(secs / 3600)).padStart(2, '0');
     const m = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
     const s = String(secs % 60).padStart(2, '0');
+    console.log(h,m,s);
+    
     return `${h}:${m}:${s}`;
+  };
+
+  const startTimer = (startTime = 0) => {
+    stopTimer(); 
+    setSeconds(startTime);
+    intervalRef.current = setInterval(() => {
+      setSeconds((prev) => prev + 1);
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
   const clockIn = async () => {
     try {
-      const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
-
-    const res=   await axios.post(
-        'https://3feb0b4cc6b5.ngrok-free.app/clock-in',
-        {},
-        {
-          headers: {
-            Authorization: basicAuth,
-          },
-        }
-      );
-      console.log(res.data)
-
+      const res = await apiClient.post('/clock-in');
       setIsClockedIn(true);
-      toast.success(res.data.message)
-      setSeconds(0);
-      intervalRef.current = setInterval(() => setSeconds((s) => s + 1), 1000);
+      toast.success(res.data.message);
+      startTimer();
     } catch (err) {
       console.error('Clock In Error:', err);
-      toast.error(err.response.data.error)
+      toast.error(err.response?.data?.error || 'Failed to clock in.');
     }
   };
 
   const clockOut = async () => {
     try {
-      const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
-
-    const res=   await axios.post(
-        'https://3feb0b4cc6b5.ngrok-free.app/clock-out',
-        {},
-        {
-          headers: {
-            Authorization: basicAuth,
-          },
-        }
-      );
-      toast.success(res.data.message)
-
+      const res = await apiClient.post('/clock-out');
+      toast.success(res.data.message);
       setIsClockedIn(false);
-
-      clearInterval(intervalRef.current);
+      stopTimer();
     } catch (err) {
       console.error('Clock Out Error:', err);
+      toast.error(err.response?.data?.error || 'Failed to clock out.');
     }
   };
 
- useEffect(() => {
-    const checkClockInStatus = async () => {
-      try {
-        const res = await axios.get('https://3feb0b4cc6b5.ngrok-free.app/time-entries', {
-          headers: apiHeaders,
-        });
+  const checkClockInStatus = async () => {
+    setIsLoading(true);
+    try {
+      const res = await apiClient.get('/time-entries');
 
-        if (res.data && res.data.status === 'ongoing') {
-          const clockInTime = new Date(res.data.clock_in);
+      if (
+        res.data &&
+        Array.isArray(res.data.time_entries) &&
+        res.data.time_entries.length > 0
+      ) {
+        const latestEntry = res.data.time_entries[0];
+
+        if (latestEntry.status === 'ongoing' && latestEntry.clock_in ) {
+          const clockInTime = latestEntry.clock_in.endsWith('Z')
+            ? new Date(latestEntry.clock_in)
+            : new Date(latestEntry.clock_in + 'Z');
+
           const now = new Date();
           const elapsedSeconds = Math.floor((now - clockInTime) / 1000);
-          
+
+          console.log('Elapsed time:', elapsedSeconds);
+
           setIsClockedIn(true);
           startTimer(elapsedSeconds);
-        }
-      } catch (error) {
-        // A 404 error is expected if the user is not clocked in.
-        if (error.response && error.response.status === 404) {
-          console.log('No active clock-in session found.');
         } else {
-          console.error('Failed to check clock-in status:', error);
+          setIsClockedIn(false);
+          stopTimer();
         }
-      } finally {
-        // Finished checking, so we can display the component
-        setIsLoading(false);
+      } else {
+        setIsClockedIn(false);
+        stopTimer();
       }
+    } catch (error) {
+      console.error('Failed to check clock-in status:', error);
+      toast.error('Could not fetch your current status.');
+      setIsClockedIn(false);
+      stopTimer();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+   checkClockInStatus();
+    return () => {
+      stopTimer(); // Clean up timer
     };
-
-    checkClockInStatus();
-
-    // Cleanup function to stop the timer if the component is removed
-    return () => stopTimer();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="commonCardCss p-8 flex justify-center items-center h-48">
+        <div className="text-center text-xl font-medium text-gray-800">
+          Checking status...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="commonCardCss p-8">
       <div className="flex flex-col gap-6 self-stretch">
         <div className="flex justify-center items-center gap-6 self-stretch">
-
           <button
             className={`h-16 flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
               isClockedIn
-                ? 'bg-[#01543A] cursor-not-allowed'
-                : 'bg-emerald-600 hover:bg-[#01543A]'
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-emerald-600 hover:bg-emerald-700'
             }`}
             onClick={clockIn}
             disabled={isClockedIn}
@@ -126,12 +153,11 @@ const ClockInOutComp = () => {
             <span className="font-normal text-lg text-white">Clock In</span>
           </button>
 
-          {/* Clock Out Button */}
           <button
             className={`h-16 flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
-              !isClockedIn
-                ? 'bg-[#B91C1C] cursor-not-allowed'
-                : 'bg-red-500 hover:bg-[#EF4444]'
+              isClockedIn
+                ? 'bg-red-600 hover:bg-red-700'
+                : 'bg-gray-400 cursor-not-allowed'
             }`}
             onClick={clockOut}
             disabled={!isClockedIn}
@@ -145,8 +171,10 @@ const ClockInOutComp = () => {
           </button>
         </div>
 
-        <div className="text-center text-3xl font-medium text-gray-800">
+        <div className="text-center text-4xl font-medium text-gray-800 tracking-wider">
           {formatTime(seconds)}
+         { console.log('seconds',seconds)}
+          
         </div>
 
         <div className="flex justify-center items-center self-stretch">
@@ -157,7 +185,7 @@ const ClockInOutComp = () => {
               </div>
             </div>
             <span className="font-normal text-sm text-[#444444]">
-              {isClockedIn ? 'Clocked In' : 'Not Logged In'}
+              {isClockedIn ? 'Clocked In' : 'Clocked Out'}
             </span>
           </div>
         </div>

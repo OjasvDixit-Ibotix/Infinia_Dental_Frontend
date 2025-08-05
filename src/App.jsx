@@ -19,11 +19,13 @@ import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
 import { Toaster } from 'sonner';
 import PrivateRoute from './utils/PrivateRoute';
 import ScrollToTop from './utils/ScrollToTop';
-import EmpLeaveBalance from './Pages/Employee/EmpLeaveBalance';
+import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
+import { useSelector } from 'react-redux';
 const App = () => {
 
-  const [ userType, setUserType] = useState('employee');
-  
+  // const [ userType, setUserType] = useState('employee');
+
+  const user = useSelector((state)=>state.auth.user)
   
   return (
     <Router>
@@ -33,17 +35,17 @@ const App = () => {
                     path="/dashboard"
                     element={
                       <PrivateRoute>
-                        <WelcomePage  userType={userType} />
+                        <WelcomePage   />
                       </PrivateRoute>
                     }
                   />
                   <Route 
                     path="/"
                     element={
-                        <BgLoginRegister  />
-                      
+                        <BgLoginRegister  />                  
                     }
                   />
+                  {/* Admin Routes */}
 
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
@@ -54,12 +56,16 @@ const App = () => {
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/directory" element={<EmpDirectoryPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
-            {/* Emp Routes */}
-            <Route path="/my-time" element={<EmptimesheetPage />} />
-            <Route path="/request-leave" element={<EmpRequestLeavePage />} />
-            <Route path="/leave-balance" element={<EmpLeaveBalance />} />
 
           </Route>
+            {/* Emp Routes */}
+
+          <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+            <Route path="/my-time" element={<EmptimesheetPage />} />
+            <Route path="/request-leave" element={<EmpRequestLeavePage />} />
+            <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
+          </Route>
+
 
       </Routes>
       <Toaster richColors position="top-right" />

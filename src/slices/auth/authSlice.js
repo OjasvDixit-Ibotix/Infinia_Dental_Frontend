@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import apiClient from "../../utils/api/api";
 import { toast } from "sonner";
+import Cookies from "js-cookie";
+// import ls from '../../utils/secureStorage'
 
 export const signUpUser = createAsyncThunk(
   'auth/signUpUser',
@@ -34,22 +36,30 @@ export const loginUser = createAsyncThunk(
 
 
 const loadUserFromStorage = () => {
-
   try {
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (token && user) {
+    // const token = localStorage.getItem('token');
+    // const user = JSON.parse(localStorage.getItem('user'));
+    // if (token && user) {
+    //   return { token, user, islogin: true };
+    // }
+    // else{
+    //   toast.warning('Could not load data')
+
+    // }
+    const token = Cookies.get('token');
+    const user = JSON.parse(Cookies.get('user'));
+    if(token || user){
       return { token, user, islogin: true };
     }
     else{
       toast.warning('Could not load data')
     }
+
   } catch (e) {
     console.error("Could not load user data from storage", e);
   }
   return { token: null, user: null, islogin: false };
 };
-
 
 const initialState = {
   ...loadUserFromStorage(),
@@ -62,8 +72,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      Cookies.remove('token');
+      Cookies.remove('user');
+      // localStorage.removeItem('token');
+      // localStorage.removeItem('user');
       state.user = null;
       state.token = null;
       state.islogin = false;
@@ -78,14 +90,21 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
+        const { user, token ,password } = action.payload;
         console.log(user,token)
         state.loading = false;
         state.islogin = true;
         state.user = user;
         state.token = token;
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('token', token);
+//      ls.set('user', JSON.stringify(user)); 
+//      ls.set('token', token);
+          
+        Cookies.set('token', token);       
+        Cookies.set('user', JSON.stringify(user)); 
+        // Cookies.set('pass_key', JSON.stringify(password));
+
+        // localStorage.setItem('user', JSON.stringify(user));
+        // localStorage.setItem('token', token);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -98,13 +117,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
+        const { user, token  } = action.payload;
         state.loading = false;
         state.islogin = true;
         state.user = user;
         state.token = token;
-        localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('token', token);
+         Cookies.set('user', JSON.stringify(user));
+         Cookies.set('token', token);
+
+        // localStorage.setItem('user', JSON.stringify(user));
+        // localStorage.setItem('token', token);
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;

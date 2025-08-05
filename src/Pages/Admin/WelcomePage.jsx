@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 
 const WelcomePage = () => {
 
-    const {user_type} = useSelector((state) => state.auth);
       
   return (
     <div className="w-full  bg-[rgb(234,234,234)]">

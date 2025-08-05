@@ -2,9 +2,17 @@ import React, { useEffect } from 'react';
 import SearchBar from '../SearchBar';
 import NotificationIcon from '../../assets/svgs/WelcomePage/NotificationIcon';
 import LogOutIcon from '../../assets/svgs/WelcomePage/LogOutIcon';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../slices/auth/authSlice';
+import { toast } from 'sonner';
 
 const WelcomeNavbar = () => {
+  const dispatch = useDispatch();
+
+  const handlelogOut=()=>{
+    dispatch(logout())
+    toast.success('Log out successfully')
+  }
    
   const {user_type,user} = useSelector((state)=>state.auth)
   console.log('fef',user_type,user);
@@ -17,22 +25,22 @@ const WelcomeNavbar = () => {
           </div>
           <div className="flex flex-col">
             <p className="text-[#444] font-[400] text-[18px] sm:text-[20px] md:text-[24px] leading-[26px] sm:leading-[28px] md:leading-[32px] font-[Segoe UI Symbol]">
-              Welcome, {user?.user_type ==='admin'&& user?.name}!
+              Welcome, { user?.name}!
             </p>
             <p className="text-[#444] font-[400] text-[13px] sm:text-[14px] leading-[18px] sm:leading-[20px] font-[Segoe UI Symbol]">
               Infinia Dental {user?.user_type==='admin'?'admin':'employee'} Portal
             </p>
           </div>
         </div>
-        <div className="flex items-center">
-          <div className="flex h-[36px] py-[0px] px-[12px] content-center items-center">
+        <div className="flex items-center gap-5">
+          <div className="cursor-pointer flex h-[36px] py-[0px]  content-center items-center">
             <NotificationIcon/>
 
           </div>
-            <div className="flex h-[36px] py-[0px] px-[12px] content-center items-center">
+            <button onClick={handlelogOut} className="flex h-[36px] py-[0px] content-center items-center cursor-pointer">
             <LogOutIcon/>
             
-          </div>
+          </button>
         </div>
 
 
