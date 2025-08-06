@@ -1,9 +1,11 @@
 import React from 'react'
+import PlusIcon from '../../../assets/svgs/EmpLeaveBalance/PlusIcon'
 
 const EmpLeaveBalanceHeader = () => {
   return (
-     <div className="flex flex-row items-center justify-between   rounded-lg w-full">
-      <div className="">
+     <div className="flex flex-row items-center justify-between rounded-lg w-full ">
+      <div className=""> 
+
             <h1 className="text-[#444] font-normal text-[30px] leading-[36px] font-[Segoe UI Symbol]">
           Leave Balance Overview
             </h1>
@@ -12,12 +14,10 @@ const EmpLeaveBalanceHeader = () => {
          </p>       
       </div>
       <div class="h-10 flex justify-center items-center gap-2 bg-[#efcd78] px-6 py-3 rounded-xl">
-  
           <div class="h-4 w-6 flex flex-col pr-2">
             <div class="h-4 w-4 flex flex-col justify-center items-center">
               <div class="grow w-4">
-                <svg class="w-[9.333333969116211px] h-0"></svg>
-                <svg class="w-0 h-[9.333333969116211px]"></svg>
+                <PlusIcon/>
               </div>
             </div>
           </div>

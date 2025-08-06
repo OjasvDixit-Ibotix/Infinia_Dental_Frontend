@@ -63,9 +63,13 @@ const App = () => {
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route path="/my-time" element={<EmptimesheetPage />} />
             <Route path="/request-leave" element={<EmpRequestLeavePage />} />
+          </Route>
+          <Route  element={<Layout />} >
+          
             <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
           </Route>
-
+               
+               
 
       </Routes>
       <Toaster richColors position="top-right" />
