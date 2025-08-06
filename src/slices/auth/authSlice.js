@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import apiClient from "../../utils/api/api";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
-// import ls from '../../utils/secureStorage'
 
+// --- Async Thunks ---
+// No changes needed here, the error handling is good.
 export const signUpUser = createAsyncThunk(
   'auth/signUpUser',
   async (userData, { rejectWithValue }) => {
@@ -34,30 +35,26 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// --- State Initialization ---
 
+// CORRECTED: This function now safely checks for and parses data from cookies.
 const loadUserFromStorage = () => {
   try {
-    // const token = localStorage.getItem('token');
-    // const user = JSON.parse(localStorage.getItem('user'));
-    // if (token && user) {
-    //   return { token, user, islogin: true };
-    // }
-    // else{
-    //   toast.warning('Could not load data')
-
-    // }
     const token = Cookies.get('token');
-    const user = JSON.parse(Cookies.get('user'));
-    if(token || user){
+    const userCookie = Cookies.get('user');
+
+    // Only consider the user logged in if BOTH the token and user data exist.
+    if (token && userCookie) {
+      const user = JSON.parse(userCookie);
       return { token, user, islogin: true };
     }
-    else{
-      toast.warning('Could not load data')
-    }
-
   } catch (e) {
-    console.error("Could not load user data from storage", e);
+    console.error("Could not parse user data from cookie", e);
+    // If parsing fails, clear out potentially corrupt cookies.
+    Cookies.remove('token');
+    Cookies.remove('user');
   }
+  // Default state if not logged in.
   return { token: null, user: null, islogin: false };
 };
 
@@ -67,6 +64,8 @@ const initialState = {
   error: null,
 };
 
+// --- Redux Slice ---
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -74,8 +73,6 @@ const authSlice = createSlice({
     logout: (state) => {
       Cookies.remove('token');
       Cookies.remove('user');
-      // localStorage.removeItem('token');
-      // localStorage.removeItem('user');
       state.user = null;
       state.token = null;
       state.islogin = false;
@@ -85,53 +82,51 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Login Cases
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        const { user, token ,password } = action.payload;
-        console.log(user,token)
+        const { user, access_token } = action.payload;
+        
         state.loading = false;
         state.islogin = true;
         state.user = user;
-        state.token = token;
-//      ls.set('user', JSON.stringify(user)); 
-//      ls.set('token', token);
-          
-        Cookies.set('token', token);       
-        Cookies.set('user', JSON.stringify(user)); 
-        // Cookies.set('pass_key', JSON.stringify(password));
+        state.token = access_token; 
 
-        // localStorage.setItem('user', JSON.stringify(user));
-        // localStorage.setItem('token', token);
+        Cookies.set('token', access_token);
+        Cookies.set('user', JSON.stringify(user));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.islogin = false;
         state.error = action.payload;
+        toast.error(action.payload || "Login failed!"); // Give user feedback
       })
 
+      // SignUp Cases
       .addCase(signUpUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
-        const { user, token  } = action.payload;
+        const { user, token } = action.payload;
+        
         state.loading = false;
         state.islogin = true;
         state.user = user;
         state.token = token;
-         Cookies.set('user', JSON.stringify(user));
-         Cookies.set('token', token);
 
-        // localStorage.setItem('user', JSON.stringify(user));
-        // localStorage.setItem('token', token);
+        Cookies.set('token', token);
+        Cookies.set('user', JSON.stringify(user));
+        toast.success("Account created successfully!");
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.loading = false;
         state.islogin = false;
         state.error = action.payload;
+        toast.error(action.payload || "Sign up failed!");
       });
   }
 });
