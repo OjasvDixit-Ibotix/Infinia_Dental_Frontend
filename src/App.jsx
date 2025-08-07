@@ -50,7 +50,6 @@ const App = () => {
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
             <Route path="/leave-request" element={<EmployeeLeave />} />
-            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
             <Route path="/products" element={<EmployeeProductPage />} />
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
@@ -67,10 +66,10 @@ const App = () => {
           <Route  element={<Layout />} >
           
             <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
+
           </Route>
                
-               
-
       </Routes>
       <Toaster richColors position="top-right" />
     </Router>

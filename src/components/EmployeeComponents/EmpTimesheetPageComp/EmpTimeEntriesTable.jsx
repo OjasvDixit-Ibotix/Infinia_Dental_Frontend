@@ -37,48 +37,47 @@ const EmpTimeEntriesTable = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  useEffect(() => {
-
-    const fetchTimeEntries = async () => {
-      try {
+  const fetchTimeEntries = async () => {
+    try {
+    
+      // const authHeader = { username: "a34a@gmail.com", password: "asdf1234" };
+      // const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
       
-        // const authHeader = { username: "a34a@gmail.com", password: "asdf1234" };
-        // const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
-        
-        const response = await apiClient.get("/time-entries");
-        //     , {
-        //   headers: {
-        //     "ngrok-skip-browser-warning": "true",
-        //     Authorization: basicAuth,
-        //   },
-        // });
+      const response = await apiClient.get("/time-entries");
+      //     , {
+      //   headers: {
+      //     "ngrok-skip-browser-warning": "true",
+      //     Authorization: basicAuth,
+      //   },
+      // });
 
-        console.log('dwdw',response.data);
-        
+      console.log('dwdw',response.data);
+      
 
-        if (response.data && response.data.time_entries) {
-          const formattedEntries = response.data.time_entries.map((entry) => ({
-            id: entry.id, 
-            date: formatDate(entry.date),
-            clockIn: formatTime(entry.clock_in),
-            clockOut: formatTime(entry.clock_out),
-            totalHours: entry.total_hours ? `${entry.total_hours.toFixed(1)}h` : "--",
-            status: formatStatus(entry.status),
-            notes: entry.notes ?? "--",
-          }));
-          setTimeEntries(formattedEntries);     
-        } else {
-            setTimeEntries([]);
-        }
-
-      } catch (e) {
-        console.error("Failed to fetch time entries:", e);
-        setError(e.message);
-      } finally {
-        setIsLoading(false);
+      if (response.data && response.data.time_entries) {
+        const formattedEntries = response.data.time_entries.map((entry) => ({
+          id: entry.id, 
+          date: formatDate(entry.date),
+          clockIn: formatTime(entry.clock_in),
+          clockOut: formatTime(entry.clock_out),
+          totalHours: entry.total_hours ? `${entry.total_hours}h` : "--",
+          status: formatStatus(entry.status),
+          notes: entry.notes ?? "--",
+        }));
+        setTimeEntries(formattedEntries);     
+      } else {
+          setTimeEntries([]);
       }
-    };
 
+    } catch (e) {
+      console.error("Failed to fetch time entries:", e);
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  useEffect(() => {
     fetchTimeEntries();
   }, []); 
 

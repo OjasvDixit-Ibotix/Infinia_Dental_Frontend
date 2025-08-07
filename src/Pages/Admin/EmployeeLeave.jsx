@@ -13,7 +13,7 @@ const EmployeeLeave = () => {
         <div className="w-full md:w-2/3">
           <LeaveRequestTable />
         </div>
-        <div className="w-full md:w-1/3 mt-4 md:mt-0">
+        <div className="w-full max-h-[260px] md:w-1/3 mt-4 md:mt-0">
           <HolidayListCard />
         </div>
       </div>

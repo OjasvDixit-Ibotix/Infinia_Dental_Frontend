@@ -2,39 +2,46 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpUser } from "../slices/auth/authSlice"; 
-import { signupSchema } from "../utils/validations/authSchemas"; 
+import { signUpUser } from "../slices/auth/authSlice";
+import { signupSchema } from "../utils/validations/authSchemas";
 import { toast } from "sonner";
 
 const SignUpCard = ({ onSwitch }) => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
-  
+  const { loading } = useSelector((state) => state.auth);
 
   const {
     register,
     handleSubmit,
-    watch, // 1. Use watch to react to changes in the 'user_type' field
+    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(signupSchema),
+    // Set default value for user_type here
     defaultValues: {
-      user_type: "employee", },
+      user_type: "employee",
+    },
   });
 
-  const formSubmit = async(data) => {
-    try{
-
-      console.log("Form Data:", data);
-     await dispatch(signUpUser(data)).unwrap();
-     toast.success("Signup successful! Please log in.");
-        onSwitch()
-     
-    //  console.log(loading,error);
-    }catch(error){
-           console.log(error);
-           
-       toast.error(error.message || 'An unknown error occurred.');
+  const formSubmit = async (data) => {
+    try {
+       if (data.user_type === 'admin') {
+      delete data.employee_id;
+      delete data.department;
+      delete data.phone
+      delete data.join_date;
+      delete data.user_role;
+    }
+      console.log('formdata',data);
+      
+      // The .unwrap() utility will automatically throw an error if the thunk is rejected
+      await dispatch(signUpUser(data)).unwrap();
+      toast.success("Signup successful! Please log in.");
+      onSwitch(); 
+    } catch (err) {
+      // The error `err` is the value from `rejectWithValue` in your slice
+      // toast.error(err || "An unknown error occurred during signup.");
+      console.error("Signup failed:", err);
     }
   };
 
@@ -69,7 +76,7 @@ const SignUpCard = ({ onSwitch }) => {
                 type="radio"
                 value="admin"
                 className="accent-[#444]"
-                {...register("user_type")} 
+                {...register("user_type")}
               />
               Admin
             </label>
@@ -78,14 +85,14 @@ const SignUpCard = ({ onSwitch }) => {
                 type="radio"
                 value="employee"
                 className="accent-[#444]"
-                {...register("user_type")} 
+                {...register("user_type")}
               />
               Employee
             </label>
           </div>
         </div>
 
-        <div className="grid grid-cols-2   gap-4">
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-xs text-black block mb-1">Email</label>
             <input {...register("email")} placeholder="Email" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
@@ -106,18 +113,22 @@ const SignUpCard = ({ onSwitch }) => {
 
           <div>
             <label className="text-xs text-black block mb-1">Contact No.</label>
-            <input {...register("number")} placeholder="Contact" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
-            {errors.number && <p className="text-red-500 text-[10px] mt-0.5">{errors.number.message}</p>}
+            {/* FIX: Changed 'number' to 'phone' to match expected API data */}
+            <input {...register("phone")} placeholder="Contact" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
+            {errors.phone && <p className="text-red-500 text-[10px] mt-0.5">{errors.phone.message}</p>}
           </div>
 
           {selectedRole === 'employee' && (
             <>
               <div>
                 <label className="text-xs text-black block mb-1">Employee ID</label>
+                {/* FIX: Registered 'employee_id' field */}
                 <input
-                //  {...register("empID")}
-                  placeholder="Employee ID" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
-                {errors.empID && <p className="text-red-500 text-[10px] mt-0.5">{errors.empID.message}</p>}
+                  {...register("employee_id")}
+                  placeholder="Employee ID"
+                  className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs"
+                />
+                {errors.employee_id && <p className="text-red-500 text-[10px] mt-0.5">{errors.employee_id.message}</p>}
               </div>
               <div>
                 <label className="text-xs text-black block mb-1">Job Role</label>
@@ -131,18 +142,22 @@ const SignUpCard = ({ onSwitch }) => {
               </div>
               <div>
                 <label className="text-xs text-black block mb-1">Joined On</label>
-                <input {...register("join_date")} placeholder="MM/YY" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
-                {errors.joinedOn && <p className="text-red-500 text-[10px] mt-0.5">{errors.joinedOn.message}</p>}
+                {/* FIX: Changed input type to 'date' for better UX */}
+                <input
+                  type="date"
+                  {...register("join_date")}
+                  className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs"
+                />
+                {/* FIX: Corrected error key from 'joinedOn' to 'join_date' */}
+                {errors.join_date && <p className="text-red-500 text-[10px] mt-0.5">{errors.join_date.message}</p>}
               </div>
             </>
           )}
         </div>
 
-        {/* {error && <p className="text-red-500 text-xs text-center mt-4">{error}</p>} */}
-
         <button
           type="submit"
-          disabled={loading} 
+          disabled={loading}
           className="w-full bg-[#2C2C2C] text-white py-3 mt-5 rounded-md text-xs font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Signing Up...' : 'Sign Up'}

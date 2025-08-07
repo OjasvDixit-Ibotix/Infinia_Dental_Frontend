@@ -6,10 +6,11 @@ import { toast } from 'sonner';
 import apiClient from '../../../utils/api/api';
 
 const ClockInOutComp = () => {
-  const [isClockedIn, setIsClockedIn] = useState(false);
+  const [isClockedIn, setIsClockedIn] = useState('Not Logged In');
   const [seconds, setSeconds] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const intervalRef = useRef(null);
+
 
   // const authHeader = {
   //   username: "a34a@gmail.com",
@@ -53,6 +54,7 @@ const ClockInOutComp = () => {
   const clockIn = async () => {
     try {
       const res = await apiClient.post('/clock-in');
+        
       setIsClockedIn(true);
       toast.success(res.data.message);
       startTimer();
@@ -78,6 +80,8 @@ const ClockInOutComp = () => {
     setIsLoading(true);
     try {
       const res = await apiClient.get('/time-entries');
+      console.log('jifj',res);
+      
 
       if (
         res.data &&
@@ -85,6 +89,8 @@ const ClockInOutComp = () => {
         res.data.time_entries.length > 0
       ) {
         const latestEntry = res.data.time_entries[0];
+        console.log(latestEntry);
+        
 
         if (latestEntry.status === 'ongoing' && latestEntry.clock_in ) {
           const clockInTime = latestEntry.clock_in.endsWith('Z')

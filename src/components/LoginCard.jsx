@@ -8,33 +8,29 @@ import { loginUser } from "../slices/auth/authSlice";
 import { toast } from "sonner";
 const LoginCard = ({ onSwitch }) => {
 
-
   const {
       register,handleSubmit, formState:{errors}
   }= useForm({
     resolver:zodResolver(loginSchema)
   })
   
-  const { loading, error } = useSelector((state) => state.auth);
-
-
+  const { loading, error,user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
    const navigate= useNavigate();
 
-    const formSubmit = async (data) => {
-    
-    try {
-      await dispatch(loginUser(data)).unwrap();
-      
-      toast.success('Log In successfully');
-      navigate('/dashboard');
+    const formSubmit = async (data) => {   
+      try{
 
-    } catch (error) {
-      toast.error(error.message || 'Failed to log in');
-    }
-  };
-   
-     
+        await dispatch(loginUser(data)).unwrap()
+        navigate('/dashboard')
+      }
+      catch(err){
+        console.log(err);
+        
+      }
+
+    };
+ 
   return (
     
     <div className="w-full max-w-[500px] bg-white rounded-[28px] shadow-[0_4px_35px_rgba(0,0,0,0.08)] px-4 sm:px-8 py-7 mx-auto">

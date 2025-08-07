@@ -3,6 +3,7 @@ import EditPencilIcon from "../../assets/svgs/WelcomePage/EditPencilIcon";
 import ArchieveIcon from "../../assets/svgs/WelcomePage/ArchieveIcon";
 
 const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
+  
   if (!isOpen) return null;
 
   const [selectTab, setSelectTab] = useState("PersonalInfo");
