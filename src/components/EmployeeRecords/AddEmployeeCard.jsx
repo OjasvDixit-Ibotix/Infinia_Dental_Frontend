@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import apiClient from '../../utils/api/api';
+import { toast } from 'sonner';
 
 const AddNewEmployeeForm = ({ setAddEmp }) => {
   const [formData, setFormData] = useState({
@@ -11,8 +13,7 @@ const AddNewEmployeeForm = ({ setAddEmp }) => {
     employeeId: '',
     phone: '',
   });
-
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -22,8 +23,20 @@ const AddNewEmployeeForm = ({ setAddEmp }) => {
   };
 
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async(e) => {
+    try{
+      e.preventDefault();
+      const res= await apiClient.post('/users',{
+        
+      })
+      console.log(res);
+      toast.success('Employee Added Successfully')
+      
+    }
+    catch(err){
+      console.log(err);
+      
+    }
     console.log('Form Data Submitted:', formData);
   
     setAddEmp(false);

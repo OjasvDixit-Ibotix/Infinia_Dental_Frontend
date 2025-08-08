@@ -4,11 +4,20 @@ import LeaveTypeCards from '../../components/EmployeeComponents/EmpLeaveBalanceC
 import LeavehistorySection from '../../components/EmployeeComponents/RequestLeaveComp/LeavehistorySection'
 import LeaveDistributionSection from '../../components/EmployeeComponents/RequestLeaveComp/LeaveDistributionSection'
 import QuickStats from '../../components/EmployeeComponents/RequestLeaveComp/QuickStats'
-
+import { fetchLeaveHistory } from '../../slices/leaveHistorySlice'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 const EmpLeaveBalancePage = () => {
+   const dispatch = useDispatch();
+   // const { leaves, status, error } = useSelector((state) => state.leaveHistory);
+
+
+    useEffect(() => {
+       dispatch(fetchLeaveHistory());
+     }, [dispatch]);
   return (
    <>
-
    <EmpLeaveBalanceHeader/>
    <LeaveTypeCards/>
    <div className="flex gap-6 flex-row mt-5">

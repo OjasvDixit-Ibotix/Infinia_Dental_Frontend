@@ -44,23 +44,14 @@ const EmpTimeEntriesTable = () => {
       // const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
       
       const response = await apiClient.get("/time-entries");
-      //     , {
-      //   headers: {
-      //     "ngrok-skip-browser-warning": "true",
-      //     Authorization: basicAuth,
-      //   },
-      // });
-
       console.log('dwdw',response.data);
-      
-
       if (response.data && response.data.time_entries) {
         const formattedEntries = response.data.time_entries.map((entry) => ({
           id: entry.id, 
           date: formatDate(entry.date),
           clockIn: formatTime(entry.clock_in),
           clockOut: formatTime(entry.clock_out),
-          totalHours: entry.total_hours ? `${entry.total_hours}h` : "--",
+          totalHours: entry.total_hours,
           status: formatStatus(entry.status),
           notes: entry.notes ?? "--",
         }));
@@ -124,7 +115,6 @@ const EmpTimeEntriesTable = () => {
             ) : (
                 timeEntries.map((entry) => (
               <div
-                // BEST PRACTICE: Use a unique ID from the data as the key
                 key={entry.id}
                 className="flex items-center border-t border-slate-200 h-[55px]"
               >

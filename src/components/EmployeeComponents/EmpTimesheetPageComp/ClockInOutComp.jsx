@@ -89,19 +89,20 @@ const ClockInOutComp = () => {
         res.data.time_entries.length > 0
       ) {
         const latestEntry = res.data.time_entries[0];
-        console.log(latestEntry);
+        console.log('lel',latestEntry);
         
 
         if (latestEntry.status === 'ongoing' && latestEntry.clock_in ) {
-          const clockInTime = latestEntry.clock_in.endsWith('Z')
-            ? new Date(latestEntry.clock_in)
-            : new Date(latestEntry.clock_in + 'Z');
-
+          const clockInTime = latestEntry.clock_in
+          
+          ? new Date(latestEntry.clock_in)
+          : new Date(latestEntry.clock_in + 'Z');
+          
+          console.log('cit',clockInTime);
           const now = new Date();
           const elapsedSeconds = Math.floor((now - clockInTime) / 1000);
 
           console.log('Elapsed time:', elapsedSeconds);
-
           setIsClockedIn(true);
           startTimer(elapsedSeconds);
         } else {

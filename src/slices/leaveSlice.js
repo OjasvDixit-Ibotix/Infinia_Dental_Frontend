@@ -2,15 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import apiClient from '../utils/api/api';
 import Cookies from 'js-cookie';
+
 export const fetchLeaves = createAsyncThunk(
   'leave/fetchLeaves',
   async (_, { rejectWithValue }) => {
     try {
       const token = Cookies.get('token');
       const response = await apiClient.get('/all-leaves');
-      console.log(response.data);
-      
-     
+      console.log(response.data);  
       return response.data.all_leaves;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

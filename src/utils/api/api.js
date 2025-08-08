@@ -51,6 +51,8 @@
 
 import axios from 'axios';
 import Cookies from 'js-cookie'; 
+import { Navigate } from 'react-router-dom';
+import { toast } from 'sonner';
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
@@ -77,5 +79,33 @@ apiClient.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const status = error.response.status;
 
+      if (status === 403) {
+        //   toast.error('Access denied: You do not have permission.');
+        Cookies.remove('user');
+        Cookies.remove('token');
+        window.location.href = '/';
+        // setTimeout(() => {   
+          // }, 1500);
+        }
+
+      if (status === 401) {
+        toast.error('Session expired. Please log in again.');
+        Cookies.remove('token');
+        Cookies.remove('user');
+        window.location.href = '/';
+       
+      }
+    } else {
+      toast.error('Network error. Please try again.');
+    }
+
+    return Promise.reject(error);
+  }
+);
 export default apiClient;
