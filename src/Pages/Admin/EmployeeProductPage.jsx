@@ -5,7 +5,7 @@ import ProductResourceComp from '../../components/ProductCataloge/ProductResourc
 
 const EmployeeProductPage = () => {
   return (
-    <div className='flex flex-col gap-6 md:gap-9 w-full'>
+    <div className='flex flex-col gap-6 md:gap-2 w-full'>
       <ProductHeaderComp/>
       <ProductsCardList/>
       <ProductResourceComp/>

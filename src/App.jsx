@@ -50,10 +50,9 @@ const App = () => {
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
             <Route path="/leave-request" element={<EmployeeLeave />} />
-            <Route path="/products" element={<EmployeeProductPage />} />
+            {/* <Route path="/products" element={<EmployeeProductPage />} /> */}
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
-            <Route path="/directory" element={<EmpDirectoryPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
 
           </Route>
@@ -65,8 +64,11 @@ const App = () => {
           </Route>
           <Route  element={<Layout />} >
           
-            <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
-            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
+            {/* <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> */}
+            <Route path="/directory" element={<EmpDirectoryPage />} />
+            <Route path="/products" element={<EmployeeProductPage />} />
+
 
           </Route>
                

@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RupeeIcon from '../../../assets/svgs/WelcomePage/RupeeIcon';
 import ClockIcon from '../../../assets/svgs/WelcomePage/ClockIcon';
 import EyeIcon from '../../../assets/svgs/WelcomePage/EyeIcon';
 import DownloadSvg from '../../../assets/svgs/WelcomePage/DownloadSvg';
+import ProductModal from './ProductModal';
 
 const ProductsCardListWrap = ({ image, name, desc, price, noOf }) => {
+
+  const [isOpen,setIsOpen] = useState(false)
   return (
+    <>
     <div className="flex w-full h-[394px] p-1 flex-col items-start flex-shrink-0
         rounded-[16px] border border-[#F3F4F6] bg-white 
         shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
@@ -44,20 +48,33 @@ const ProductsCardListWrap = ({ image, name, desc, price, noOf }) => {
         </div>
 
         <div className="flex items-center gap-2 mt-3 w-full">
-          <button className="flex h-9 flex-1 px-[13px] py-[1px] justify-center items-center gap-2
-              rounded-md border border-[#EFCD78] bg-white">
+          <button onClick={()=>setIsOpen(!isOpen)}  className="flex h-9 flex-1 px-[13px] py-[1px] justify-center items-center gap-2
+              rounded-md border border-[#EFCD78] bg-white hover:bg-[#f0d693] hover:text-white cursor-pointer">
             <EyeIcon />
             <p className="text-[#444] text-center text-[14px] leading-[20px] font-normal">
               View Details
             </p>
           </button>
 
-          <button className="flex h-9 w-9 justify-center items-center rounded-md border border-[#EFCD78] bg-white">
+          {/* <button className="flex h-9 w-9 justify-center items-center rounded-md border border-[#EFCD78] bg-white">
             <DownloadSvg />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
+      <ProductModal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)}
+        image={image}
+        name={name}
+        desc={desc}
+        price={price}
+        noOf={noOf}
+      />
+
+    </>
+
+    
   );
 };
 

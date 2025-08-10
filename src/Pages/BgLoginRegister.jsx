@@ -26,7 +26,7 @@ const BgLoginRegister = () => {
   return (
     <div className=" overflow-y-hidden relative min-h-screen w-full flex flex-col md:flex-row">
       
-      <div className="relative w-full h-1/2 md:h-auto md:w-1/2 bg-[#EFCD78] overflow-hidden flex flex-col min-h-[460px] md:min-h-screen">
+      <div className="relative w-full flex-1 md:w-1/2 bg-[#EFCD78] overflow-hidden flex flex-col md:min-h-screen">
         <div className="z-10 w-[120px] sm:w-[158px] mx-auto mt-6 md:mt-2 md:ml-4 md:mx-0 md:absolute md:top-5 md:left-6">
           <img src={logo} alt="Infinia Logo" className="w-full h-auto" />
         </div>
@@ -36,7 +36,7 @@ const BgLoginRegister = () => {
           className="absolute top-0 left-0 w-[60%] opacity-50 hidden sm:block"
         />
       </div>
-      <div className="relative w-full h-1/2 md:h-auto md:w-1/2 bg-white flex items-center justify-center px-6 py-10 min-h-[60px] md:min-h-screen">
+      <div className="relative w-full flex-1 md:w-1/2 bg-white flex items-center justify-center px-6 py-10 min-h-[460px] md:min-h-screen">
         <img
           src={righttable}
           alt="People working" 
