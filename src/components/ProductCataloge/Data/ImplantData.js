@@ -1,4 +1,7 @@
+
 export const ImplantData = {
+  mainHeading:"Implant",
+  "categories":{
   "Generic (3RD PARTY)": [
     { name: "Cement Retained Abutment & Implant Crown", price: 420 },
     { name: "Screwmentable Abutment & Implant Crown 1pc (Cemented in lab)", price: 435 },
@@ -38,4 +41,5 @@ export const ImplantData = {
     { name: "Screwmentable Abutment & Implant Crown 2pc", price: 420 },
     { name: "Screw-Retained (Ti-Base) & Implant crown", price: 404 },
   ],
+}
 };

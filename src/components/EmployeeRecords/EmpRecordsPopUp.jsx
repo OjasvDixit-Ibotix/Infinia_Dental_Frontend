@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import EditPencilIcon from "../../assets/svgs/WelcomePage/EditPencilIcon";
 import ArchieveIcon from "../../assets/svgs/WelcomePage/ArchieveIcon";
+import EditProfilePopUp from "./EditProfilePopUp";
 
 const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
   
   if (!isOpen) return null;
 
   const [selectTab, setSelectTab] = useState("PersonalInfo");
+  const [editPopUp , setEditPop] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+    <>
+
+    <div  onClick={(e)=>e.stopPropagation()} className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
       <div className="w-[605px] h-[510px] bg-[#F9F9F9] rounded-tl-[30px] rounded-tr-[0px] rounded-br-[30px] rounded-bl-[30px] overflow-hidden shadow-lg flex flex-col">
 
         <div className="px-6 py-5 relative">
@@ -47,8 +51,8 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
           </div>
 
           <div className="flex gap-3 mb-4">
-            <button className="px-3 py-1 border border-gray-400 rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
-              <EditPencilIcon/> Edit Profile
+            <button onClick={()=>setEditPop(!editPopUp)} className="px-3 py-1 border border-gray-400 rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
+                <EditPencilIcon/> Edit Profile
             </button>
             <button className="px-3 py-1 bg-[#444] text-white rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
               <ArchieveIcon/> Archive
@@ -193,6 +197,9 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
         </div>
       </div>
     </div>
+
+    <EditProfilePopUp editPopUp={editPopUp} setEditPop={setEditPop}/>
+    </>
   );
 };
 

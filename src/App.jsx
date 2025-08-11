@@ -21,11 +21,14 @@ import PrivateRoute from './utils/PrivateRoute';
 import ScrollToTop from './utils/ScrollToTop';
 import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
 import { useSelector } from 'react-redux';
+import MyProfilePage from './Pages/MyProfilePage';
 const App = () => {
 
   // const [ userType, setUserType] = useState('employee');
 
   const user = useSelector((state)=>state.auth.user)
+
+  
   
   return (
     <Router>
@@ -48,9 +51,11 @@ const App = () => {
                   {/* Admin Routes */}
 
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
-            <Route path="/employee-details" element={<EmployeeRecordsPage />} />
+            {/* <Route path="/employee-details" element={<EmployeeRecordsPage />} /> */}
             <Route path="/leave-request" element={<EmployeeLeave />} />
             {/* <Route path="/products" element={<EmployeeProductPage />} /> */}
+            <Route path="/directory" element={<EmpDirectoryPage />} />
+
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
@@ -59,15 +64,17 @@ const App = () => {
             {/* Emp Routes */}
 
           <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
-            <Route path="/my-time" element={<EmptimesheetPage />} />
+            {/* <Route path="/my-time" element={<EmptimesheetPage />} /> */}
             <Route path="/request-leave" element={<EmpRequestLeavePage />} />
           </Route>
           <Route  element={<Layout />} >
           
             {/* <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
             <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> */}
-            <Route path="/directory" element={<EmpDirectoryPage />} />
             <Route path="/products" element={<EmployeeProductPage />} />
+            <Route path="/employee-details" element={<EmployeeRecordsPage />} />
+            <Route path="/my-profile" element={<MyProfilePage />} />
+            <Route path="/my-time" element={<EmptimesheetPage />} />
 
 
           </Route>

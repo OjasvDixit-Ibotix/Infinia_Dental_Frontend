@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 const SignUpCard = ({ onSwitch }) => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { signupLoading } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -36,7 +36,7 @@ const SignUpCard = ({ onSwitch }) => {
       
       // The .unwrap() utility will automatically throw an error if the thunk is rejected
       await dispatch(signUpUser(data)).unwrap();
-      toast.success("Signup successful! Please log in.");
+      // toast.success("Signup successful! Please log in.");
       onSwitch(); 
     } catch (err) {
       // The error `err` is the value from `rejectWithValue` in your slice
@@ -155,12 +155,12 @@ const SignUpCard = ({ onSwitch }) => {
           )}
         </div>
 
-        <button
+       <button
           type="submit"
-          disabled={loading}
+          disabled={signupLoading}
           className="w-full bg-[#2C2C2C] text-white py-3 mt-5 rounded-md text-xs font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Signing Up...' : 'Sign Up'}
+          {signupLoading ? 'Signing Up...' : 'Sign Up'}
         </button>
       </form>
     </div>

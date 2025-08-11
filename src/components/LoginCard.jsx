@@ -14,13 +14,14 @@ const LoginCard = ({ onSwitch }) => {
     resolver:zodResolver(loginSchema)
   })
   
-  const { loading, error,user } = useSelector((state) => state.auth);
+  const { loginLoading, error,user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
    const navigate= useNavigate();
 
-    const formSubmit = async (data) => {   
+    const formSubmit = async (data) => { 
+      console.log(data);
+      console.log('logged in ');
       try{
-
         await dispatch(loginUser(data)).unwrap()
         navigate('/dashboard')
       }
@@ -87,11 +88,14 @@ const LoginCard = ({ onSwitch }) => {
           </div>
         </div>
 
-        {/* <Link to='/dashboard'> */}
-          <button type="submit"  className="w-full bg-[#2C2C2C] text-white py-2 sm:py-3 rounded-lg shadow hover:opacity-90 transition mt-4 text-xs sm:text-base">
-            Log in
-          </button>
-        {/* </Link> */}
+     
+         <button
+          type="submit"
+          disabled={loginLoading}
+          className="w-full bg-[#2C2C2C] text-white py-2 sm:py-3 rounded-lg shadow hover:opacity-90 transition mt-4 text-xs sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loginLoading ? "Logging in..." : "Log in"}
+        </button>
      </form>
 
     </div>

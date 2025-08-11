@@ -6,6 +6,7 @@ import ExportIcon from "../../../assets/svgs/EmpTimesheet/ExportIcon";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../../../utils/api/api";
 
+// Corrected: Removed hardcoded timeZone to default to user's local time
 const formatDate = (dateString) => {
   if (!dateString) return "--";
   const date = new Date(dateString);
@@ -16,13 +17,15 @@ const formatDate = (dateString) => {
   });
 };
 
+// Corrected: Removed hardcoded timeZone to default to user's local time
 const formatTime = (dateTimeString) => {
   if (!dateTimeString) return "--";
   const date = new Date(dateTimeString);
   return date.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: true,
+    hour12: true
+   
   });
 };
 
@@ -30,7 +33,16 @@ const formatStatus = (status) => {
     if (!status) return "--";
     return status.charAt(0).toUpperCase() + status.slice(1);
 }
+const formatDuration = (totalHours) => {
+  if (totalHours === null || typeof totalHours !== 'number') {
+    return "--";
+  }
 
+  const hours = Math.floor(totalHours);
+  const minutes = Math.round((totalHours - hours) * 60);
+
+  return `${hours}h ${minutes}m`;
+};
 const EmpTimeEntriesTable = () => {
   const navigate = useNavigate();
   const [timeEntries, setTimeEntries] = useState([]);
@@ -39,10 +51,6 @@ const EmpTimeEntriesTable = () => {
   
   const fetchTimeEntries = async () => {
     try {
-    
-      // const authHeader = { username: "a34a@gmail.com", password: "asdf1234" };
-      // const basicAuth = "Basic " + btoa(`${authHeader.username}:${authHeader.password}`);
-      
       const response = await apiClient.get("/time-entries");
       console.log('dwdw',response.data);
       if (response.data && response.data.time_entries) {
@@ -51,7 +59,7 @@ const EmpTimeEntriesTable = () => {
           date: formatDate(entry.date),
           clockIn: formatTime(entry.clock_in),
           clockOut: formatTime(entry.clock_out),
-          totalHours: entry.total_hours,
+          totalHours: formatDuration(entry.total_hours),
           status: formatStatus(entry.status),
           notes: entry.notes ?? "--",
         }));

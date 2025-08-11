@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import apiClient from "../../utils/api/api";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
+import { sign } from "chart.js/helpers";
 
 
 export const signUpUser = createAsyncThunk(
@@ -24,6 +25,8 @@ export const loginUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await apiClient.post('/login', userData);
+      // console.log('logged in ');
+      
       toast.success(response.data.message || "Login successful!");
       return response.data;
     } catch (error) {
@@ -54,7 +57,8 @@ const loadUserFromStorage = () => {
 
 const initialState = {
   ...loadUserFromStorage(),
-  loading: false,
+  loginLoading: false,
+  signupLoading:false,
   error: null, 
 };
 
@@ -76,13 +80,13 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
-        state.loading = true;
+        state.loginLoading = true;
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         const { user, access_token } = action.payload;
         
-        state.loading = false;
+        state.loginLoading = false;
         state.islogin = true;
         state.user = user;
         state.token = access_token;
@@ -91,21 +95,20 @@ const authSlice = createSlice({
         Cookies.set('user', JSON.stringify(user));
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
+        state.loginLoading = false;
         state.islogin = false;
         state.error = action.payload;
       })
 
       .addCase(signUpUser.pending, (state) => {
-        state.loading = true;
+        state.signupLoading = true;
         state.error = null;
       })
-      .addCase(signUpUser.fulfilled, (state, action) => {
-       
-        state.loading = false;
+      .addCase(signUpUser.fulfilled, (state, action) => {    
+        state.signupLoading = false;
       })
       .addCase(signUpUser.rejected, (state, action) => {
-        state.loading = false;
+        state.signupLoading = false;
         state.islogin = false;
         state.error = action.payload;
       });

@@ -43,7 +43,7 @@ const statusColors = {
 const EmployeeProfileCard = () => {
   const dispatch = useDispatch();
   const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
-             console.log('empl are',employees);
+        console.log('empl are',employees);
              
   const [selectedEmp, setSelectedEmp] = useState(null);
   const [view, setView] = useState("cards");
@@ -65,13 +65,13 @@ const EmployeeProfileCard = () => {
     attendance: Math.floor(Math.random() * 50 + 51).toString(),
   }));
 
-  const filteredEmployees = formattedEmployees.filter(
-    (emp) =>
+  // const filteredEmployees = formattedEmployees.filter(
+  //   (emp) =>
       
-      emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      emp.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      emp.employee_id.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  //     emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     emp.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     emp.employee_id.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   let content;
   if (employeeStatus === "loading") {
@@ -80,8 +80,8 @@ const EmployeeProfileCard = () => {
     content = (
       <>
         {view === "cards" && (
-          <div className="overflow-y-auto max-h-[850px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
-            {filteredEmployees.map((emp, idx) => (
+          <div  className="overflow-y-auto max-h-[850px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
+            {formattedEmployees.map((emp, idx) => (
               <div
                 key={idx}
                 className="bg-white rounded-xl border border-[#F3C85C] p-5 w-full shadow-sm relative cursor-pointer"
@@ -133,7 +133,7 @@ const EmployeeProfileCard = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredEmployees.map((emp, idx) => (
+                {formattedEmployees.map((emp, idx) => (
                   <tr
                     key={idx}
                     className="hover:bg-gray-50 cursor-pointer"

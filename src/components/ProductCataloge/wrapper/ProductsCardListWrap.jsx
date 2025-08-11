@@ -5,7 +5,7 @@ import EyeIcon from '../../../assets/svgs/WelcomePage/EyeIcon';
 import DownloadSvg from '../../../assets/svgs/WelcomePage/DownloadSvg';
 import ProductModal from './ProductModal';
 
-const ProductsCardListWrap = ({ image, name, desc, price, noOf }) => {
+const ProductsCardListWrap = ({data, image, name, desc, price, noOf }) => {
 
   const [isOpen,setIsOpen] = useState(false)
   return (
@@ -32,12 +32,12 @@ const ProductsCardListWrap = ({ image, name, desc, price, noOf }) => {
         </p>
 
         <div className="flex justify-between items-center mt-1 w-full">
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             <RupeeIcon />
             <p className="text-[#444] text-[14px] leading-[20px] font-normal">
               {price}
             </p>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-1">
             <ClockIcon />
@@ -70,6 +70,8 @@ const ProductsCardListWrap = ({ image, name, desc, price, noOf }) => {
         desc={desc}
         price={price}
         noOf={noOf}
+        data={data}
+
       />
 
     </>

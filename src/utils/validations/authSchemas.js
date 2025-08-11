@@ -11,31 +11,73 @@ export const loginSchema= z.object({
 })
 
 
+// export const signupSchema = z.object({
+//    email:z.string().nonempty('Email is required').refine((val)=>
+//         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
+//             {
+//              message: 'Enter a valid email',
+//             }),
+//      name: z.string().min(1, "Name is required"),
+//     //  number: z.string().min(5, 'Contact no. is required'),
+//           phone: z.string().optional(),
+
+//      password:z.string().min(6, 'Password must be at least 6 characters'), 
+//      empID:z.string().optional(),
+//     user_role: z
+//         .string()
+//         .optional(),
+
+//     department: z
+//         .string()
+//         .optional(),
+
+//     join_date: z
+//         .string()
+//         .optional(),
+
+//      user_type: z.enum(['admin', 'employee']),
+
+// });
+
+
+
+
+
 export const signupSchema = z.object({
-   email:z.string().nonempty('Email is required').refine((val)=>
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
-            {
-             message: 'Enter a valid email',
-            }),
-     name: z.string().min(1, "Name is required"),
-    //  number: z.string().min(5, 'Contact no. is required'),
-          phone: z.string().optional(),
+  email: z
+    .string({ required_error: "Email is required" })
+    .nonempty("Email is required")
+    .email("Enter a valid email"),
 
-     password:z.string().min(6, 'Password must be at least 6 characters'), 
-     empID:z.string().optional(),
-    user_role: z
-        .string()
-        .optional(),
+  name: z
+    .string({ required_error: "Name is required" })
+    .min(1, "Name is required"),
 
-    department: z
-        .string()
-        .optional(),
+  phone: z
+    .string({ required_error: "Phone number is required" })
+    .min(5, "Phone number must be at least 5 digits"),
 
-    join_date: z
-        .string()
-        .optional(),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(6, "Password must be at least 6 characters"),
 
-     user_type: z.enum(['admin', 'employee']),
+  employee_id: z
+    .string({ required_error: "Employee ID is required" })
+    .min(1, "Employee ID is required"),
 
+  user_role: z
+    .string({ required_error: "User role is required" })
+    .min(1, "User role is required"),
+
+  department: z
+    .string({ required_error: "Department is required" })
+    .min(1, "Department is required"),
+
+  join_date: z
+    .string({ required_error: "Join date is required" })
+    .min(1, "Join date is required"),
+
+  user_type: z.enum(["admin", "employee"], {
+    required_error: "User type is required",
+  }),
 });
-
