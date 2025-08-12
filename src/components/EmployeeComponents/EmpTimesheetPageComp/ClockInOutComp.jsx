@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ClockIcon from '../../../assets/svgs/WelcomePage/ClockIcon';
 import ClockInsvg from '../../../assets/svgs/EmpTimesheet/ClockInsvg';
 import ClockOutSvg from '../../../assets/svgs/EmpTimesheet/ClockOutSvg';
@@ -6,42 +6,19 @@ import { toast } from 'sonner';
 import apiClient from '../../../utils/api/api';
 
 const ClockInOutComp = () => {
-  const [isClockedIn, setIsClockedIn] = useState('Not Logged In');
+  const [isClockedIn, setIsClockedIn] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const intervalRef = useRef(null);
-
-
-  // const authHeader = {
-  //   username: "a34a@gmail.com",
-  //   password: "asdf1234",
-  // };
-
-  // const apiConfig = useMemo(() => {
-  //   const basicAuth = 'Basic ' + btoa(`${authHeader.username}:${authHeader.password}`);
-  //   return {
-  //     headers: {
-  //       "ngrok-skip-browser-warning": "true",
-  //       Authorization: basicAuth,
-  //     },
-  //   };
-  // }, []);
+  const clockInTimeRef = useRef(null); 
 
   const formatTime = (secs) => {
+
+    // console.log('secs',secs);
     const h = String(Math.floor(secs / 3600)).padStart(2, '0');
     const m = String(Math.floor((secs % 3600) / 60)).padStart(2, '0');
     const s = String(secs % 60).padStart(2, '0');
-    console.log(h,m,s);
-    
     return `${h}:${m}:${s}`;
-  };
-
-  const startTimer = (startTime = 0) => {
-    stopTimer(); 
-    setSeconds(startTime);
-    intervalRef.current = setInterval(() => {
-      setSeconds((prev) => prev + 1);
-    }, 1000);
   };
 
   const stopTimer = () => {
@@ -51,83 +28,105 @@ const ClockInOutComp = () => {
     }
   };
 
+  const startTimer = () => {
+    stopTimer();
+    intervalRef.current = setInterval(() => {
+      if (clockInTimeRef.current) {
+        const now = new Date();
+        const elapsed = Math.floor((now - clockInTimeRef.current) / 1000);
+        // console.log(elapsed , 'yaha hai elapsed');
+        
+        setSeconds(elapsed );
+      }
+    }, 1000);
+  };
+  
   const clockIn = async () => {
     try {
       const res = await apiClient.post('/clock-in');
-        
-      setIsClockedIn(true);
-      toast.success(res.data.message);
-      startTimer();
+            clockInTimeRef.current = new Date();
+            console.log('clock in',clockInTimeRef);
+            setIsClockedIn(true);
+            toast.success(res.data.message);
+            startTimer();
     } catch (err) {
       console.error('Clock In Error:', err);
       toast.error(err.response?.data?.error || 'Failed to clock in.');
     }
   };
 
+
+
   const clockOut = async () => {
     try {
       const res = await apiClient.post('/clock-out');
       toast.success(res.data.message);
-      setIsClockedIn(false);
+      setIsClockedIn(false); 
       stopTimer();
+      setSeconds(0);
+      clockInTimeRef.current = null;
     } catch (err) {
       console.error('Clock Out Error:', err);
       toast.error(err.response?.data?.error || 'Failed to clock out.');
     }
   };
 
-  const checkClockInStatus = async () => {
-    setIsLoading(true);
-    try {
-      const res = await apiClient.get('/time-entries');
-      console.log('jifj',res);
-      
+  useEffect(() => {
+    let isMounted = true;
 
-      if (
-        res.data &&
-        Array.isArray(res.data.time_entries) &&
-        res.data.time_entries.length > 0
-      ) {
-        const latestEntry = res.data.time_entries[0];
-        console.log('lel',latestEntry);
-        
+    const checkClockInStatus = async () => {
+      setIsLoading(true);
+      try {
+        const res = await apiClient.get('/time-entries');
+        if (!isMounted) return;
 
-        if (latestEntry.status === 'ongoing' && latestEntry.clock_in ) {
-          const clockInTime = latestEntry.clock_in
+        if (res.data?.time_entries?.length > 0) {
+          const latestEntry = res.data.time_entries[0];
+          console.log(res.data.time_entries[0], 'enteries yaha hai');
           
-          ? new Date(latestEntry.clock_in)
-          : new Date(latestEntry.clock_in + 'Z');
-          
-          console.log('cit',clockInTime);
-          const now = new Date();
-          const elapsedSeconds = Math.floor((now - clockInTime) / 1000);
+          if (latestEntry.status === 'ongoing' && latestEntry.clock_in) {
 
-          console.log('Elapsed time:', elapsedSeconds);
-          setIsClockedIn(true);
-          startTimer(elapsedSeconds);
+              const clockInTime = new Date(latestEntry.clock_in + 'Z'); 
+              clockInTime.setTime(clockInTime.getTime() + (87 * 1000));
+              {console.log('clockintime yaha hai',clockInTime);
+              } 
+            clockInTimeRef.current = clockInTime; 
+            console.log('clockintime',clockInTimeRef.current);
+            const now = new Date();
+            console.log('now time is ',now);
+            const initialElapsed = Math.floor((now - clockInTime) / 1000);
+            console.log('intitialeplased',initialElapsed);        
+            setSeconds(initialElapsed); 
+            // console.log(seconds  , 'hours mai yaha hai');
+            setIsClockedIn(true);
+            startTimer();
+
+          } else {
+            setIsClockedIn(false);
+            stopTimer();
+          }
         } else {
           setIsClockedIn(false);
           stopTimer();
         }
-      } else {
-        setIsClockedIn(false);
-        stopTimer();
+      } catch (error) {
+        if (!isMounted) return;
+        console.error('Failed to check clock-in status:', error);
+        toast.error('Could not fetch your current status.');
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
-    } catch (error) {
-      console.error('Failed to check clock-in status:', error);
-      toast.error('Could not fetch your current status.');
-      setIsClockedIn(false);
-      stopTimer();
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  useEffect(() => {
-   checkClockInStatus();
-    return () => {
-      stopTimer(); // Clean up timer
     };
-  }, []);
+
+    checkClockInStatus();
+
+    return () => {
+      isMounted = false;
+      stopTimer();
+    };
+  }, []); // The dependency array is empty, which is correct for a one-time check on mount.
 
   if (isLoading) {
     return (
@@ -159,7 +158,6 @@ const ClockInOutComp = () => {
             </div>
             <span className="font-normal text-lg text-white">Clock In</span>
           </button>
-
           <button
             className={`h-16 flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
               isClockedIn
@@ -180,8 +178,6 @@ const ClockInOutComp = () => {
 
         <div className="text-center text-4xl font-medium text-gray-800 tracking-wider">
           {formatTime(seconds)}
-         { console.log('seconds',seconds)}
-          
         </div>
 
         <div className="flex justify-center items-center self-stretch">
@@ -192,7 +188,7 @@ const ClockInOutComp = () => {
               </div>
             </div>
             <span className="font-normal text-sm text-[#444444]">
-              {isClockedIn ? 'Clocked In' : 'Clocked Out'}
+              {isClockedIn ? 'Logged In' : 'Not Logged In'}
             </span>
           </div>
         </div>
