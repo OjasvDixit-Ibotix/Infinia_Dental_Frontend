@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLeaves} from '../../slices/leaveSlice';
 import { toast } from 'sonner';
 import apiClient from '../../utils/api/api';
+import { usePagination } from '../../utils/customHooks/usePagination';
+import PaginationControls from '../PaginationControls';
 
 const LeaveRequestTable = () => {
   const dispatch = useDispatch();
@@ -36,8 +38,18 @@ const LeaveRequestTable = () => {
       toast.error('Failed to update status');
     }
   };
+    const {
+         paginatedData,
+         currentPage,
+         totalPages,
+         nextPage,
+         prevPage,
+         goToPage
+     } = usePagination(leaves, 3);
+
 
   return (
+    <>
     <div className="w-full bg-[#FFFFFF99] rounded-2xl p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-800 mb-4">Leave Requests</h2>
       <div className="overflow-x-auto">
@@ -57,12 +69,17 @@ const LeaveRequestTable = () => {
             </tr>
           </thead>
           <tbody>
-             {loading ? (
-            <p>Loading...</p>
+             {loading ? (          
+           <tr>
+            <td colSpan="8" className="text-center py-10 text-gray-500">
+              Loading...
+            </td>
+          </tr>
+            
           )
-           : leaves.length > 0 ? (
+           : paginatedData.length > 0 ? (
             <>
-            {leaves.map((item, index) => (
+            {paginatedData.map((item, index) => (
               <tr key={item.id} className="border-b last:border-none">
                 <td className="px-4 py-3">LV{String(item.id).padStart(5, '0')}</td>
                 <td className="px-4 py-3">{capitalize(item.leave_type)}</td>
@@ -106,7 +123,17 @@ const LeaveRequestTable = () => {
           </tbody>
         </table>
       </div>
+
+      <PaginationControls
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   nextPage={nextPage}
+                   prevPage={prevPage}
+                   goToPage={goToPage}
+          />
     </div>
+    </>
+
   );
 };
 

@@ -7,18 +7,19 @@ import apiClient from '../../utils/api/api';
 const port = import.meta.env.VITE_BACKEND_URL
 console.log(port);
 
-const token = Cookies.get('token');
+
 export const fetchEmployees = createAsyncThunk(
   'employees/fetchEmployees',
   async (_, { rejectWithValue }) => {
     try {
+      const token = Cookies.get('token');
       const response = await axios.get(`${port}/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': true,
         },
       });
-      console.log('ddddssss',response.data);
+      console.log('ddddssss1111',response.data);
       
 
       return response.data.users; 

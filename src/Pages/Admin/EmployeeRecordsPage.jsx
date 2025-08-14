@@ -5,10 +5,23 @@ import EmployeeProfileCard from '../../components/EmployeeRecords/EmployeeProfil
 import EmplSummaryCard from '../../components/EmployeeRecords/EmplSummaryCard';
 import ByDepartment from '../../components/EmployeeRecords/ByDepartment';
 import RecentActivity from '../../components/EmployeeRecords/RecentActivity';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchEmployees } from '../../slices/employee/employeesSlice';
 const EmployeeRecordsPage = () => {
-  return (
+  
+
+  const dispatch = useDispatch();
+  
+  const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
+   useEffect(() => {
+      if (employeeStatus === "idle") {
+        dispatch(fetchEmployees());
+      }
+    }, [employeeStatus, dispatch]);
+  return (   
     <>
+
       <EmployeeHeader />
       <div className="flex flex-col lg:flex-row gap-4 md:gap-2 mt-4 md:mt-6 w-full">
         <div className="w-full  lg:w-[72%]">

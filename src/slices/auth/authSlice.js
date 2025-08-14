@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { sign } from "chart.js/helpers";
 
 
+
 export const signUpUser = createAsyncThunk(
   'auth/signUpUser',
   async (userData, { rejectWithValue }) => {
@@ -19,6 +20,7 @@ export const signUpUser = createAsyncThunk(
     }
   }
 );
+
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',

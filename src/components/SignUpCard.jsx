@@ -17,29 +17,26 @@ const SignUpCard = ({ onSwitch }) => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(signupSchema),
-    // Set default value for user_type here
     defaultValues: {
       user_type: "employee",
+      name: "",
+      email: "",
+      password: "",
+      phone: "",
+      employee_id: "",
+      department: "",
+      user_role: "",
+      join_date: "",
     },
   });
 
   const formSubmit = async (data) => {
     try {
-       if (data.user_type === 'admin') {
-      delete data.employee_id;
-      delete data.department;
-      delete data.phone
-      delete data.join_date;
-      delete data.user_role;
-    }
-      console.log('formdata',data);
-      
-      // The .unwrap() utility will automatically throw an error if the thunk is rejected
+      console.log("Validated form data:", data);
+
       await dispatch(signUpUser(data)).unwrap();
-      // toast.success("Signup successful! Please log in.");
-      onSwitch(); 
+      onSwitch();
     } catch (err) {
-      // The error `err` is the value from `rejectWithValue` in your slice
       // toast.error(err || "An unknown error occurred during signup.");
       console.error("Signup failed:", err);
     }
@@ -93,6 +90,7 @@ const SignUpCard = ({ onSwitch }) => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
+          {/* --- Common Fields --- */}
           <div>
             <label className="text-xs text-black block mb-1">Email</label>
             <input {...register("email")} placeholder="Email" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
@@ -111,18 +109,18 @@ const SignUpCard = ({ onSwitch }) => {
             {errors.name && <p className="text-red-500 text-[10px] mt-0.5">{errors.name.message}</p>}
           </div>
 
-          <div>
-            <label className="text-xs text-black block mb-1">Contact No.</label>
-            {/* FIX: Changed 'number' to 'phone' to match expected API data */}
-            <input {...register("phone")} placeholder="Contact" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
-            {errors.phone && <p className="text-red-500 text-[10px] mt-0.5">{errors.phone.message}</p>}
-          </div>
-
+          {/* --- Employee-Only Fields --- */}
+          {/* 3. All employee-specific fields are now inside this conditional block */}
           {selectedRole === 'employee' && (
             <>
               <div>
+                <label className="text-xs text-black block mb-1">Contact No.</label>
+                <input {...register("phone")} placeholder="Contact" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
+                {errors.phone && <p className="text-red-500 text-[10px] mt-0.5">{errors.phone.message}</p>}
+              </div>
+
+              <div>
                 <label className="text-xs text-black block mb-1">Employee ID</label>
-                {/* FIX: Registered 'employee_id' field */}
                 <input
                   {...register("employee_id")}
                   placeholder="Employee ID"
@@ -130,32 +128,33 @@ const SignUpCard = ({ onSwitch }) => {
                 />
                 {errors.employee_id && <p className="text-red-500 text-[10px] mt-0.5">{errors.employee_id.message}</p>}
               </div>
+              
               <div>
                 <label className="text-xs text-black block mb-1">Job Role</label>
                 <input {...register("user_role")} placeholder="Role" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
                 {errors.user_role && <p className="text-red-500 text-[10px] mt-0.5">{errors.user_role.message}</p>}
               </div>
+
               <div>
                 <label className="text-xs text-black block mb-1">Department</label>
                 <input {...register("department")} placeholder="Department" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
                 {errors.department && <p className="text-red-500 text-[10px] mt-0.5">{errors.department.message}</p>}
               </div>
+
               <div>
                 <label className="text-xs text-black block mb-1">Joined On</label>
-                {/* FIX: Changed input type to 'date' for better UX */}
                 <input
                   type="date"
                   {...register("join_date")}
                   className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs"
                 />
-                {/* FIX: Corrected error key from 'joinedOn' to 'join_date' */}
                 {errors.join_date && <p className="text-red-500 text-[10px] mt-0.5">{errors.join_date.message}</p>}
               </div>
             </>
           )}
         </div>
 
-       <button
+        <button
           type="submit"
           disabled={signupLoading}
           className="w-full bg-[#2C2C2C] text-white py-3 mt-5 rounded-md text-xs font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"

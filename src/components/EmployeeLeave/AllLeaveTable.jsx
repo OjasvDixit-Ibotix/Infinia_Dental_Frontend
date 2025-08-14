@@ -2,7 +2,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLeaves } from '../../slices/leaveSlice';
-
+import { usePagination } from '../../utils/customHooks/usePagination';
+import PaginationControls from '../PaginationControls';
 const AllLeaveTable = () => {
   const dispatch = useDispatch();
   const { leaves, loading, error } = useSelector((state) => state.leave);
@@ -28,7 +29,19 @@ const AllLeaveTable = () => {
     Approved: 'bg-[#668E8C] text-white',
   };
 
+    const {
+         paginatedData,
+         currentPage,
+         totalPages,
+         nextPage,
+         prevPage,
+         goToPage
+     } = usePagination(leaves, 5);
+
+
   return (
+          <>
+
     <div className="w-full bg-[#FFFFFF99] rounded-2xl p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-800 mb-4">All Leave</h2>
       <div className="overflow-x-auto">
@@ -51,11 +64,15 @@ const AllLeaveTable = () => {
           </thead>
           <tbody>
          {loading ? (
-            <p>Loading...</p>
+            <tr>
+            <td colSpan="8" className="text-center py-10 text-gray-500">
+              Loading...
+            </td>
+          </tr>
           )
-           : leaves.length > 0 ? (
+           : paginatedData.length > 0 ? (
             <>
-            {leaves.map((item, index) => (
+            {paginatedData.map((item, index) => (
               <tr key={item.id} className="border-b last:border-none">
                 <td className="px-4 py-3">{index + 1}</td>
                 <td className="px-4 py-3">LV{String(item.id).padStart(5, '0')}</td>
@@ -86,7 +103,17 @@ const AllLeaveTable = () => {
           </tbody>
         </table>
       </div>
+
     </div>
+      <PaginationControls
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   nextPage={nextPage}
+                   prevPage={prevPage}
+                   goToPage={goToPage}
+          />
+          </>
+
   );
 };
 

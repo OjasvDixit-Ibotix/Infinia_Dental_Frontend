@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BgLoginRegister from './Pages/BgLoginRegister';
 import EmployeeLeave from './Pages/Admin/EmployeeLeave';
 import WelcomePage from '../src/Pages/Admin/WelcomePage'
-import EmployeehandBooksPage from './Pages/Admin/EmployeehandBooksPage';
+import EmployeehandBooksPage from './Pages/CommonPages/EmployeehandBooksPage';
 import LoginCard from './components/LoginCard';
 import SignUpCard from './components/SignUpCard';
 import Layout from './components/Layout';
@@ -22,13 +22,14 @@ import ScrollToTop from './utils/ScrollToTop';
 import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
 import { useSelector } from 'react-redux';
 import MyProfilePage from './Pages/MyProfilePage';
+import { Navigate } from 'react-router-dom';
 const App = () => {
 
   // const [ userType, setUserType] = useState('employee');
 
-  const user = useSelector((state)=>state.auth.user)
+  const {user, islogin} = useSelector((state)=>state.auth)
 
-  
+  console.log('islogin',islogin)
   
   return (
     <Router>
@@ -48,36 +49,42 @@ const App = () => {
                         <BgLoginRegister  />                  
                     }
                   />
+
+
                   {/* Admin Routes */}
 
-          <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
-            {/* <Route path="/employee-details" element={<EmployeeRecordsPage />} /> */}
-            <Route path="/leave-request" element={<EmployeeLeave />} />
-            {/* <Route path="/products" element={<EmployeeProductPage />} /> */}
-            <Route path="/directory" element={<EmpDirectoryPage />} />
 
+          <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
+
+            <Route path="/employee-details" element={<PrivateRoute roles= {['admin']}><EmployeeRecordsPage /></PrivateRoute>} />
+            {/* <Route path="/employee-details" element={<EmployeeRecordsPage />} /> */}
+            <Route path="/leave-request" element={<PrivateRoute roles= {['admin']}><EmployeeLeave /></PrivateRoute>} />
+
+            {/* <Route path="/leave-request" element={<EmployeeLeave />} /> */}
+            <Route path="/products" element={<EmployeeProductPage />} />
+            <Route path="/directory" element={<EmpDirectoryPage />} />
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
 
-          </Route>
+       
             {/* Emp Routes */}
 
-          <Route element={<PrivateRoute><Layout /></PrivateRoute>}>
-            {/* <Route path="/my-time" element={<EmptimesheetPage />} /> */}
-            <Route path="/request-leave" element={<EmpRequestLeavePage />} />
+            <Route path="/my-time" element={<PrivateRoute roles= {['employee']}><EmptimesheetPage /></PrivateRoute>} />
+            <Route path="/request-leave" element={<PrivateRoute roles= {['employee']}><EmpRequestLeavePage /></PrivateRoute>} />
+            <Route path="/leave-balance" element={<PrivateRoute roles= {['employee']}><EmpLeaveBalancePage /></PrivateRoute>} />
+
           </Route>
-          <Route  element={<Layout />} >
           
-            {/* <Route path="/leave-balance" element={<EmpLeaveBalancePage />} />
-            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> */}
+          {/* <Route  element={<Layout />} >
+          
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
             <Route path="/products" element={<EmployeeProductPage />} />
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
             <Route path="/my-profile" element={<MyProfilePage />} />
-            <Route path="/my-time" element={<EmptimesheetPage />} />
 
-
-          </Route>
+          </Route> */}
+        <Route path="*" element={<Navigate to={islogin ? "/dashboard" : "/"} replace />} />
                
       </Routes>
       <Toaster richColors position="top-right" />

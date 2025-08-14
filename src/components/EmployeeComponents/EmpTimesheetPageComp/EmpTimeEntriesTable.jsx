@@ -1,84 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { fetchTimeEntries } from "../../../slices/timeEntries/timeEntriesSlice"; // Adjust this import path
 import BlackIconWrapper from "../../BlackIconWrapper";
 import TimeEventsIcon from "../../../assets/svgs/EmpTimesheet/TimeEventsIcon";
 import FilterIcon from "../../../assets/svgs/EmpTimesheet/FilterIcon";
 import ExportIcon from "../../../assets/svgs/EmpTimesheet/ExportIcon";
-import { useNavigate } from "react-router-dom";
-import apiClient from "../../../utils/api/api";
 
-// Corrected: Removed hardcoded timeZone to default to user's local time
-const formatDate = (dateString) => {
-  if (!dateString) return "--";
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-};
-
-// Corrected: Removed hardcoded timeZone to default to user's local time
-const formatTime = (dateTimeString) => {
-  if (!dateTimeString) return "--";
-  const date = new Date(dateTimeString);
-  return date.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true
-   
-  });
-};
-
-const formatStatus = (status) => {
-    if (!status) return "--";
-    return status.charAt(0).toUpperCase() + status.slice(1);
-}
-const formatDuration = (totalHours) => {
-  if (totalHours === null || typeof totalHours !== 'number') {
-    return "--";
-  }
-
-  const hours = Math.floor(totalHours);
-  const minutes = Math.round((totalHours - hours) * 60);
-
-  return `${hours}h ${minutes}m`;
-};
 const EmpTimeEntriesTable = () => {
   const navigate = useNavigate();
-  const [timeEntries, setTimeEntries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  const fetchTimeEntries = async () => {
-    try {
-      const response = await apiClient.get("/time-entries");
-      console.log('dwdw',response.data);
-      if (response.data && response.data.time_entries) {
-        const formattedEntries = response.data.time_entries.map((entry) => ({
-          id: entry.id, 
-          date: formatDate(entry.date),
-          clockIn: formatTime(entry.clock_in),
-          clockOut: formatTime(entry.clock_out),
-          totalHours: formatDuration(entry.total_hours),
-          status: formatStatus(entry.status),
-          notes: entry.notes ?? "--",
-        }));
-        setTimeEntries(formattedEntries);     
-      } else {
-          setTimeEntries([]);
-      }
+  const dispatch = useDispatch();
 
-    } catch (e) {
-      console.error("Failed to fetch time entries:", e);
-      setError(e.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  useEffect(() => {
-    fetchTimeEntries();
-  }, []); 
+  const { timeEntries, isLoading, error } = useSelector((state) => state.timeEntries);
+
 
   return (
     <>
@@ -115,39 +49,40 @@ const EmpTimeEntriesTable = () => {
             </div>
 
             {isLoading ? (
-                <div className="flex items-center justify-center h-[55px]">Loading entries...</div>
+              <div className="flex items-center justify-center h-[55px]">Loading entries...</div>
             ) : error ? (
-                <div className="flex items-center justify-center h-[55px] text-red-500">Failed to load data.</div>
+              <div className="flex items-center justify-center h-[55px] text-red-500">Failed to load data: {error}</div>
             ) : timeEntries.length === 0 ? (
-                <div className="flex items-center justify-center h-[55px]">No time entries found.</div>
+              <div className="flex items-center justify-center h-[55px]">No time entries found.</div>
             ) : (
-                timeEntries.map((entry) => (
-              <div
-                key={entry.id}
-                className="flex items-center border-t border-slate-200 h-[55px]"
-              >
-                <div className="px-2 w-full max-w-[150px] min-w-[130px]">
-                  <span className="font-normal text-sm text-[#444]">{entry.date}</span>
+              timeEntries.map((entry) => (
+                <div
+                  key={entry.id}
+                  className="flex items-center border-t border-slate-200 h-[55px]"
+                >
+                  <div className="px-2 w-full max-w-[150px] min-w-[130px]">
+                    <span className="font-normal text-sm text-[#444]">{entry.date}</span>
+                  </div>
+                  <div className="px-2 w-full max-w-[150px] min-w-[130px]">
+                    <span className="font-normal text-sm text-[#444]">{entry.clockIn}</span>
+                  </div>
+                  <div className="px-2 w-full max-w-[150px] min-w-[130px]">
+                    <span className="font-normal text-sm text-[#444]">{entry.clockOut}</span>
+                  </div>
+                  <div className="px-2 w-full max-w-[150px] min-w-[130px]">
+                    <span className="font-normal text-sm text-[#444]">{entry.totalHours}</span>
+                  </div>
+                  <div className="px-2 w-full max-w-[150px] min-w-[130px]">
+                    <span className={`text-xs px-3 py-[3px] rounded-full border ${entry.status === 'Complete' ? 'bg-green-200 border-green-300' : 'bg-[#efcd78] border-[#efcd78]'} text-[#444]`}>
+                      {entry.status}
+                    </span>
+                  </div>
+                  <div className="px-0 w-full max-w-[250px]">
+                    <span className="font-normal text-sm text-[#444]">{entry.notes}</span>
+                  </div>
                 </div>
-                <div className="px-2 w-full max-w-[150px] min-w-[130px]">
-                  <span className="font-normal text-sm text-[#444]">{entry.clockIn}</span>
-                </div>
-                <div className="px-2 w-full max-w-[150px] min-w-[130px]">
-                  <span className="font-normal text-sm text-[#444]">{entry.clockOut}</span>
-                </div>
-                <div className="px-2 w-full max-w-[150px] min-w-[130px]">
-                  <span className="font-normal text-sm text-[#444]">{entry.totalHours}</span>
-                </div>
-                <div className="px-2 w-full max-w-[150px] min-w-[130px]">
-                  <span className={`text-xs px-3 py-[3px] rounded-full border ${entry.status === 'Complete' ? 'bg-green-200 border-green-300' : 'bg-[#efcd78] border-[#efcd78]'} text-[#444]`}>
-                    {entry.status}
-                  </span>
-                </div>
-                <div className="px-0 w-full max-w-[250px]">
-                  <span className="font-normal text-sm text-[#444]">{entry.notes}</span>
-                </div>
-              </div>
-            )))}
+              ))
+            )}
           </div>
         </div>
 

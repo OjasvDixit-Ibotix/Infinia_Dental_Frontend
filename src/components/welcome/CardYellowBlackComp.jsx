@@ -58,10 +58,10 @@ const CardYellowBlackComp = () => {
       user?.user_type === 'employee' &&(
         <>
            <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
-      <CardYellowBlackWrap  logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
+      <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
 
-      <CardYellowBlackWrap  logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
-
+      <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
+          
       <CardYellowBlackWrap logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
       <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
         </>

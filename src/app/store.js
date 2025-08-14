@@ -3,6 +3,7 @@ import authReducer from '../slices/auth/authSlice'
 import leaveReducer from '../slices/leaveSlice'
 import empReducer from '../slices/employee/employeesSlice'
 import leaveHistoryReducer from '../slices/leaveHistorySlice';
+import timeEntriesReducer from '../slices/timeEntries/timeEntriesSlice'
 
 export const store = configureStore({
     reducer :{
@@ -10,7 +11,7 @@ export const store = configureStore({
         leave: leaveReducer,
         emp:empReducer,
         leaveHistory:leaveHistoryReducer,
-        
+        timeEntries:timeEntriesReducer
     }
 }) 
 
