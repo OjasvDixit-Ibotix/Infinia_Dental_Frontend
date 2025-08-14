@@ -57,7 +57,7 @@ const apiClient = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
-const publicRoutes = ['/users', '/login'];
+const publicRoutes = ['/users', '/login','/auth/forget-password/send'];
 
 apiClient.interceptors.request.use(
   (config) => {
@@ -101,10 +101,11 @@ apiClient.interceptors.response.use(
         window.location.href = '/';
        
       }
-    } else {
-      toast.error('Network error. Please try again.');
-    }
-
+    } 
+    // else {
+    //   toast.error('Network error. Please try again.');
+    // }
+    
     return Promise.reject(error);
   }
 );
