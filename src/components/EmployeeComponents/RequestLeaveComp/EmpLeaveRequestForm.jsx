@@ -3,6 +3,7 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import Calendar from 'react-calendar';
 import apiClient from '../../../utils/api/api';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
 
 // Helper functions
 const generateNumericOptions = (start, end) => {
@@ -100,10 +101,10 @@ const EmpLeaveRequestForm = () => {
     const [reason, setReason] = useState('');
     const [numberOfDays, setNumberOfDays] = useState(0);
 
-    const requestByOptions = [
-        { value: 'sarah_j', label: 'Sarah Johnson' },
-        { value: 'john_d', label: 'John Doe' },
-    ];
+    // const requestByOptions = [
+    //     { value: 'sarah_j', label: 'Sarah Johnson' },
+    //     { value: 'john_d', label: 'John Doe' },
+    // ];
 
     const leaveTypeOptions = [
         { value: 'annual', label: 'Annual Leave' },
@@ -144,6 +145,7 @@ const EmpLeaveRequestForm = () => {
             console.error('Error submitting leave:', err);
         }
     };
+    const {user} = useSelector((state)=>state.auth);
 
     return (
         <div className="w-full p-6 bg-white mt-5 rounded-2xl shadow-md">
@@ -154,12 +156,11 @@ const EmpLeaveRequestForm = () => {
 
                         <label className="text-[#3C3C3C] font-medium">Request By*</label>
                         <div className="md:col-span-2">
-                            <SelectDropdown
-                                placeholder="Select Employee"
-                                options={requestByOptions}
-                                value={requestBy}
-                                onChange={(e) => setRequestBy(e.target.value)}
-                            />
+                        <input className='w-full appearance-none cursor-pointer px-4 py-2 rounded-[8px] border-[0.2px] border-[#444] opacity-80 shadow-[0_4px_12px_0_rgba(239,205,120,0.20)] bg-white text-gray-700 text-sm focus:outline-none focus:border-amber-400' 
+                                  placeholder={user.name}
+                                disabled
+                                
+                                />                             
                         </div>
 
                         <label className="text-[#3C3C3C] font-medium">Leave Type</label>

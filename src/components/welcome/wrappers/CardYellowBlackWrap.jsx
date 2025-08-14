@@ -7,7 +7,7 @@ const CardYellowBlackWrap = ({ logos, logodesc, bgColor, textColor, navigateTo }
   return (
     <div
       onClick={() => navigate(navigateTo)}
-      className="cursor-pointer flex flex-col items-center justify-center w-[196px] lg:w-[220px] h-[110px] sm:h-[130px] rounded-[8px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-[2px] hover:shadow-[0px_10px_25px_-3px_rgba(0,0,0,0.10)] transition-all duration-200"
+      className="cursor-pointer flex flex-col  items-center justify-center w-[166px] lg:w-[180px] h-[110px] sm:h-[130px] rounded-[8px] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] backdrop-blur-[2px] hover:shadow-[0px_10px_25px_-3px_rgba(0,0,0,0.10)] transition-all duration-200"
       style={{ backgroundColor: `#${bgColor}` }}
     >
       <div className="flex flex-col items-center p-2 sm:p-3 gap-2 sm:gap-[11.25px]  ">

@@ -66,12 +66,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
 @import "tailwindcss";
 
 /* @import "tailwindcss/preflight";
 @import "tailwindcss/components";
 @tailwind utilities; */
-
 @layer components {
   .commonCardCss {
 
@@ -85,4 +85,3 @@ button:focus-visible {
     @apply font-['Segoe_UI_Symbol']
   }
 }
-

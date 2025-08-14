@@ -23,6 +23,7 @@ import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
 import { useSelector } from 'react-redux';
 import MyProfilePage from './Pages/MyProfilePage';
 import { Navigate } from 'react-router-dom';
+
 const App = () => {
 
   // const [ userType, setUserType] = useState('employee');

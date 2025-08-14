@@ -28,24 +28,19 @@ const CardYellowBlackComp = () => {
   
   return ( 
 
-    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-7  w-full mx-auto">
+    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-6  w-full mx-auto">
         
       {
         user?.user_type==='admin' &&(
           <>
-            <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmpDetailsIcon />} logodesc="Employee Details" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Resources" bgColor="EFC878" textColor="444" />
       <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="All about Products" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/profile" logos={<MyProfileIcon />} logodesc="My Profile" bgColor="EFC878" textColor="444" />
           </>
         )
-      }
-
-    
-
-
-      
+      }      
       {/* <CardYellowBlackWrap navigateTo="/seminars-events" logos={<SeminarEvent />} logodesc="Seminars & Events" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/promotions" logos={<Promotions />} logodesc="Promotions" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/directory" logos={<Directory />} logodesc="Directory" bgColor="EFCD78" textColor="444" />
@@ -57,7 +52,7 @@ const CardYellowBlackComp = () => {
     {
       user?.user_type === 'employee' &&(
         <>
-           <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
 
       <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
