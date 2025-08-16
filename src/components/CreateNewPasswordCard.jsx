@@ -15,7 +15,6 @@ const CreateNewPasswordCard = () => {
         Set the new password for your account so you can login and access all features.
       </span>
       </div>
-
       {/* Form */}
       <div className="flex flex-col gap-6 w-full">
         {/* New Password */}

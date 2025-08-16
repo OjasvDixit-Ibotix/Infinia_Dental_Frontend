@@ -7,15 +7,16 @@ import LoginCard from "../components/LoginCard";
 import SignUpCard from "../components/SignUpCard";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ForgotPasswordCard from "../components/ForgotPasswordCard";
 
 const BgLoginRegister = () => {
   const navigate= useNavigate()
   const islogin = useSelector((state)=>state.auth.islogin);
-  const [isSignup, setIsSignup] = useState(false);
+  const [isAuthivew, setIsAuthView] = useState('login');
 
-  const handleSwitch = useCallback(() => {
-    setIsSignup((prevIsSignup) => !prevIsSignup);
-  }, []);
+  // const handleSwitch = useCallback(() => {
+  //   setIsAuthView((prevIsSignup) => !prevIsSignup);
+  // }, []);
 
   useEffect(()=>{
     if(islogin){
@@ -49,12 +50,21 @@ const BgLoginRegister = () => {
         className="absolute top-0 left-0 w-full h-full opacity-50 z-15 pointer-events-none select-none"
       />
       <div className="absolute inset-0 flex items-center justify-center z-20 p-2 sm:p-4">
-        <div className="w-full max-w-[420px]">
-          {isSignup ? (
-            <SignUpCard onSwitch={handleSwitch} />
-          ) : (
-            <LoginCard onSwitch={handleSwitch} />
-          )}
+        <div className=" max-w-[700px] w-[420px]">
+          {isAuthivew === 'login'  && (
+            <LoginCard onSwitchToSignUp={()=>setIsAuthView('signup')}
+               onSwitchToForgotPass={()=>setIsAuthView('forgotpassword')} />
+          )
+        }
+          {isAuthivew ==='signup' && (
+           <SignUpCard onSwitch={()=>setIsAuthView('login')} />
+           
+          ) 
+          }
+           {isAuthivew ==='forgotpassword'  &&(
+            <ForgotPasswordCard onSwitch={() => setIsAuthView('login')} />
+          ) 
+          }
         </div>
       </div>
     </div>

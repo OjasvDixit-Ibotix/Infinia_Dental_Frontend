@@ -5,6 +5,7 @@ import { forgotPasswordSchema } from "../utils/validations/authSchemas";
 import { toast } from "sonner";
 import apiClient from "../utils/api/api";
 import VerificationOtpCard from "./VerificationOtpCard";
+import { email } from "zod";
 
 const ForgotPasswordCard = ({ onSwitch }) => {
   const {
@@ -14,23 +15,28 @@ const ForgotPasswordCard = ({ onSwitch }) => {
   } = useForm({
     resolver: zodResolver(forgotPasswordSchema),
   });
+   const [submittedEmail, setSubmittedEmail] = useState("");
+
 
   const [showOtpCard, setShowOtpCard] = useState(false);
 
   const formSubmit = async (data) => {
     console.log("Sending password reset for:", data.email);
     try {
-        setShowOtpCard(true); // 👉 show OTP card after success
       const res = await apiClient.post("/auth/forget-password/send", data);
-      toast.success(res.message || "OTP sent to your email.");
+      console.log(res)
+      toast.success(res.data.message || "OTP sent to your email.");
+      setSubmittedEmail(data.email);
+      setShowOtpCard(true); 
     } catch (err) {
       console.error(err);
       toast.error(err.message || "Failed to send reset email. Please try again.");
     }
   };
 
+
   if (showOtpCard) {
-    return <VerificationOtpCard />; // 👉 replace card with OTP card
+    return <VerificationOtpCard email={submittedEmail}/>;
   }
 
   return (

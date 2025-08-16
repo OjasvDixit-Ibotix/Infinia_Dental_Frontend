@@ -6,7 +6,7 @@ import { loginSchema } from "../utils/validations/authSchemas";
 import { useDispatch , useSelector} from "react-redux";
 import { loginUser } from "../slices/auth/authSlice";
 import { toast } from "sonner";
-const LoginCard = ({ onSwitch }) => {
+const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
 
   const {
       register,handleSubmit, formState:{errors}
@@ -40,7 +40,7 @@ const LoginCard = ({ onSwitch }) => {
         <p className="text-xs sm:text-sm text-[#ABABAB]">
           No Account?{" "}
           <span
-            onClick={onSwitch}
+            onClick={onSwitchToSignUp}
             className="text-[#EFCD78] font-semibold cursor-pointer"
           >
             Sign up
@@ -83,8 +83,8 @@ const LoginCard = ({ onSwitch }) => {
               {errors.password.message}
             </p>
           )}
-          <div className="text-right mt-2 text-xs text-[#EFCD78] cursor-pointer">
-            Forgot Password
+          <div onClick={onSwitchToForgotPass} className="text-right mt-2 text-xs text-[#EFCD78] cursor-pointer">    
+                Forgot Password          
           </div>
         </div>
 

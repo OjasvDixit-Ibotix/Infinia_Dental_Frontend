@@ -108,17 +108,15 @@ const SignUpCard = ({ onSwitch }) => {
             <input {...register("name")} placeholder="Full Name" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
             {errors.name && <p className="text-red-500 text-[10px] mt-0.5">{errors.name.message}</p>}
           </div>
-
-          {/* --- Employee-Only Fields --- */}
-          {/* 3. All employee-specific fields are now inside this conditional block */}
-          {selectedRole === 'employee' && (
-            <>
-              <div>
+           <div>
                 <label className="text-xs text-black block mb-1">Contact No.</label>
                 <input {...register("phone")} placeholder="Contact" className="w-full border border-[#C0C0C0] px-3 py-3 rounded-md text-xs" />
                 {errors.phone && <p className="text-red-500 text-[10px] mt-0.5">{errors.phone.message}</p>}
               </div>
 
+        
+          {selectedRole === 'employee' && (
+            <>
               <div>
                 <label className="text-xs text-black block mb-1">Employee ID</label>
                 <input

@@ -7,7 +7,8 @@ export const loginSchema= z.object({
              message: 'Enter a valid email',
             }),
 
-    password:z.string().min(1, 'Password must be at least 6 characters'),
+      password: z.string({ required_error: "Password is required" })
+       .min(6, "Password must be at least 6 characters"),
 })
 
 
@@ -87,7 +88,11 @@ const baseSchema = z.object({
   email: z
     .string({ required_error: "Email is required" })
     .nonempty("Email is required")
-    .email("Enter a valid email"),
+    .refine((val)=>
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
+            {
+             message: 'Enter a valid email',
+        }),
 
   name: z
     .string({ required_error: "Name is required" })
@@ -96,6 +101,12 @@ const baseSchema = z.object({
   password: z
     .string({ required_error: "Password is required" })
     .min(6, "Password must be at least 6 characters"),
+
+    phone: z
+    .string({ required_error: "Phone number is required" })
+    .min(5, "Phone number must be at least 5 digits"),
+
+
 });
 
 // 2. Define the schema for when user_type is 'admin'
@@ -108,10 +119,6 @@ const adminSchema = baseSchema.extend({
 // 3. Define the schema for when user_type is 'employee'
 const employeeSchema = baseSchema.extend({
   user_type: z.literal("employee"),
-  phone: z
-    .string({ required_error: "Phone number is required" })
-    .min(5, "Phone number must be at least 5 digits"),
-
   employee_id: z
     .string({ required_error: "Employee ID is required" })
     .min(1, "Employee ID is required"),
@@ -133,3 +140,12 @@ export const signupSchema = z.discriminatedUnion("user_type", [
   adminSchema,
   employeeSchema,
 ]);
+
+export const forgotPasswordSchema = z.object({
+   email:z.string().nonempty('Email is required').refine((val)=>
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val),
+            {
+             message: 'Enter a valid email',
+            }),
+})
+
