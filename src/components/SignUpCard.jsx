@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "../slices/auth/authSlice";
 import { signupSchema } from "../utils/validations/authSchemas";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const SignUpCard = ({ onSwitch }) => {
+  const navigate= useNavigate()
   const dispatch = useDispatch();
   const { signupLoading } = useSelector((state) => state.auth);
 
@@ -32,6 +34,7 @@ const SignUpCard = ({ onSwitch }) => {
 
   const formSubmit = async (data) => {
     try {
+      
       console.log("Validated form data:", data);
 
       await dispatch(signUpUser(data)).unwrap();
@@ -52,7 +55,7 @@ const SignUpCard = ({ onSwitch }) => {
         <p className="text-xs text-gray-400">
           Have an Account?{" "}
           <span
-            onClick={onSwitch}
+            onClick={()=>navigate('/login')}
             className="text-[#EFCD78] font-semibold cursor-pointer"
           >
             Log in

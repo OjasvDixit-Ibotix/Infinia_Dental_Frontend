@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import CreateNewPasswordCard from "./CreateNewPasswordCard";
 import apiClient from "../utils/api/api";
 
-// Accept 'email' as a prop from the parent component
 const VerificationOtpCard = ({ email }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [showPasswordCard, setShowPasswordCard] = useState(false);
   const [error, setError] = useState(""); 
 
-  // Handle input change for OTP fields
   const handleChange = (value, index) => {
     if (/^[0-9]?$/.test(value)) {
       const newCode = [...code];
       newCode[index] = value;
       setCode(newCode);
 
-      // Auto move to next input
       if (value && index < 5) {
         document.getElementById(`otp-${index + 1}`).focus();
       }
@@ -35,27 +32,21 @@ const VerificationOtpCard = ({ email }) => {
       return;
     }
 
-    // 3. Create the correct payload object
     const payload = {
       email,
       otp,
     };
 
     try {
-      // 4. Send the payload to the backend
       const response = await apiClient.post('/auth/forget-password/verify', payload);
       
-      // Assuming a successful response means we can proceed
       if (response.data && response.data.resetToken) {
-         // You might want to pass the resetToken to the next component
         setShowPasswordCard(true);
       } else {
-        // Handle cases where the API call succeeds but verification fails
         setError("Verification failed. Please try again.");
       }
 
     } catch (err) {
-      // Handle API errors (e.g., invalid OTP, expired)
       const errorMessage = err.response?.data?.error || "An unexpected error occurred.";
       setError(errorMessage);
       console.error("Verification failed:", err);
@@ -63,7 +54,6 @@ const VerificationOtpCard = ({ email }) => {
   };
 
   if (showPasswordCard) {
-    // You'll likely need to pass the resetToken from the API response here
     return <CreateNewPasswordCard />;
   }
 
@@ -82,9 +72,8 @@ const VerificationOtpCard = ({ email }) => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-4 w-full" // Increased gap
+        className="flex flex-col items-center gap-4 w-full" 
       >
-        {/* OTP Inputs */}
         <div className="flex gap-3">
           {code.map((digit, index) => (
             <input
@@ -99,14 +88,12 @@ const VerificationOtpCard = ({ email }) => {
           ))}
         </div>
 
-        {/* Display API Error Message */}
         {error && (
           <span className="font-normal text-sm text-center text-red-500">
             {error}
           </span>
         )}
 
-        {/* Continue Button */}
         <button
           type="submit"
           className="w-full flex justify-center items-center gap-2.5 bg-[#444444] px-8 py-[12px] rounded-[5px] hover:opacity-90 transition"
@@ -117,7 +104,6 @@ const VerificationOtpCard = ({ email }) => {
         </button>
       </form>
 
-      {/* Resend text */}
       <span className="font-normal text-sm text-center mt-4">
         If you didn’t receive a code!{" "}
         <span className="text-[#EFCD78] font-semibold cursor-pointer">

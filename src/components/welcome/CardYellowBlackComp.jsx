@@ -20,6 +20,7 @@ import EmpClockIcon from '../../assets/svgs/EmpWelocomePageSvgs/EmpClockIcon';
 import LeaveRequestBlackIcon from '../../assets/svgs/WelcomePage/LeaveRequestBlackIcon';
 import EmpDetailsIcon from '../../assets/svgs/WelcomePage/EmpDetailsIcon';
 import { useSelector } from 'react-redux';
+import MyProfilePage from '../../Pages/MyProfilePage';
 const CardYellowBlackComp = () => {
 
   const {user} = useSelector((state)=>state.auth)
@@ -37,7 +38,7 @@ const CardYellowBlackComp = () => {
       <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmpDetailsIcon />} logodesc="Employee Details" bgColor="444" textColor="FFF" />
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmployehandBook />} logodesc="Employee Resources" bgColor="EFC878" textColor="444" />
       <CardYellowBlackWrap navigateTo="/products" logos={<Products />} logodesc="All about Products" bgColor="444" textColor="FFF" />
-      <CardYellowBlackWrap navigateTo="/profile" logos={<MyProfileIcon />} logodesc="My Profile" bgColor="EFC878" textColor="444" />
+      <CardYellowBlackWrap navigateTo="/my-profile" logos={<MyProfileIcon />} logodesc="My Profile" bgColor="EFC878" textColor="444" />
           </>
         )
       }      
@@ -57,8 +58,9 @@ const CardYellowBlackComp = () => {
 
       <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
           
-      <CardYellowBlackWrap logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
-      <CardYellowBlackWrap  logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap  logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
+      <CardYellowBlackWrap navigateTo={<MyProfilePage/>} logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+
         </>
       )
     }

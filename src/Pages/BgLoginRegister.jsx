@@ -6,7 +6,7 @@ import logo from "../assets/images/logo.svg";
 import LoginCard from "../components/LoginCard";
 import SignUpCard from "../components/SignUpCard";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import ForgotPasswordCard from "../components/ForgotPasswordCard";
 
 const BgLoginRegister = () => {
@@ -51,7 +51,7 @@ const BgLoginRegister = () => {
       />
       <div className="absolute inset-0 flex items-center justify-center z-20 p-2 sm:p-4">
         <div className=" max-w-[700px] w-[420px]">
-          {isAuthivew === 'login'  && (
+          {/* {isAuthivew === 'login'  && (
             <LoginCard onSwitchToSignUp={()=>setIsAuthView('signup')}
                onSwitchToForgotPass={()=>setIsAuthView('forgotpassword')} />
           )
@@ -64,7 +64,8 @@ const BgLoginRegister = () => {
            {isAuthivew ==='forgotpassword'  &&(
             <ForgotPasswordCard onSwitch={() => setIsAuthView('login')} />
           ) 
-          }
+          } */}
+          <Outlet/>
         </div>
       </div>
     </div>

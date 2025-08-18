@@ -25,15 +25,13 @@ export default function EditEmployeeModal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm">
-      <div className="bg-white rounded-xl w-[650px] p-6 shadow-lg">
-        {/* Header */}
+    <div className="fixed inset-0 flex z-50  items-center justify-center bg-black/30 backdrop-blur-sm">
+      <div className="bg-white rounded-xl  w-[650px] p-6 shadow-lg">
         <div className="flex justify-between items-start">
           <h2 className="text-xl font-semibold">Edit Employee details</h2>
           <button onClick={onClose} className="text-gray-500 text-2xl">&times;</button>
         </div>
 
-        {/* Profile */}
         <div className="flex items-center mt-4">
           <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center text-xl font-bold text-white">
             SJ
@@ -48,8 +46,8 @@ export default function EditEmployeeModal({ onClose }) {
           </div>
         </div>
 
-        {/* Form */}
         <div className="grid grid-cols-3 gap-4 mt-6">
+          
           <div>
             <label className="block text-sm text-gray-600 mb-1">First name</label>
             <input
@@ -98,6 +96,8 @@ export default function EditEmployeeModal({ onClose }) {
               className="border rounded-lg px-3 py-2 w-full"
             />
           </div>
+
+
           <div>
             <label className="block text-sm text-gray-600 mb-1">Joining Date</label>
             <input
@@ -107,44 +107,46 @@ export default function EditEmployeeModal({ onClose }) {
               className="border rounded-lg px-3 py-2 w-full"
             />
           </div>
-
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Job Title</label>
-            <input
-              name="jobTitle"
-              value={formData.jobTitle}
-              onChange={handleChange}
-              className="border rounded-lg px-3 py-2 w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Department</label>
-            <input
-              name="department"
-              value={formData.department}
-              onChange={handleChange}
-              className="border rounded-lg px-3 py-2 w-full"
-            />
-          </div>
-          <div>
-            <label className="block text-sm text-gray-600 mb-1">Employment type</label>
-            <input
-              name="employmentType"
-              value={formData.employmentType}
-              onChange={handleChange}
-              className="border rounded-lg px-3 py-2 w-full"
-            />
           </div>
 
-          <div className="col-span-3">
-            <label className="block text-sm text-gray-600 mb-1">Reporting Manager</label>
-            <input
-              name="reportingManager"
-              value={formData.reportingManager}
-              onChange={handleChange}
-              className="border rounded-lg px-3 py-2 w-full"
-            />
-          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">Job Title</label>
+                <input
+                  name="jobTitle"
+                  value={formData.jobTitle}
+                  onChange={handleChange}
+                  className="border rounded-lg px-3 py-2 w-full"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">Department</label>
+                <input
+                  name="department"
+                  value={formData.department}
+                  onChange={handleChange}
+                  className="border rounded-lg px-3 py-2 w-full"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-600 mb-1">Employment type</label>
+                <input
+                  name="employmentType"
+                  value={formData.employmentType}
+                  onChange={handleChange}
+                  className="border rounded-lg px-3 py-2 w-full"
+                />
+              </div>
+              <div >
+                <label className="block text-sm text-gray-600 mb-1">Reporting Manager</label>
+                <input
+                  name="reportingManager"
+                  value={formData.reportingManager}
+                  onChange={handleChange}
+                  className="border rounded-lg px-3 py-2 w-full"
+                />
+              </div>
         </div>
 
         {/* Buttons */}

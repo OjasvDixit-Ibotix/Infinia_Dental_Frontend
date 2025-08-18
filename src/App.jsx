@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import BgLoginRegister from './Pages/BgLoginRegister';
 import EmployeeLeave from './Pages/Admin/EmployeeLeave';
 import WelcomePage from '../src/Pages/Admin/WelcomePage'
@@ -25,12 +25,19 @@ import MyProfilePage from './Pages/MyProfilePage';
 import { Navigate } from 'react-router-dom';
 
 const App = () => {
+  // const navigate = useNavigate()
 
   // const [ userType, setUserType] = useState('employee');
 
   const {user, islogin} = useSelector((state)=>state.auth)
 
   console.log('islogin',islogin)
+
+  // useEffect(()=>{
+  //   if(!islogin){
+  //     <Navigate to="/login" replace />
+  //   }
+  // },[])
   
   return (
     <Router>
@@ -48,9 +55,11 @@ const App = () => {
                     path="/"
                     element={
                         <BgLoginRegister  />                  
-                    }
-                  />
-
+                    }>
+                    <Route path="/login" element={<LoginCard/>} />
+                    <Route path="/signup" element={<SignUpCard/>} />
+                    <Route path="/" element={<Navigate to="/login" replace />} />
+                    </Route>
 
                   {/* Admin Routes */}
 
@@ -67,8 +76,10 @@ const App = () => {
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
+           <Route path="/my-profile" element={<MyProfilePage />} />
 
-       
+
             {/* Emp Routes */}
 
             <Route path="/my-time" element={<PrivateRoute roles= {['employee']}><EmptimesheetPage /></PrivateRoute>} />
@@ -79,13 +90,17 @@ const App = () => {
           
           {/* <Route  element={<Layout />} >
           
-            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
             <Route path="/products" element={<EmployeeProductPage />} />
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
-            <Route path="/my-profile" element={<MyProfilePage />} />
+            // <Route path="/my-profile" element={<MyProfilePage />} />
 
           </Route> */}
         <Route path="*" element={<Navigate to={islogin ? "/dashboard" : "/"} replace />} />
+
+        <Route element = {<Layout/>}>
+           <Route path="/my-profile" element={<MyProfilePage />} />
+        </Route>
+
                
       </Routes>
       <Toaster richColors position="top-right" />

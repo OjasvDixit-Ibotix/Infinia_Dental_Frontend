@@ -32,18 +32,11 @@ const WelcomeNavbar = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-5">
-          <div className="cursor-pointer flex h-[36px] py-[0px]  content-center items-center">
-            <NotificationIcon/>
-
-          </div>
+        <div className="flex items-center">
             <button onClick={handlelogOut} className="flex h-[36px] py-[0px] content-center items-center cursor-pointer">
-            <LogOutIcon/>
-            
+            <LogOutIcon/>     
           </button>
-        </div>
-
-
+        </div>  
       </div>
 
       <SearchBar placeholder="Search employees, reports, leaves..." />

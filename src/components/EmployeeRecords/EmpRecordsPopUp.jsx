@@ -3,9 +3,7 @@ import EditPencilIcon from "../../assets/svgs/WelcomePage/EditPencilIcon";
 import ArchieveIcon from "../../assets/svgs/WelcomePage/ArchieveIcon";
 import EditProfilePopUp from "./EditProfilePopUp";
 
-const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
-  
-  if (!isOpen) return null;
+const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
 
   const [selectTab, setSelectTab] = useState("PersonalInfo");
   const [editPopUp , setEditPop] = useState(false);
@@ -13,7 +11,7 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
   return (
     <>
 
-    <div  onClick={(e)=>e.stopPropagation()} className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+    <div onClick={(e)=>e.stopPropagation()} className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
       <div className="w-[605px] h-[510px] bg-[#F9F9F9] rounded-tl-[30px] rounded-tr-[0px] rounded-br-[30px] rounded-bl-[30px] overflow-hidden shadow-lg flex flex-col">
 
         <div className="px-6 py-5 relative">
@@ -30,28 +28,29 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
 
           <div className="flex items-center gap-4 mb-4 pt-4">
             <div className="w-14 h-14 rounded-full bg-[#EFCD78] flex items-center justify-center text-[#444] text-lg font-bold">
-              SJ
+             {`${selectedEmp?.name.charAt(0) || ''}${selectedEmp?.name?.split(' ')[1]?.charAt(0) || ''}`}
+
             </div>
             <div>
               <p className="text-[#444] text-lg font-[Segoe UI Symbol]">
-                Dr. Sarah Johnson
+               {selectedEmp?.name}
               </p>
               <p className="text-sm text-gray-600 font-[Segoe UI Symbol]">
-                Senior Dentist • Clinical
+                {selectedEmp?.user_role ? selectedEmp.user_role :'--' } • {selectedEmp?.department}
               </p>
               <div className="flex items-center gap-2 mt-1">
                 <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-[Segoe UI Symbol]">
-                  Active
+                  {selectedEmp?.status}
                 </span>
                 <span className="text-sm text-gray-500 font-[Segoe UI Symbol]">
-                  EMP001
+                  {selectedEmp?.employee_id}
                 </span>
               </div>
             </div>
           </div>
 
           <div className="flex gap-3 mb-4">
-            <button onClick={()=>setEditPop(!editPopUp)} className="px-3 py-1 border border-gray-400 rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
+            <button onClick={()=>{setEditPop(!editPopUp)}}  className="px-3 py-1 border border-gray-400 rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
                 <EditPencilIcon/> Edit Profile
             </button>
             <button className="px-3 py-1 bg-[#444] text-white rounded-md text-sm flex items-center gap-1 font-[Segoe UI Symbol]">
@@ -95,12 +94,12 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
                 <p className="text-sm text-[#444] font-[Segoe UI Symbol]">
                   <strong>Email</strong>
                   <br />
-                  sarah.johnson@infiniadental.com
+                 {selectedEmp?.email}
                 </p>
                 <p className="text-sm text-[#444] mt-2 font-[Segoe UI Symbol]">
                   <strong>Phone</strong>
                   <br />
-                  9255564XXX
+                  {selectedEmp?.phone}
                 </p>
               </div>
 
@@ -111,7 +110,7 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
                 <p className="text-sm text-[#444] font-[Segoe UI Symbol]">
                   <strong>Joining Date</strong>
                   <br />
-                  March 15, 2022
+                  {selectedEmp?.join_date}
                 </p>
                 <p className="text-sm text-[#444] mt-2 font-[Segoe UI Symbol]">
                   <strong>Employee ID</strong>
@@ -130,19 +129,19 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
               <div className="grid grid-cols-2 gap-4 text-sm text-[#444] font-[Segoe UI Symbol]">
                 <div>
                   <strong>Job Title</strong>
-                  <p>Senior Dentist</p>
+                  <p>{selectedEmp?.user_role ? selectedEmp?.user_role : '--' }</p>
                 </div>
                 <div>
                   <strong>Department</strong>
-                  <p>Clinical</p>
+                  <p>{selectedEmp.department}</p>
                 </div>
                 <div>
                   <strong>Employment Type</strong>
-                  <p>Full Time</p>
+                  <p>{selectedEmp?.type ? selectedEmp?.type : '--' }</p>
                 </div>
                 <div>
                   <strong>Reporting Manager</strong>
-                  <p>Dr. Saurab</p>
+                  <p>{selectedEmp?.rm ? selectedEmp?.rm : '--' }</p>
                 </div>
               </div>
             </div>
@@ -197,8 +196,12 @@ const EmpRecordsPopUp = ({ isOpen, setSelectedEmp }) => {
         </div>
       </div>
     </div>
+    {
+      editPopUp &&(
+        <EditProfilePopUp onClose={()=>setEditPop(editPopUp=>!editPopUp)}/>
+      )
+    }
 
-    <EditProfilePopUp editPopUp={editPopUp} setEditPop={setEditPop}/>
     </>
   );
 };

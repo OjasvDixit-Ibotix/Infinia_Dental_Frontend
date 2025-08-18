@@ -36,7 +36,7 @@ const capitalize = (str) => {
 
 const EmployeeProfileCard = () => {
     const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
-    
+
     const [selectedEmp, setSelectedEmp] = useState(null);
     const [view, setView] = useState("cards");
     const [searchTerm, setSearchTerm] = useState("");
@@ -47,8 +47,7 @@ const EmployeeProfileCard = () => {
         Former: "bg-[#D1D5DB] text-black",
     };
 
-    // 1. Memoize the expensive formatting calculation.
-    // This now only runs when the original 'employees' array from Redux changes.
+
     const formattedEmployees = useMemo(() =>
         employees
             .filter(emp => emp.user_type === 'employee')
@@ -60,9 +59,6 @@ const EmployeeProfileCard = () => {
             })),
         [employees]
     );
-
-    // 2. Memoize the search filtering.
-    // This now only runs when the formatted list or the search term changes.
     const filteredEmployees = useMemo(() =>
         formattedEmployees.filter(
             (emp) =>
@@ -73,7 +69,6 @@ const EmployeeProfileCard = () => {
         [formattedEmployees, searchTerm]
     );
 
-    // 3. Paginate the final, filtered list.
     const {
         paginatedData,
         currentPage,
@@ -81,7 +76,7 @@ const EmployeeProfileCard = () => {
         nextPage,
         prevPage,
         goToPage
-    } = usePagination(filteredEmployees, 9); // Show 9 items per page
+    } = usePagination(filteredEmployees, 9);
 
     let content;
     if (employeeStatus === "loading") {
@@ -132,17 +127,41 @@ const EmployeeProfileCard = () => {
                     <div className="bg-[#FFFFFFB2] rounded-xl shadow-md mt-6 overflow-hidden">
                         <table className="w-full text-left">
                             <thead className="bg-gray-100 text-[#444] text-sm">
-                                {/* ... table headers ... */}
+                                <tr>
+                                    <th className="p-3"></th>
+                                    <th className="p-3">Name</th>
+                                    <th className="p-3">ID</th>
+                                    <th className="p-3">Role</th>
+                                    <th className="p-3">Departments</th>
+                                    <th className="p-3">Joining Date</th>
+                                    <th className="p-3">Status</th>
+                                    <th className="p-3">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                {/* 6. FIX: Use 'paginatedData' for the table as well */}
-                                {paginatedData.map((emp) => (
+                                {paginatedData.map((emp, idx) => (
                                     <tr
-                                        key={emp.id} // 4. Use a stable ID for the key
+                                        key={idx}
                                         className="hover:bg-gray-50 cursor-pointer"
                                         onClick={() => setSelectedEmp(emp)}
                                     >
-                                       {/* ... table row content ... */}
+                                        <td className="p-3">
+                                            <input type="checkbox" className="accent-[#F3C85C]" />
+                                        </td>
+                                        <td className="p-3 flex items-center gap-3">
+                                            <div className="w-8 h-8 bg-[#EFCD78] text-[#444]  text-sm font-bold rounded-full flex items-center justify-center">
+                                                {emp.initials}
+                                            </div>
+                                            <span className="font-medium text-[#444]">{emp.name}</span>
+                                        </td>
+                                        <td className="p-3 text-[14px] text-[#6B7280]">{emp.employee_id}</td>
+                                        <td className="p-3 text-[14px] text-[#6B7280]">{emp.user_role}</td>
+                                        <td className="p-3 text-[14px] text-[#6B7280]">{emp.department}</td>
+                                        <td className="p-3 text-[14px] text-[#6B7280]">{emp.joined}</td>
+                                        <td className="p-3">
+                                            <span className={`text-xs px-3 text-[14px]  py-[3px] rounded-full ${statusColors[emp.status]}`}>{emp.status}</span>
+                                        </td>
+                                        <td className="p-3 text-gray-500 text-xl">⋮</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -164,17 +183,32 @@ const EmployeeProfileCard = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <div className="flex items-center gap-2 bg-white rounded-[6px] p-[4px] shadow-[0_4px_12px_0_rgba(239,205,120,0.10)]">
-                    <div onClick={() => setView("cards")} /* ... */ >
+                    <div
+                        onClick={() => setView("cards")}
+                        className={`flex items-center justify-center rounded-[6px] p-2 cursor-pointer ${view === "cards"
+                                ? "bg-[#EFCD78] shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10)]"
+                                : "bg-white"
+                            }`}
+                    >
                         <OneColView />
                     </div>
-                    <div onClick={() => setView("table")} /* ... */ >
+
+                    <div
+                        onClick={() => setView("table")}
+                        className={`flex items-center justify-center rounded-[6px] p-2 cursor-pointer ${view === "table"
+                                ? "bg-[#EFCD78] shadow-[0_4px_6px_-4px_rgba(0,0,0,0.10)]"
+                                : "bg-white"
+                            }`}
+                    >
                         <RowColView />
                     </div>
                 </div>
+
+
             </div>
             {content}
             {filteredEmployees.length > 0 && (
-                 <PaginationControls
+                <PaginationControls
                     currentPage={currentPage}
                     totalPages={totalPages}
                     nextPage={nextPage}
@@ -183,7 +217,7 @@ const EmployeeProfileCard = () => {
                 />
             )}
             {selectedEmp && (
-                <EmpRecordsPopUp isOpen={true} employee={selectedEmp} setSelectedEmp={setSelectedEmp} />
+                <EmpRecordsPopUp   selectedEmp={selectedEmp} setSelectedEmp={setSelectedEmp} />
             )}
         </div>
     );

@@ -40,7 +40,7 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
         <p className="text-xs sm:text-sm text-[#ABABAB]">
           No Account?{" "}
           <span
-            onClick={onSwitchToSignUp}
+            onClick={()=>navigate('/signup')}
             className="text-[#EFCD78] font-semibold cursor-pointer"
           >
             Sign up
