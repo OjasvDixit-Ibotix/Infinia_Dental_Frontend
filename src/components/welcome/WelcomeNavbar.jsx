@@ -1,36 +1,55 @@
-import React from 'react';
-import Searchicon from '../../assets/svgs/WelcomePage/Searchicon';
+import React, { useEffect } from 'react';
 import SearchBar from '../SearchBar';
+import NotificationIcon from '../../assets/svgs/WelcomePage/NotificationIcon';
+import LogOutIcon from '../../assets/svgs/WelcomePage/LogOutIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../slices/auth/authSlice';
+import { toast } from 'sonner';
 
 const WelcomeNavbar = () => {
+  const dispatch = useDispatch();
+
+  const handlelogOut=()=>{
+    dispatch(logout())
+    toast.success('Log out successfully')
+  }
+   
+  const {user_type,user} = useSelector((state)=>state.auth)
+  console.log('fef',user_type,user);
   return (
-    <div className="flex flex-col items-start gap-4 rounded-[20px] w-full max-w-[1336px] mx-auto">
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4">
-        <div className="flex items-center gap-4">
+    <div className="flex flex-col gap-3 rounded-[20px] w-full  mx-auto ">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-[12px] bg-[#444]">
             <p className="text-[#EFCD78] font-[400] text-[18px] leading-[28px] font-[Segoe UI Symbol]">ID</p>
           </div>
           <div className="flex flex-col">
-            <p className="text-[#444] font-[400] text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] font-[Segoe UI Symbol]">
-              Welcome, Admin!
+            <p className="text-[#444] font-[400] text-[18px] sm:text-[20px] md:text-[24px] leading-[26px] sm:leading-[28px] md:leading-[32px] font-[Segoe UI Symbol]">
+              Welcome, { user?.name}!
             </p>
-            <p className="text-[#444] font-[400] text-[14px] leading-[20px] font-[Segoe UI Symbol]">
-              Infinia Dental HR Portal
+            <p className="text-[#444] font-[400] text-[13px] sm:text-[14px] leading-[18px] sm:leading-[20px] font-[Segoe UI Symbol]">
+              Infinia Dental {user?.user_type==='admin'?'admin':'employee'} Portal
             </p>
           </div>
         </div>
+        <div className="flex items-center">
+            <button onClick={handlelogOut} className="flex h-[36px] py-[0px] content-center items-center cursor-pointer">
+            <LogOutIcon/>     
+          </button>
+        </div>  
       </div>
-      
 
-    <SearchBar placeholder='Search employees, reports, leaves...'/>
+      <SearchBar placeholder="Search employees, reports, leaves..." />
 
       <div className="flex flex-wrap gap-2">
         {['Time Off', 'Handbook', 'Seminars', 'Forms', 'Lab Protocols'].map((item) => (
           <div
             key={item}
-            className="flex items-center h-[22px] px-[11px] py-[3px] rounded-full border border-[#EFCD78] bg-[rgba(239,205,120,0.3)]"
+            className="flex items-center px-3 sm:px-4 py-1 rounded-full border border-[#EFCD78] bg-[rgba(239,205,120,0.3)]"
           >
-            <p className="text-[#444] text-[12px] leading-[16px] font-[400] font-segouisymbol">{item}</p>
+            <p className="text-[#444] text-xs sm:text-[12px] leading-[15px] sm:leading-[16px] font-[400] font-[Segoe UI Symbol]">
+              {item}
+            </p>
           </div>
         ))}
       </div>

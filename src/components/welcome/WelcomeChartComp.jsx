@@ -7,16 +7,12 @@ import CheckAttendance from '../../assets/svgs/WelcomePage/CheckAttendance'
 
 const WelcomeChartComp = () => {
   return (
-    <>
-     <div className='flex flex-wrap justify-center gap-5 '>
-
-    <ChartCardWrap  logo={<TotalEmpl/>}  desc={'Total Employees'} />
-    <ChartCardWrap logo={<NewHires/>}  desc={'New Hires'} />
-    <ChartCardWrap logo={<PendingLeaves/>} desc={'Pending Leaves'} />
-    <ChartCardWrap  logo={<CheckAttendance/>} desc={'Attendance Rate'}/>
-     </div>
-    </> 
-
+    <div className='flex flex-wrap justify-center gap-3 sm:gap-5 w-full'>
+      <ChartCardWrap  logo={<TotalEmpl/>}  desc={'Total Employees'} />
+      <ChartCardWrap logo={<NewHires/>}  desc={'New Hires'} />
+      <ChartCardWrap logo={<PendingLeaves/>} desc={'Pending Leaves'} />
+      <ChartCardWrap  logo={<CheckAttendance/>} desc={'Attendance Rate'}/>
+    </div>
   )
 }
 

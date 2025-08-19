@@ -73,8 +73,6 @@ const ProductHeaderComp = () => {
               <p className="text-[#444] font-normal text-[16px] leading-[24px] font-[Segoe UI Symbol]">
                                 Showing 6 of 6 products
                             </p>
-
-
         </div>
         </>
     )

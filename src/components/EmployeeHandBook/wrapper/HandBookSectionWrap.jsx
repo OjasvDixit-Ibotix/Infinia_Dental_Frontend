@@ -1,14 +1,14 @@
 import React from "react";
 
-const HandBookSectionWrap = ({ title, category, updatedOn }) => {
+const HandBookSectionWrap = (props) => {
   return (
     <div className="w-full flex justify-between items-center rounded-md border border-gray-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col">
-        <h3 className="text-[#020817] text-[16px] font-medium">{title}</h3>
+        <h3 className="text-[#020817] text-[16px] font-medium">{props.title}</h3>
 
         <div className="flex items-center gap-3 mt-1">
           <span className="flex items-center px-3 py-[2px] rounded-full bg-[#F1F5F9] text-[#444] text-[12px] tracking-[-0.6px]">
-            {category}
+            {props.category}
           </span>
           <div className="flex items-center text-gray-500 text-[12px] tracking-[-0.6px]">
             <svg
@@ -25,7 +25,7 @@ const HandBookSectionWrap = ({ title, category, updatedOn }) => {
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            Updated: {updatedOn}
+            Updated: {props.updatedOn}
           </div>
         </div>
       </div>

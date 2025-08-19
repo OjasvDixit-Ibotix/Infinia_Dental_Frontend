@@ -10,7 +10,7 @@ const HolidayListCard = () => {
     ];
 
     return (
-        <div className="relative rounded-2xl p-6 w-95 h-full text-gray-800 overflow-hidden" style={{
+        <div className=" relative rounded-2xl p-6 w-95 h-full text-gray-800 overflow-hidden" style={{
             borderRadius: '20px',
             background: 'rgba(239, 205, 120, 0.80)',
         }}>
