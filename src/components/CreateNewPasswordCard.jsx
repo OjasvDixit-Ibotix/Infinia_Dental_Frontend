@@ -1,6 +1,7 @@
 import React from "react";
 
 const CreateNewPasswordCard = () => {
+  
   return (
     <div className="flex flex-col items-center gap-8 bg-white px-[30px] py-3 shadow-md rounded-[10px]">
       {/* Title */}

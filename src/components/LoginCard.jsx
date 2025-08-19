@@ -18,16 +18,17 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
   const dispatch = useDispatch();
    const navigate= useNavigate();
 
-    const formSubmit = async (data) => { 
-      console.log(data);
-      console.log('logged in ');
-      try{
+    const formSubmit = async (data) => {   
+      // console.log(data);
+           try{
         await dispatch(loginUser(data)).unwrap()
+        console.log('logged in ');
+        toast.success("Login successful!")
         navigate('/dashboard')
       }
-      catch(err){
-        console.log(err);
-        
+      catch(error){
+         toast.error(error); 
+        console.log(error);
       }
 
     };
@@ -83,7 +84,7 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
               {errors.password.message}
             </p>
           )}
-          <div onClick={onSwitchToForgotPass} className="text-right mt-2 text-xs text-[#EFCD78] cursor-pointer">    
+          <div onClick={()=>navigate('/forgot-password')} className="text-right mt-2 text-xs text-[#EFCD78] cursor-pointer">    
                 Forgot Password          
           </div>
         </div>

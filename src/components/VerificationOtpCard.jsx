@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CreateNewPasswordCard from "./CreateNewPasswordCard";
 import apiClient from "../utils/api/api";
+import { toast } from "sonner";
 
 const VerificationOtpCard = ({ email }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
@@ -39,12 +40,7 @@ const VerificationOtpCard = ({ email }) => {
 
     try {
       const response = await apiClient.post('/auth/forget-password/verify', payload);
-      
-      if (response.data && response.data.resetToken) {
-        setShowPasswordCard(true);
-      } else {
-        setError("Verification failed. Please try again.");
-      }
+          toast.success('OTP send successfully')
 
     } catch (err) {
       const errorMessage = err.response?.data?.error || "An unexpected error occurred.";

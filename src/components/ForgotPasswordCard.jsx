@@ -6,8 +6,10 @@ import { toast } from "sonner";
 import apiClient from "../utils/api/api";
 import VerificationOtpCard from "./VerificationOtpCard";
 import { email } from "zod";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordCard = ({ onSwitch }) => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -27,13 +29,12 @@ const ForgotPasswordCard = ({ onSwitch }) => {
       console.log(res)
       toast.success(res.data.message || "OTP sent to your email.");
       setSubmittedEmail(data.email);
-      setShowOtpCard(true); 
+      navigate('/verify-otp')
     } catch (err) {
       console.error(err);
       toast.error(err.message || "Failed to send reset email. Please try again.");
     }
   };
-
 
   if (showOtpCard) {
     return <VerificationOtpCard email={submittedEmail}/>;
@@ -79,7 +80,7 @@ const ForgotPasswordCard = ({ onSwitch }) => {
       </form>
 
       <span
-        onClick={onSwitch}
+        onClick={()=>navigate('/login')}
         className="text-[#EFCD78] font-semibold cursor-pointer text-sm mt-4"
       >
         &larr; Back to Log in

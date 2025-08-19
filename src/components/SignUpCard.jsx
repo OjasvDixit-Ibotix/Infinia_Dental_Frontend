@@ -7,7 +7,7 @@ import { signupSchema } from "../utils/validations/authSchemas";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
-const SignUpCard = ({ onSwitch }) => {
+const SignUpCard = () => {
   const navigate= useNavigate()
   const dispatch = useDispatch();
   const { signupLoading } = useSelector((state) => state.auth);
@@ -35,10 +35,9 @@ const SignUpCard = ({ onSwitch }) => {
   const formSubmit = async (data) => {
     try {
       
-      console.log("Validated form data:", data);
-
+      // ("Validated form data:", data);
       await dispatch(signUpUser(data)).unwrap();
-      onSwitch();
+      navigate('/login')
     } catch (err) {
       // toast.error(err || "An unknown error occurred during signup.");
       console.error("Signup failed:", err);

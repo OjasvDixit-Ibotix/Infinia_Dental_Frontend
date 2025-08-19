@@ -29,11 +29,16 @@ export const loginUser = createAsyncThunk(
       const response = await apiClient.post('/login', userData);
       // console.log('logged in ');
       
-      toast.success(response.data.message || "Login successful!");
+      // toast.success(response.data.message || "Login successful!");
       return response.data;
     } catch (error) {
-      const errorMessage = error.response?.data?.error || 'Login failed';
-      toast.error(errorMessage);
+      // const errorMessage = error.response?.data?.error || 'Login failed';
+      // toast.error(errorMessage);
+      const errorMessage = 
+        error.response?.data?.message || 
+        error.response?.data?.error || 
+        'Invalid credentials. Please try again.';
+      
       return rejectWithValue(errorMessage);
     }
   }
