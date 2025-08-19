@@ -35,7 +35,7 @@
 
 //     //   config.headers.Authorization = basicAuth;
 
-//     //  config.headers["ngrok-skip-browser-warning"] = "true";
+//  //  config.headers["ngrok-skip-browser-warning"] = "true";
 
     
 
@@ -53,11 +53,17 @@ import axios from 'axios';
 import Cookies from 'js-cookie'; 
 import { Navigate } from 'react-router-dom';
 import { toast } from 'sonner';
+
+//  VITE_BACKEND_URL='http://localhost:3000'
+
+const VITE_BACKEND_URL='http://3.81.185.134:8000'
+
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
+  baseURL: VITE_BACKEND_URL,
 });
 
-const publicRoutes = ['/users', '/login','/auth/forget-password/send'];
+const publicRoutes = ['/users', '/login','/auth/forget-password/send','/auth/forget-password/verify', '/auth/forget-password'];
+
 
 apiClient.interceptors.request.use(
   (config) => {
@@ -79,6 +85,7 @@ apiClient.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -95,12 +102,17 @@ apiClient.interceptors.response.use(
         }
 
       if (status === 401) {
-        toast.error('Session expired. Please log in again.');
+        // toast.error('Session expired. Please log in again.');
         Cookies.remove('token');
         Cookies.remove('user');
-        window.location.href = '/';
+
+          // setTimeout(() => {  
+          //  window.location.href = '/';
+
+          //  }, 1500);
+        }
        
-      }
+      
     } 
     // else {
     //   toast.error('Network error. Please try again.');
@@ -109,4 +121,5 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 export default apiClient;

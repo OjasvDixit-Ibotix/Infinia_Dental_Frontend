@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios'; 
 import Cookies from 'js-cookie';
 import apiClient from '../../utils/api/api';
+import { toast } from 'sonner';
 
 
-const port = import.meta.env.VITE_BACKEND_URL
-console.log(port);
+const port = 'http://3.81.185.134:8000';
+// console.log(port);
 
 
 export const fetchEmployees = createAsyncThunk(
@@ -24,6 +25,8 @@ export const fetchEmployees = createAsyncThunk(
 
       return response.data.users; 
     } catch (error) {
+     toast.error(error.message)
+    // console.log(error.message);  
       return rejectWithValue(error.response?.data || 'Failed to fetch employees');
     }
   }

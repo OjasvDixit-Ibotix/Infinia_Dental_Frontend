@@ -23,6 +23,9 @@ import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
 import { useSelector } from 'react-redux';
 import MyProfilePage from './Pages/MyProfilePage';
 import { Navigate } from 'react-router-dom';
+import ForgotPasswordCard from './components/ForgotPasswordCard';
+import VerificationOtpCard from './components/VerificationOtpCard';
+
 
 const App = () => {
   // const navigate = useNavigate()
@@ -31,7 +34,7 @@ const App = () => {
 
   const {user, islogin} = useSelector((state)=>state.auth)
 
-  console.log('islogin',islogin)
+  //  ('islogin',islogin)
 
   // useEffect(()=>{
   //   if(!islogin){
@@ -58,6 +61,9 @@ const App = () => {
                     }>
                     <Route path="/login" element={<LoginCard/>} />
                     <Route path="/signup" element={<SignUpCard/>} />
+                    <Route path="/forgot-password" element={<ForgotPasswordCard/>} />
+                    <Route path="/verify-otp" element={<VerificationOtpCard/>} />
+                  
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     </Route>
 
@@ -77,7 +83,7 @@ const App = () => {
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
             <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
-           <Route path="/my-profile" element={<MyProfilePage />} />
+           {/* <Route path="/my-profile" element={<MyProfilePage />} /> */}
 
 
             {/* Emp Routes */}
