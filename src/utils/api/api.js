@@ -97,7 +97,7 @@ apiClient.interceptors.response.use(
         Cookies.remove('user');
         Cookies.remove('token');
         window.location.href = '/';
-        // setTimeout(() => {   
+        // setTimeout(() => {   `
           // }, 1500);
         }
 

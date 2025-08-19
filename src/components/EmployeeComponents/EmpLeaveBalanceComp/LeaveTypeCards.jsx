@@ -7,7 +7,6 @@ import CasualLeaveIcons from '../../../assets/svgs/EmpLeaveBalance/CasualLeaveIc
 import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow'
 import CompesatoryLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/CompesatoryLeaveIcon'
 
-
 const LeaveTypeCards = () => {
   return (
     <>

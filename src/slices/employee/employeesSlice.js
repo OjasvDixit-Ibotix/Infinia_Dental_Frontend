@@ -15,6 +15,7 @@ export const fetchEmployees = createAsyncThunk(
     try {
       const token = Cookies.get('token');
       const response = await axios.get(`${port}/users`, {
+        
         headers: {
           Authorization: `Bearer ${token}`,
           'ngrok-skip-browser-warning': true,
