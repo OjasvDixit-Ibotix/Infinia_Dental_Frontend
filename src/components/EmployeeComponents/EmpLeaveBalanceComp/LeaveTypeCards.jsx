@@ -2,11 +2,10 @@ import React from 'react'
 import LeaveTypeCardWrap from './wrapper/LeaveTypeCardWrap'
 import AnnualLeaveicon from '../../../assets/svgs/EmpRequestLeave/AnnualLeaveicon'
 import SickLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/SickLeaveIcon'
-import EmergencyLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/EmergencyLeaveicon'
+import EmergencyLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/EmergencyLeaveIcon'
 import CasualLeaveIcons from '../../../assets/svgs/EmpLeaveBalance/CasualLeaveIcons'
 import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow'
 import CompesatoryLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/CompesatoryLeaveIcon'
-
 
 const LeaveTypeCards = () => {
   return (
