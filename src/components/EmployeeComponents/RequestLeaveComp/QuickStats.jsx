@@ -4,7 +4,7 @@ import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow'
 import PendingRequseIcon from '../../../assets/svgs/EmpLeaveBalance/PendingRequseIcon'
 import ApproveThisMonthIcon from '../../../assets/svgs/EmpLeaveBalance/ApproveThisMonthIcon'
 import DaysRemainIcon from '../../../assets/svgs/EmpLeaveBalance/DaysRemainIcon'
-import UsageThisYear from '../../../assets/svgs/EmpLeaveBalance/usageThisYear'
+import UsageThisYear from '../../../assets/svgs/EmpLeaveBalance/UsageThisYear'
 
 const QuickStats = () => {
   return (
