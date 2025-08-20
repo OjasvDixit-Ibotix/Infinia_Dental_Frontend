@@ -83,7 +83,7 @@ const App = () => {
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
             <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
-           {/* <Route path="/my-profile" element={<MyProfilePage />} /> */}
+           <Route path="/my-profile" element={<MyProfilePage />} />
 
 
             {/* Emp Routes */}
@@ -103,8 +103,14 @@ const App = () => {
           </Route> */}
         <Route path="*" element={<Navigate to={islogin ? "/dashboard" : "/"} replace />} />
 
+
+      //! For testing purposes, remove later
         <Route element = {<Layout/>}>
-           <Route path="/my-profile" element={<MyProfilePage />} />
+           {/* <Route path="/my-profile" element={<MyProfilePage />} /> */}
+            {/* <Route path="/products" element={<EmployeeProductPage />} /> */}
+            {/* <Route path="/directory" element={<EmpDirectoryPage />} /> */}
+             
+
         </Route>
 
                
