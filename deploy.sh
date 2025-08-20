@@ -16,7 +16,8 @@ sudo docker stop frontend-container || true
 echo "🧹 Removing old container (if any)..."
 sudo docker rm frontend-container || true
 
-sudo docker system prune -a -f --volumes
+# sudo docker system prune -a -f --volumes
+
 # Build new docker image
 echo "🐳 Building new Docker image for Vite app..."
 sudo docker build -t frontend:latest .
