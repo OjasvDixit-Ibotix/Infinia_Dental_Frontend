@@ -24,3 +24,4 @@ EXPOSE 3000
  
 # Use serve to serve the Vite app's dist folder
 CMD ["serve", "-s", "dist", "-l", "3000"]
+

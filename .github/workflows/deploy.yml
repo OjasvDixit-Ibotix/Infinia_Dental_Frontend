@@ -1,0 +1,29 @@
+name: CI/CD Pipeline for Vite Frontend Deployment
+# Define when the workflow will be triggered
+on:
+  push:
+    branches:
+      - main  # Trigger workflow when code is pushed to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger workflow when a PR is created targeting the 'main' branch
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use an Ubuntu runner
+    steps:
+    # Checkout the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+    # Set up SSH for the GitHub Actions workflow
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Use the SSH private key stored in GitHub Secrets
+    # Copy the repository files to the frontend server
+    - name: Copy files to the server
+      run: |
+        scp -r ./ ubuntu@3.81.185.134:/home/ubuntu/Infinia_Dental_Frontend
+    # Run deploy.sh on the server to deploy the frontend
+    - name: Run deployment script
+      run: |
+        ssh -o StrictHostKeyChecking=no ubuntu@3.81.185.134 'bash ~/Infinia_Dental_Frontend/deploy.sh'
