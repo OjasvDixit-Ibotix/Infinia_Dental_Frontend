@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 
 
 const WelcomePage = () => {
-
       
   return (
     <div className="w-full  bg-[rgb(234,234,234)]">
@@ -36,9 +35,7 @@ const WelcomePage = () => {
       <div className="flex mx-auto justify-center flex-col lg:flex-row gap-4 w-full ">
         <TodayOverviewComp />
         <RecentActivitiesComp/>
-
       </div> */}
-
       <div className="flex mx-auto  justify-center flex-row lg:flex-row gap-4 w-full">
       <EmpCalendar/>
       <WhatNewComp />      

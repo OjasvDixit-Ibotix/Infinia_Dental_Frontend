@@ -11,6 +11,7 @@ export const signUpUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await apiClient.post('/users', userData);
+      console.log(res)
       toast.success(response.data.message || "Signup successful!");
       return response.data;
     } catch (error) {
@@ -20,7 +21,6 @@ export const signUpUser = createAsyncThunk(
     }
   }
 );
-
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',

@@ -1,12 +1,9 @@
-// src/components/EmpdirectoryCardWrap.js
-
 import React from 'react';
 
-const EmpdirectoryCardWrap = ({ employee, hasChildren, isOpen, onClick }) => {
+const AllEmployeesCard = ({ employee, hasChildren }) => {
   return (
     <div 
-      className="flex w-[320px] max-w-full p-[1px] flex-col items-start rounded-md border border-[#EFCD78] bg-white shadow-sm cursor-pointer hover:shadow-md transition-shadow"
-      onClick={onClick}
+      className="flex w-full max-w-full p-[1px] flex-col items-start rounded-md border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
       <div className="flex p-4 flex-col items-start gap-4 w-full">
         <div className="flex items-center gap-3 w-full">
@@ -24,17 +21,10 @@ const EmpdirectoryCardWrap = ({ employee, hasChildren, isOpen, onClick }) => {
               {employee.role}
             </p>
           </div>
-          
-          {/* Expander Icon */}
-          {hasChildren && (
-            <div className="text-2xl font-light text-gray-400">
-              {isOpen ? '−' : '+'}
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default EmpdirectoryCardWrap;
+export default AllEmployeesCard;
