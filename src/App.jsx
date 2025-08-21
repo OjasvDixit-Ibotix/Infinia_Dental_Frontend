@@ -12,7 +12,7 @@ import SeminarAndEventPage from './Pages/Admin/SeminarAndEventPage';
 import EmpFormsDocsPage from './Pages/Admin/EmpFormsDocsPage';
 import EmpDirectoryPage from './Pages/Admin/EmpDirectoryPage';
 import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage'
-import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
+// import EmpWelcomePage from './Pages/Employee/EmpWelcomePage';
 import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
 import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
@@ -26,6 +26,7 @@ import { Navigate } from 'react-router-dom';
 import ForgotPasswordCard from './components/ForgotPasswordCard';
 import VerificationOtpCard from './components/VerificationOtpCard';
 import './App.css'; 
+import CreateNewPasswordCard from './components/CreateNewPasswordCard';
 
 const App = () => {
   // const navigate = useNavigate()
@@ -63,6 +64,8 @@ const App = () => {
                     <Route path="/signup" element={<SignUpCard/>} />
                     <Route path="/forgot-password" element={<ForgotPasswordCard/>} />
                     <Route path="/verify-otp" element={<VerificationOtpCard/>} />
+                    <Route path="/create-new-password" element={<CreateNewPasswordCard/>} />
+
                   
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     </Route>
