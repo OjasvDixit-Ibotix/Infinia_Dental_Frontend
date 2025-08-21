@@ -37,7 +37,7 @@ const CreateNewPasswordCard = () => {
         email: email, 
         otp: otp, 
       };
-      console.log('asdf',payload);
+      // console.log('asdf',payload);
       
 
       const res = await apiClient.post("/auth/forget-password", payload);

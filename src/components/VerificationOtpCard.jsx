@@ -32,7 +32,7 @@ const VerificationOtpCard = () => {
       return;
     }
     const email = location.state?.email; 
-    console.log('emial',email);
+    // console.log('emial',email);
     
 
     const payload = {
@@ -41,7 +41,7 @@ const VerificationOtpCard = () => {
     };
 
     try {
-      console.log('payload', payload);
+      // console.log('payload', payload);
       
       const response = await apiClient.post('/auth/forget-password/verify', payload);
           // toast.success('OTP send successfully')

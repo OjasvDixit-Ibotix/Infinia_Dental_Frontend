@@ -18,10 +18,10 @@ const ForgotPasswordCard = ({ onSwitch }) => {
     resolver: zodResolver(forgotPasswordSchema),
   });
   const formSubmit = async (data) => {
-    console.log("Sending password reset for:", data.email);
+    // console.log("Sending password reset for:", data.email);
     try {
       const res = await apiClient.post("/auth/forget-password/send", data);
-      console.log(res)
+      // console.log(res)
       toast.success(res.data.message || "OTP sent to your email.");
      navigate('/verify-otp', { state: { email: data.email } });
 
