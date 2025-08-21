@@ -12,6 +12,7 @@ const PriceList = ({ items }) => (
   </ul>
 );
 
+
 const CategoryDropdown = ({ category, data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -52,11 +53,9 @@ const CategoryDropdown = ({ category, data }) => {
   );
 };
 
-// The modal now expects the entire data object
 const ProductModal = ({ data, isOpen, onClose }) => {
   if (!isOpen) return null;
 
-  // Destructure the heading and categories from the data prop
   const { mainHeading, categories } = data;
 
   return (
@@ -71,14 +70,12 @@ const ProductModal = ({ data, isOpen, onClose }) => {
         <div className="flex justify-between items-center p-4 border-b">
           <div className="flex flex-1 justify-center items-center gap-2">
             <div className="w-[70px] h-[2px] bg-black"></div>
-            {/* Use the mainHeading prop for a dynamic title */}
             <span className="font-normal text-[40px] text-black shrink-0">{mainHeading}</span>
             <div className="w-[70px] h-[2px] bg-black"></div>
           </div>
           <button onClick={onClose} className="text-3xl text-gray-400 hover:text-gray-700">&times;</button>
         </div>              
         <div className="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
-          {/* Loop over 'categories' and rename the loop variable to 'items' to fix shadowing */}
           {Object.entries(categories).map(([category, items]) => (
             <CategoryDropdown  key={category} category={category} data={items} />
           ))}

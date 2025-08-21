@@ -5,7 +5,7 @@ import DownloadSvg from '../../assets/svgs/WelcomePage/DownloadSvg'
 const QuickActions = () => {
   return (
    <div className="flex flex-col items-center gap-6 pt-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm w-full">
-  <div className='flex w-[270px] flex-col items-start'>
+  <div className='flex  flex-col items-start'>
     <p className="text-[#444] font-normal text-[18px] leading-[28px] tracking-[-0.45px] font-[Segoe UI Symbol]">
   Quick Actions
 </p>

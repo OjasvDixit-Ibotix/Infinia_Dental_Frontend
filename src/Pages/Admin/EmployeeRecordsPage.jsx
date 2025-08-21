@@ -21,11 +21,11 @@ const EmployeeRecordsPage = () => {
     }, [employeeStatus, dispatch]);
   return (   
     <>
-
+           
       <EmployeeHeader />
       <div className="flex flex-col lg:flex-row gap-4 md:gap-2 mt-4 md:mt-6 w-full">
         <div className="w-full  lg:w-[72%]">
-          <EmployeeProfileCard />
+          <EmployeeProfileCard/>
         </div>
         <div className="w-full lg:w-[28%] pt-22 space-y-4 mt-4 lg:mt-0">
           <EmplSummaryCard />

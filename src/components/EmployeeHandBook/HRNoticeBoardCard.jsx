@@ -7,7 +7,7 @@ const notices = [
 
 const HRNoticeboard = () => {
   return (
-    <div className="flex flex-col p-6 gap-4 rounded-2xl bg-[rgba(255,255,255,0.8)] shadow-[0_4px_12px_rgba(0,0,0,0.10)] backdrop-blur-[2px] w-[280px]">
+    <div className="flex flex-col p-6 gap-4 rounded-2xl bg-[rgba(255,255,255,0.8)] shadow-[0_4px_12px_rgba(0,0,0,0.10)] backdrop-blur-[2px] ">
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 flex items-center justify-center bg-[#2A2A2A] rounded-md">
           <svg

@@ -13,9 +13,9 @@ const EmployeehandBooksPage = () => {
       <EmpHandBookHeader/>
       <EmpHandBookFilter/>
       <div>
-        <div className='flex flex-col lg:flex-row gap-3 md:gap-[12px] h-fit w-full'>
+        <div className='flex flex-col lg:flex-row  gap-4 h-fit w-full  '>
           <HandBookSectionsComp/>
-          <div className='flex gap-2 md:gap-3 flex-col mt-3 lg:mt-0'>
+          <div className='flex flex-col w-full lg:w-[300px] lg:flex-shrink-0 gap-2 md:gap-3 mt-3 lg:mt-0'>
             <QuickActions/>
             <RecentlyUpdated/>
             <HRNoticeboard/>

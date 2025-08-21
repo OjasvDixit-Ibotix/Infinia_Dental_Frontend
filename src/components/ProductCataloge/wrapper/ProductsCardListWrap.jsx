@@ -4,10 +4,31 @@ import ClockIcon from '../../../assets/svgs/WelcomePage/ClockIcon';
 import EyeIcon from '../../../assets/svgs/WelcomePage/EyeIcon';
 import DownloadSvg from '../../../assets/svgs/WelcomePage/DownloadSvg';
 import ProductModal from './ProductModal';
+import ClearAlignerModal from '../ClearAlignerModal';
 
 const ProductsCardListWrap = ({data, image, name, desc, price, noOf }) => {
 
   const [isOpen,setIsOpen] = useState(false)
+
+  const renderModal = () => {
+    if (!isOpen) return null;
+
+    if (name === 'Clear Aligner') {
+      return <ClearAlignerModal isOpen={isOpen} onClose={() => setIsOpen(false)} />;
+    }
+    
+    if (data) {
+      return (
+        <ProductModal 
+          isOpen={isOpen} 
+          onClose={() => setIsOpen(false)}
+          data={data}
+        />
+      );
+    }
+    return null;
+  };
+
   return (
     <>
     <div className="flex w-full h-[394px] p-1 flex-col items-start flex-shrink-0
@@ -48,7 +69,7 @@ const ProductsCardListWrap = ({data, image, name, desc, price, noOf }) => {
         </div>
 
         <div className="flex items-center gap-2 mt-3 w-full">
-          <button onClick={()=>setIsOpen(!isOpen)}  className="flex h-9 flex-1 px-[13px] py-[1px] justify-center items-center gap-2
+          <button onClick={()=>setIsOpen(true)}  className="flex h-9 flex-1 px-[13px] py-[1px] justify-center items-center gap-2
               rounded-md border border-[#EFCD78] bg-white hover:bg-[#f0d693] hover:text-white cursor-pointer">
             <EyeIcon />
             <p className="text-[#444] text-center text-[14px] leading-[20px] font-normal">
@@ -62,18 +83,7 @@ const ProductsCardListWrap = ({data, image, name, desc, price, noOf }) => {
         </div>
       </div>
     </div>
-      <ProductModal 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)}
-        image={image}
-        name={name}
-        desc={desc}
-        price={price}
-        noOf={noOf}
-        data={data}
-
-      />
-
+      {renderModal()}
     </>
 
     

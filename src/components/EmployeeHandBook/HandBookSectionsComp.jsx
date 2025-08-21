@@ -3,7 +3,7 @@ import EmployehandBookYellow from '../../assets/svgs/WelcomePage/EmployehandBook
 import HandBookSectionWrap from './wrapper/HandBookSectionWrap'
 const HandBookSectionsComp = () => {
   return (
-    <div class="flex flex-col p-6 w-[816px]  items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
+    <div class=" w-full flex flex-col p-6  items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
           <div className='flex items-center gap-[10px] self-stretch'>
              <div className=" p-[10px] gap-[10px] flex items-center justify-center bg-[#444] rounded-md">
         <EmployehandBookYellow/>

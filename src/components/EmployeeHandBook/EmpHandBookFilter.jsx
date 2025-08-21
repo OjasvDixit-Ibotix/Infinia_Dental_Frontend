@@ -13,7 +13,7 @@ const EmpHandBookFilter = () => {
   const [activeFilter, setActiveFilter] = useState("All Sections");
 
   return (
-    <div className="bg-[#F3F3F3] p-5 rounded-xl shadow-sm max-w-6xl ">
+    <div className="bg-[#F3F3F3] p-5 rounded-xl shadow-sm  ">
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
         <input

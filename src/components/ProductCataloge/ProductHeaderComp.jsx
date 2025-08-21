@@ -59,10 +59,6 @@ const ProductHeaderComp = () => {
 
                         </div>
                     </div>
-                    <div class="flex w-[1120px] h-[36px] min-w-[128.77px] pl-[689px] flex-col items-end">
- 
-                   </div>
-
                 </div>
             </div>
 
@@ -71,7 +67,7 @@ const ProductHeaderComp = () => {
 
         <div className='flex flex-col items-start'>
               <p className="text-[#444] font-normal text-[16px] leading-[24px] font-[Segoe UI Symbol]">
-                                Showing 6 of 6 products
+                                Showing 8 of 8 products
                             </p>
         </div>
         </>

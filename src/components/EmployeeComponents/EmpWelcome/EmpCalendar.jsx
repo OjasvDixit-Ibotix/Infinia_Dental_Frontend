@@ -10,11 +10,13 @@ const events = {
   28: "training",
 };
 
+
 const EmpCalendar = () => {
+  
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
   return (
-     <div className="flex w-[361px] h-[489px] flex-col items-start shrink-0">
+     <div className="flex  h-[489px] flex-col items-start shrink-0">
 
     <div className=" flex flex-col items-start h-[500px] p-6 gap-3 shrink-0 self-stretch 
                 rounded-md bg-white/60 shadow-xl backdrop-blur-sm">
@@ -26,7 +28,7 @@ const EmpCalendar = () => {
 
       {/* Calendar Grid */}
 
-      <div className="grid grid-cols-7 gap-2 text-center text-sm font-medium text-[#3a312a] ">
+      <div className="w-full grid grid-cols-7 gap-2 text-center text-sm font-medium text-[#3a312a] ">
         {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
           <div className="" key={day}>{day}</div>
         ))}
