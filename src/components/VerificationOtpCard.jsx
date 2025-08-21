@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import CreateNewPasswordCard from "./CreateNewPasswordCard";
 import apiClient from "../utils/api/api";
 import { toast } from "sonner";
-
-const VerificationOtpCard = ({ email }) => {
+import { useLocation, useNavigate } from "react-router-dom";
+const VerificationOtpCard = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [showPasswordCard, setShowPasswordCard] = useState(false);
-  const [error, setError] = useState(""); 
+  // const [showPasswordCard, setShowPasswordCard] = useState(false);
+  // const [error, setError] = useState(""); 
 
   const handleChange = (value, index) => {
     if (/^[0-9]?$/.test(value)) {
@@ -22,36 +24,39 @@ const VerificationOtpCard = ({ email }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    // Clear previous errors
 
-    // 1. Join the array of digits into a single OTP string
     const otp = code.join("");
-
-    // 2. Check if the OTP is complete
     if (otp.length !== 6) {
       setError("Please enter all 6 digits of the OTP.");
       return;
     }
+    const email = location.state?.email; 
+    console.log('emial',email);
+    
 
     const payload = {
-      email,
       otp,
+      email,
     };
 
     try {
+      console.log('payload', payload);
+      
       const response = await apiClient.post('/auth/forget-password/verify', payload);
-          toast.success('OTP send successfully')
+          // toast.success('OTP send successfully')
+          toast.success(response.data?.message || "OTP verified successfully!");
+          // setShowPasswordCard(true);
+          navigate('/create-new-password', { state: { otp: otp, email: email } });
 
     } catch (err) {
       const errorMessage = err.response?.data?.error || "An unexpected error occurred.";
-      setError(errorMessage);
+      toast.error(errorMessage);
+      // setError(errorMessage);
       console.error("Verification failed:", err);
     }
   };
 
-  if (showPasswordCard) {
-    return <CreateNewPasswordCard />;
-  }
 
   return (
     <div className="flex flex-col items-center gap-8 bg-white px-[30px] py-3 shadow-md rounded-[10px]">
@@ -83,13 +88,6 @@ const VerificationOtpCard = ({ email }) => {
             />
           ))}
         </div>
-
-        {error && (
-          <span className="font-normal text-sm text-center text-red-500">
-            {error}
-          </span>
-        )}
-
         <button
           type="submit"
           className="w-full flex justify-center items-center gap-2.5 bg-[#444444] px-8 py-[12px] rounded-[5px] hover:opacity-90 transition"
