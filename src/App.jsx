@@ -25,7 +25,7 @@ import MyProfilePage from './Pages/MyProfilePage';
 import { Navigate } from 'react-router-dom';
 import ForgotPasswordCard from './components/ForgotPasswordCard';
 import VerificationOtpCard from './components/VerificationOtpCard';
-
+import './App.css'; 
 
 const App = () => {
   // const navigate = useNavigate()
@@ -84,8 +84,7 @@ const App = () => {
             <Route path="/promotions" element={<EmpPromotionsPage />} />
             <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
            <Route path="/my-profile" element={<MyProfilePage />} />
-
-
+           
             {/* Emp Routes */}
 
             <Route path="/my-time" element={<PrivateRoute roles= {['employee']}><EmptimesheetPage /></PrivateRoute>} />
