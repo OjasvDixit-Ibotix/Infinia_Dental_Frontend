@@ -17,29 +17,19 @@ const ForgotPasswordCard = ({ onSwitch }) => {
   } = useForm({
     resolver: zodResolver(forgotPasswordSchema),
   });
-   const [submittedEmail, setSubmittedEmail] = useState("");
-
-
-  const [showOtpCard, setShowOtpCard] = useState(false);
-
   const formSubmit = async (data) => {
     console.log("Sending password reset for:", data.email);
     try {
       const res = await apiClient.post("/auth/forget-password/send", data);
       console.log(res)
       toast.success(res.data.message || "OTP sent to your email.");
-      setSubmittedEmail(data.email);
-      navigate('/verify-otp')
+     navigate('/verify-otp', { state: { email: data.email } });
+
     } catch (err) {
       console.error(err);
       toast.error(err.message || "Failed to send reset email. Please try again.");
     }
   };
-
-  if (showOtpCard) {
-    return <VerificationOtpCard email={submittedEmail}/>;
-  }
-
   return (
     <div className="flex flex-col items-center gap-8 bg-white px-[30px] py-3 shadow-md rounded-[10px]">
       <div className="flex flex-col gap-3">
