@@ -26,7 +26,7 @@ const EmpHandBookHeader = () => {
 
         </button>
 
-         <button className="flex h-[60px] py-2 px-5 justify-center items-center rounded-lg gap-[8px] bg-[#EFCD78] fontSans text-[#444444] shadow-[0_4px_12px_0_rgba(0,0,0,0.10)]">
+         <button onClick={()=>navigate('/directory')} className="flex h-[60px] py-2 px-5 justify-center items-center rounded-lg gap-[8px] bg-[#EFCD78] fontSans text-[#444444] shadow-[0_4px_12px_0_rgba(0,0,0,0.10)]">
             Directory
         </button>
       </div>

@@ -32,7 +32,6 @@ const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
-// --- Component Starts Here ---
 
 const EmployeeProfileCard = () => {
     const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
@@ -88,7 +87,7 @@ const EmployeeProfileCard = () => {
                     <div className="overflow-y-auto max-h-[1059px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
                         {paginatedData.map((emp) => (
                             <div
-                                key={emp.id} // 4. Use a stable ID for the key
+                                key={emp.id} 
                                 className="bg-white rounded-xl border border-[#F3C85C] p-5 w-full shadow-sm relative cursor-pointer"
                                 onClick={() => setSelectedEmp(emp)}
                             >
@@ -176,7 +175,7 @@ const EmployeeProfileCard = () => {
 
     return (
         <div className="w-full pt-4">
-            <div className="flex flex-row items-center w-[650px] justify-between gap-4 ">
+            <div className="flex flex-row items-center  justify-between gap-4 ">
                 <SearchBar
                     placeholder="Search by name, department, ID..."
                     value={searchTerm}

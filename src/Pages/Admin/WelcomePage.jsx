@@ -13,9 +13,9 @@ import { useSelector } from 'react-redux';
 const WelcomePage = () => {
       
   return (
-    <div className="w-full  bg-[rgb(234,234,234)]">
+    <div className=" bg-[rgb(234,234,234)]">
 
-    <div className="max-w-[1450px] mx-auto  px-2 sm:px-4 md:px-8 lg:px-12 xl:px-20 py-4 sm:py-8 min-h-screen flex flex-col gap-6 ">
+    <div className="max-w-[1550px] mx-auto  px-2 sm:px-4 md:px-8 lg:px-12 xl:px-20 py-4 sm:py-8 min-h-screen flex flex-col gap-6 ">
     
       <WelcomeNavbar />
       <EmpVideoComp/>
@@ -36,7 +36,7 @@ const WelcomePage = () => {
         <TodayOverviewComp />
         <RecentActivitiesComp/>
       </div> */}
-      <div className="flex mx-auto  justify-center flex-row lg:flex-row gap-4 w-full">
+      <div className="flex flex-col   justify-center lg:flex-row gap-4 w-full">
       <EmpCalendar/>
       <WhatNewComp />      
       </div>

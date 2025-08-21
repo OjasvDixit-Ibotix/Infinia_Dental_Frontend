@@ -55,7 +55,7 @@ const OrganizationChart = () => {
       <h1 className="text-2xl font-bold text-[#444] mb-6">
         Organizational Chart
       </h1>
-      <div className="flex flex-row gap-6">
+      <div className="flex flex-col lg:flex-row gap-6 w-full">
         {rootEmployees.map(employee => (
           <OrgChartNode 
             key={employee.id} 
