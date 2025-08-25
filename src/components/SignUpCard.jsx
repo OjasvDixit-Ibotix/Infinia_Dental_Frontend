@@ -32,6 +32,7 @@ const SignUpCard = () => {
     },
   });
 
+  
   const formSubmit = async (data) => {
     try {
       
