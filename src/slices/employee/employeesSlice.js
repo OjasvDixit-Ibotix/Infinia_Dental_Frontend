@@ -5,7 +5,7 @@ import apiClient from '../../utils/api/api';
 import { toast } from 'sonner';
 
 
-const port = 'http://13.217.104.2:8000';
+const port = import.meta.env.VITE_BACKEND_URL;
 // console.log(port);
 
 
@@ -22,8 +22,6 @@ export const fetchEmployees = createAsyncThunk(
         },
       });
       console.log('ddddssss1111',response.data);
-      
-
       return response.data.users; 
     } catch (error) {
      toast.error(error.message)
