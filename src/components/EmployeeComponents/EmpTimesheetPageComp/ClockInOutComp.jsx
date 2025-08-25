@@ -87,7 +87,7 @@ const ClockInOutComp = () => {
           if (latestEntry.status === 'ongoing' && latestEntry.clock_in) {
 
               const clockInTime = new Date(latestEntry.clock_in + 'Z'); 
-              clockInTime.setTime(clockInTime.getTime() + (87 * 1000));
+              clockInTime.setTime(clockInTime.getTime());
               {console.log('clockintime yaha hai',clockInTime);
               } 
             clockInTimeRef.current = clockInTime; 
