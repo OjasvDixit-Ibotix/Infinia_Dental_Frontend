@@ -59,7 +59,7 @@ const CardYellowBlackComp = () => {
       <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
           
       <CardYellowBlackWrap  logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
-      <CardYellowBlackWrap navigateTo={<MyProfilePage/>} logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap navigateTo='/my-profile' logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
 
         </>
       )
