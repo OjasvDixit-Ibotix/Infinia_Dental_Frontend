@@ -56,7 +56,7 @@ const EmpTimeStats = () => {
     }, [timeEntries]);
 
     return (
-        <div className="flex flex-col gap-6 self-stretch w-[304px] lg:w-[468px]">
+        <div className="flex flex-col gap-6 self-stretch  lg:w-[468px]">
 
             {/* Total Hours Card */}
             <div className="commonCardCss flex flex-col items-center gap-4 self-stretch pt-6 rounded-2xl">
