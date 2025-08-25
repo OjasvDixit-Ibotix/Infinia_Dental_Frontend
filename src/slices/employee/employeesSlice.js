@@ -5,7 +5,7 @@ import apiClient from '../../utils/api/api';
 import { toast } from 'sonner';
 
 
-const port = 'http://3.81.185.134:8000';
+const port = 'http://13.217.104.2:8000';
 // console.log(port);
 
 
