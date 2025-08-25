@@ -11,10 +11,11 @@ export const signUpUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await apiClient.post('/users', userData);
-      console.log(res)
+      console.log(response)
       toast.success(response.data.message || "Signup successful!");
       return response.data;
     } catch (error) {
+      console.error("Signup failed:", error);
       const errorMessage = error.response?.data?.error || 'Signup failed';
       toast.error(errorMessage);
       return rejectWithValue(errorMessage);
@@ -32,14 +33,16 @@ export const loginUser = createAsyncThunk(
       // toast.success(response.data.message || "Login successful!");
       return response.data;
     } catch (error) {
-      // const errorMessage = error.response?.data?.error || 'Login failed';
-      // toast.error(errorMessage);
-      const errorMessage = 
-        error.response?.data?.message || 
-        error.response?.data?.error || 
-        'Invalid credentials. Please try again.';
-      
-      return rejectWithValue(errorMessage);
+     
+      // if (error.code === "ERR_NETWORK" || error.message.includes("ERR_CONNECTION_REFUSED")) {
+      //   return rejectWithValue("Server not reachable");
+      // }
+
+      if (error.response) {
+        toast.error(error?.response?.data?.error || "Login failed");
+        return rejectWithValue(error.response.data);
+      }
+      return rejectWithValue(error.message);
     }
   }
 );

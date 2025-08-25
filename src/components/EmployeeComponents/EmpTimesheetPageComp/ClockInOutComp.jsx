@@ -87,7 +87,7 @@ const ClockInOutComp = () => {
           if (latestEntry.status === 'ongoing' && latestEntry.clock_in) {
 
               const clockInTime = new Date(latestEntry.clock_in + 'Z'); 
-              clockInTime.setTime(clockInTime.getTime() + (87 * 1000));
+              clockInTime.setTime(clockInTime.getTime());
               {console.log('clockintime yaha hai',clockInTime);
               } 
             clockInTimeRef.current = clockInTime; 
@@ -126,7 +126,7 @@ const ClockInOutComp = () => {
       isMounted = false;
       stopTimer();
     };
-  }, []); // The dependency array is empty, which is correct for a one-time check on mount.
+  }, []); 
 
   if (isLoading) {
     return (
@@ -138,12 +138,16 @@ const ClockInOutComp = () => {
     );
   }
 
+
   return (
-    <div className="commonCardCss p-8">
+    // RESPONSIVE: Reduced padding on smaller screens
+    <div className="commonCardCss p-4 sm:p-6 md:p-8">
       <div className="flex flex-col gap-6 self-stretch">
-        <div className="flex justify-center items-center gap-6 self-stretch">
+        {/* RESPONSIVE: Stacks buttons on small screens, row on screens > 640px (sm) */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 self-stretch">
           <button
-            className={`h-16 flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
+            // RESPONSIVE: Make buttons take full width when stacked
+            className={`h-14 sm:h-16 w-full sm:w-auto flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
               isClockedIn
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-emerald-600 hover:bg-emerald-700'
@@ -151,15 +155,12 @@ const ClockInOutComp = () => {
             onClick={clockIn}
             disabled={isClockedIn}
           >
-            <div className="h-4 w-7 flex flex-col pr-3">
-              <div className="h-4 w-4 flex justify-center items-center grow">
-                <ClockInsvg />
-              </div>
-            </div>
+            <ClockInsvg />
             <span className="font-normal text-lg text-white">Clock In</span>
           </button>
           <button
-            className={`h-16 flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
+            // RESPONSIVE: Make buttons take full width when stacked
+            className={`h-14 sm:h-16 w-full sm:w-auto flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
               isClockedIn
                 ? 'bg-red-600 hover:bg-red-700'
                 : 'bg-gray-400 cursor-not-allowed'
@@ -167,27 +168,20 @@ const ClockInOutComp = () => {
             onClick={clockOut}
             disabled={!isClockedIn}
           >
-            <div className="h-4 w-7 flex flex-col pr-3">
-              <div className="h-4 w-4 flex justify-center items-center grow">
-                <ClockOutSvg />
-              </div>
-            </div>
+            <ClockOutSvg />
             <span className="font-normal text-lg text-white">Clock Out</span>
           </button>
         </div>
 
-        <div className="text-center text-4xl font-medium text-gray-800 tracking-wider">
+        {/* RESPONSIVE: Adjusted font size for mobile */}
+        <div className="text-center text-3xl sm:text-4xl font-medium text-gray-800 tracking-wider">
           {formatTime(seconds)}
         </div>
 
         <div className="flex justify-center items-center self-stretch">
           <div className="flex items-center bg-gray-100 px-[17px] py-[9px] rounded-full border border-solid border-gray-200">
-            <div className="h-4 w-6 flex flex-col pr-2">
-              <div className="h-4 flex justify-center items-center grow w-4">
-                <ClockIcon />
-              </div>
-            </div>
-            <span className="font-normal text-sm text-[#444444]">
+            <ClockIcon />
+            <span className="font-normal text-sm text-[#444444] ml-2">
               {isClockedIn ? 'Logged In' : 'Not Logged In'}
             </span>
           </div>

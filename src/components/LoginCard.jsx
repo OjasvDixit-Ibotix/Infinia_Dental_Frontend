@@ -27,8 +27,8 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
         navigate('/dashboard')
       }
       catch(error){
-         toast.error(error); 
-        console.log(error);
+        //  toast.error(error); 
+        // console.log(error);
       }
 
     };
@@ -88,8 +88,6 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
                 Forgot Password          
           </div>
         </div>
-
-     
          <button
           type="submit"
           disabled={loginLoading}
