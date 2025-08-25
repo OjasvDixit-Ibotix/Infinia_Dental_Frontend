@@ -56,10 +56,10 @@ import { toast } from 'sonner';
 
 //  VITE_BACKEND_URL='http://localhost:3000'
 
-const VITE_BACKEND_URL='http://13.217.104.2:8000'
 
+  
 const apiClient = axios.create({
-  baseURL: VITE_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
 const publicRoutes = ['/users', '/login','/auth/forget-password/send','/auth/forget-password/verify', '/auth/forget-password'];
