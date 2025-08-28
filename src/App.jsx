@@ -20,34 +20,46 @@ import { Toaster } from 'sonner';
 import PrivateRoute from './utils/PrivateRoute';
 import ScrollToTop from './utils/ScrollToTop';
 import EmpLeaveBalancePage from './Pages/Employee/EmpLeaveBalancePage';
-import { useSelector } from 'react-redux';
 import MyProfilePage from './Pages/MyProfilePage';
 import { Navigate } from 'react-router-dom';
 import ForgotPasswordCard from './components/ForgotPasswordCard';
 import VerificationOtpCard from './components/VerificationOtpCard';
-import './App.css'; 
+import './App.css';
 import CreateNewPasswordCard from './components/CreateNewPasswordCard';
-
+import {getUserById} from '../src/slices/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLeaveHistory } from './slices/leaveHistorySlice';
+import Spinner from './utils/customHooks/Spinner';
+import EmployeelabPolicy from './Pages/CommonPages/EmployeelabPolicy';
 const App = () => {
   // const navigate = useNavigate()
 
   // const [ userType, setUserType] = useState('employee');
 
-  const {user, islogin} = useSelector((state)=>state.auth)
+  const dispatch = useDispatch();
+  const { islogin, token, user, user_id } = useSelector((state) => state.auth);
 
-  //  ('islogin',islogin)
+  useEffect(() => {
+    if (token && islogin  && user_id) {
+      dispatch(getUserById(user_id));
+    }
+  }, [dispatch, islogin, token, user_id]);
 
-  // useEffect(()=>{
-  //   if(!islogin){
-  //     <Navigate to="/login" replace />
-  //   }
-  // },[])
   
+
+  const leaveStatus = useSelector((state) => state.leaveHistory.status);
+  useEffect(() => {
+    if (leaveStatus === 'idle') {
+      dispatch(fetchLeaveHistory());
+    }
+  }, [leaveStatus, dispatch]); 
+
+
   return (
     <Router>
       <ScrollToTop/>
       <Routes>
-                  <Route 
+                  <Route
                     path="/dashboard"
                     element={
                       <PrivateRoute>
@@ -55,10 +67,10 @@ const App = () => {
                       </PrivateRoute>
                     }
                   />
-                  <Route 
+                  <Route
                     path="/"
                     element={
-                        <BgLoginRegister  />                  
+                        <BgLoginRegister  />
                     }>
                     <Route path="/login" element={<LoginCard/>} />
                     <Route path="/signup" element={<SignUpCard/>} />
@@ -66,7 +78,7 @@ const App = () => {
                     <Route path="/verify-otp" element={<VerificationOtpCard/>} />
                     <Route path="/create-new-password" element={<CreateNewPasswordCard/>} />
 
-                  
+
                     <Route path="/" element={<Navigate to="/login" replace />} />
                     </Route>
 
@@ -85,9 +97,11 @@ const App = () => {
             <Route path="/seminars-events" element={<SeminarAndEventPage />} />
             <Route path="/forms" element={<EmpFormsDocsPage />} />
             <Route path="/promotions" element={<EmpPromotionsPage />} />
-            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} /> 
            <Route path="/my-profile" element={<MyProfilePage />} />
            
+            <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
+            <Route path="/lab-policy" element={<EmployeelabPolicy/>} />
+
             {/* Emp Routes */}
 
             <Route path="/my-time" element={<PrivateRoute roles= {['employee']}><EmptimesheetPage /></PrivateRoute>} />
@@ -95,9 +109,9 @@ const App = () => {
             <Route path="/leave-balance" element={<PrivateRoute roles= {['employee']}><EmpLeaveBalancePage /></PrivateRoute>} />
 
           </Route>
-          
+
           {/* <Route  element={<Layout />} >
-          
+
             <Route path="/products" element={<EmployeeProductPage />} />
             <Route path="/employee-details" element={<EmployeeRecordsPage />} />
             // <Route path="/my-profile" element={<MyProfilePage />} />
@@ -111,11 +125,13 @@ const App = () => {
            {/* <Route path="/my-profile" element={<MyProfilePage />} /> */}
             {/* <Route path="/products" element={<EmployeeProductPage />} /> */}
             {/* <Route path="/directory" element={<EmpDirectoryPage />} /> */}
-             
+           <Route path="/spinner" element={<Spinner />} />
+
+
 
         </Route>
 
-               
+
       </Routes>
       <Toaster richColors position="top-right" />
     </Router>

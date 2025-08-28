@@ -1,48 +1,35 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
+import Spinner from './customHooks/Spinner';
 
-const PrivateRoute = ({ children ,roles}) => {
-  
-  const islogin = useSelector((state) => state.auth.islogin);
-  const loading = useSelector((state) => state.auth.loading);
-  const {user} = useSelector((state) => state.auth);
-
+const PrivateRoute = ({ children, roles }) => {
+  const { islogin, loading, user } = useSelector((state) => state.auth);
   const location = useLocation();
 
-  // useEffect(() => {
-   
-  //   if (!loading && !islogin && location.pathname !== '/') {
-  //       toast.error('You must be logged in to view this page.');
-  //   }
-  // }, [islogin, loading, location.pathname]);
-
-  if(!islogin){
-     return <Navigate to="/" state={{ from: location }} replace />;
+  if (loading) {
+    return <div className='grid  min-h-screen place-items-center'><Spinner/></div>;
   }
 
+  if (!islogin) {
+    console.log('fjeiofjeiofj');
+    
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  // If roles are required, and we don't have a user object yet, show loading.
+  // This handles the case where `islogin` is true from cookies, but the full user object
+  // hasn't been fetched yet.
+  if (roles && !user) {
+    return <div>Loading...</div>;
+  }
 
   if (roles && !roles.includes(user?.user_type)) {
-    // If the user's role is not permitted, redirect them to their dashboard.
-    // This prevents employees from accessing admin-only pages.
-    console.log('oihgjkhfg');
-    
-    toast.warning('You are not auto')
+    toast.warning("You are not authorized to view this page.");
     return <Navigate to="/dashboard" replace />;
   }
 
-
-  if (loading) {
-    return <div>Loading...</div>; 
-  }
-
-
-  if (islogin) {
-    return children;
-  }
-  
-  return <Navigate to="/" replace />;
+  return children;
 };
 
 export default PrivateRoute;

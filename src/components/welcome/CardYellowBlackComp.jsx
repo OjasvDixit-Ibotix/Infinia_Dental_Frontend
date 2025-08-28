@@ -21,6 +21,7 @@ import LeaveRequestBlackIcon from '../../assets/svgs/WelcomePage/LeaveRequestBla
 import EmpDetailsIcon from '../../assets/svgs/WelcomePage/EmpDetailsIcon';
 import { useSelector } from 'react-redux';
 import MyProfilePage from '../../Pages/MyProfilePage';
+
 const CardYellowBlackComp = () => {
 
   const {user} = useSelector((state)=>state.auth)
@@ -53,7 +54,7 @@ const CardYellowBlackComp = () => {
     {
       user?.user_type === 'employee' &&(
         <>
-      <CardYellowBlackWrap  navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
+      <CardYellowBlackWrap   navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
 
       <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 

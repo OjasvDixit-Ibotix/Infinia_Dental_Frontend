@@ -9,12 +9,16 @@ export const fetchLeaveHistory = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await apiClient.get('/current-user/leaves');
+      console.log('leave history', res);
+      
       return res.data.all_leaves;
     } catch (err) {
       return rejectWithValue(err.response?.data || 'Error fetching leave history');
     }
   }
 );
+
+
 
 const leaveHistorySlice = createSlice({
   name: 'leaveHistory',

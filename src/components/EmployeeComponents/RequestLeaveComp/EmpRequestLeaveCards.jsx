@@ -1,55 +1,45 @@
-import React from 'react'
-import RequestLeaveCardWrap from './wrapper/RequestLeaveCardWrap'
-import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow'
-import DailyAverage from '../../../assets/svgs/EmpTimesheet/DailyAverage'
-import AnnualLeaveicon from '../../../assets/svgs/EmpRequestLeave/AnnualLeaveicon'
+import React from 'react';
+import RequestLeaveCardWrap from './wrapper/RequestLeaveCardWrap';
+import ClockIconYellow from '../../../assets/svgs/EmpTimesheet/ClockIconYellow';
+import DailyAverage from '../../../assets/svgs/EmpTimesheet/DailyAverage';
+import AnnualLeaveicon from '../../../assets/svgs/EmpRequestLeave/AnnualLeaveicon';
+
 const EmpRequestLeaveCards = () => {
+ 
   const leaveData = [
     {
-      daysleft: 15,
-      logo: <AnnualLeaveicon/>,
-      typeofleave: "Annual Leave",
-      noOfDaysUsed: 10,
-      totalleave: 25,
-      percentRemain: "60%",
-      leaveleftoutof: "15/25",
+      logo: <AnnualLeaveicon />,
+      typeofleave: "Paid Time Off",
+      totalleave: 2,
+      daysleft: 2,
     },
     {
-      daysleft: 5,
-      logo:<ClockIconYellow/>,
+      logo: <ClockIconYellow />,
       typeofleave: "Sick Leave",
-      noOfDaysUsed: 5,
-      totalleave: 10,
-      percentRemain: "50%",
-      leaveleftoutof: "5/10",
+      totalleave: 5,
+      daysleft:4
     },
     {
-      daysleft: 7,
-      logo:<DailyAverage/>,
-      typeofleave: "Casual Leave",
-      noOfDaysUsed: 3,
-      totalleave: 10,
-      percentRemain: "70%",
-      leaveleftoutof: "7/10",
+      logo: <DailyAverage />,
+      typeofleave: "Total Leaves",
+      totalleave: 7,
+      daysleft: 1,
     },
-  ]
+  ];
 
   return (
-    <div className="flex flex-wrap gap-3  w-full">
-      {leaveData.map((leave, idx) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
+      {leaveData.map((leave) => (
         <RequestLeaveCardWrap
-          key={idx}
+          key={leave.typeofleave}
           logo={leave.logo}
-          daysleft={leave.daysleft}
           typeofleave={leave.typeofleave}
-          noOfDaysUsed={leave.noOfDaysUsed}
-          percentRemain={leave.percentRemain}
-          leaveleftoutof={leave.leaveleftoutof}
           totalleave={leave.totalleave}
+          daysleft={leave.daysleft}
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default EmpRequestLeaveCards
+export default EmpRequestLeaveCards;

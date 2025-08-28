@@ -14,6 +14,7 @@ const EmployeeRecordsPage = () => {
   const dispatch = useDispatch();
   
   const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
+  
    useEffect(() => {
       if (employeeStatus === "idle") {
         dispatch(fetchEmployees());

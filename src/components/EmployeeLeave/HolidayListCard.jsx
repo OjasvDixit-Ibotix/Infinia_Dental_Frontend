@@ -3,14 +3,15 @@ import React from 'react';
 const HolidayListCard = () => {
     const holidays = [
         { name: 'New Year', date: 'Jan 01' },
-        { name: 'Republic Day', date: 'Jan 26' },
-        { name: 'Holi', date: 'Mar 25' },
-        { name: 'Independence Day', date: 'Aug 15' },
-        { name: 'Gandhi Jayanti', date: 'Aug 15' },
+        { name: 'Memorial Day', date: 'May 26' },
+        { name: 'Independence Day', date: 'July 04' },
+        { name: 'Labor Day', date: 'Sep 01' },
+        { name: 'Thanksgiving Day', date: 'Nov 27' },
+        { name: 'Christmas Day', date: 'Dec 25' }
     ];
 
     return (
-        <div className=" relative rounded-2xl p-6 w-95 h-full text-gray-800 overflow-hidden" style={{
+        <div className=" relative rounded-2xl p-6 w-full h-full text-gray-800 overflow-hidden" style={{
             borderRadius: '20px',
             background: 'rgba(239, 205, 120, 0.80)',
         }}>
@@ -26,7 +27,7 @@ const HolidayListCard = () => {
             <ul className="space-y-2 relative z-10">
                 {holidays.map((holiday, index) => (
                     <li key={index} className="flex justify-between">
-                        <span>{holiday.name}</span>
+                        <span >{holiday.name}</span>
                         <span>{holiday.date}</span>
                     </li>
                 ))}

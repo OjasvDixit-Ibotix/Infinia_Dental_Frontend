@@ -3,8 +3,9 @@ import apiClient from "../../utils/api/api";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
 import { sign } from "chart.js/helpers";
+import axios from "axios";
 
-
+// import {jwtDecode} from "jwt-decode";
 
 export const signUpUser = createAsyncThunk(
   'auth/signUpUser',
@@ -15,61 +16,79 @@ export const signUpUser = createAsyncThunk(
       toast.success(response.data.message || "Signup successful!");
       return response.data;
     } catch (error) {
-      console.error("Signup failed:", error);
-      const errorMessage = error.response?.data?.error || 'Signup failed';
+        if (error.code === "ERR_NETWORK" || error.message.includes("ERR_CONNECTION_REFUSED")) {
+        return rejectWithValue("Server not reachable");
+      }
+      return rejectWithValue(error?.response?.data?.error || "Signup failed");
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await apiClient.post("/login", userData);
+      return response.data;
+    } catch (error) {
+      if (error.code === "ERR_NETWORK" || error.message.includes("ERR_CONNECTION_REFUSED")) {
+        return rejectWithValue("Server not reachable");
+      }
+      return rejectWithValue(error?.response?.data?.error || "Login failed");
+    }
+  }
+);
+
+export const getUserById = createAsyncThunk(
+  'auth/getUserById',
+  async (user_id, { rejectWithValue }) => {
+    try {
+      const port = import.meta.env.VITE_BACKEND_URL;
+      const response = await axios.get(`${port}/users/${user_id}`,{
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`
+        }
+      });
+      const token = Cookies.get('token');
+      // console.log('decode value of token is ', jwtDecode(token));
+
+      console.log('userbyid', response);
+      
+      return response.data.user;
+    } catch (error) {
+      console.error("Failed to fetch user:", error);
+      const errorMessage = error.response?.data?.error || 'Failed to fetch user';
       toast.error(errorMessage);
       return rejectWithValue(errorMessage);
     }
   }
 );
 
-export const loginUser = createAsyncThunk(
-  'auth/loginUser',
-  async (userData, { rejectWithValue }) => {
-    try {
-      const response = await apiClient.post('/login', userData);
-      // console.log('logged in ');
-      
-      // toast.success(response.data.message || "Login successful!");
-      return response.data;
-    } catch (error) {
-     
-      // if (error.code === "ERR_NETWORK" || error.message.includes("ERR_CONNECTION_REFUSED")) {
-      //   return rejectWithValue("Server not reachable");
-      // }
-
-      if (error.response) {
-        toast.error(error?.response?.data?.error || "Login failed");
-        return rejectWithValue(error.response.data);
-      }
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-
 const loadUserFromStorage = () => {
   try {
     const token = Cookies.get('token');
-    const userCookie = Cookies.get('user');
-
-    if (token && userCookie) {
-      const user = JSON.parse(userCookie);
-      return { token, user, islogin: true };
+    const user_id = Cookies.get('user_id');
+    // console.log('efewfe',user);
+    if (token && user_id) {
+      // const user = JSON.parse(userCookie);
+      return { token, user_id,  islogin: true };
     }
   } catch (e) {
     console.error("Could not parse user data from cookie", e);
     Cookies.remove('token');
-    Cookies.remove('user');
+    Cookies.remove('user_id');
   }
-  return { token: null, user: null, islogin: false };
+  return { token: null, user_id: null,  islogin: false };
 };
 
 const initialState = {
   ...loadUserFromStorage(),
   loginLoading: false,
   signupLoading:false,
+  loading:false,
   error: null, 
+  user: null,
+  status:'idle',
 };
 
 
@@ -79,7 +98,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       Cookies.remove('token');
-      Cookies.remove('user');
+      Cookies.remove('user_id');
       state.user = null;
       state.token = null;
       state.islogin = false;
@@ -102,7 +121,10 @@ const authSlice = createSlice({
         state.token = access_token;
         
         Cookies.set('token', access_token);
-        Cookies.set('user', JSON.stringify(user));
+        // console.log('user is ', user);
+        
+        Cookies.set('user_id', user.id);
+        // Cookies.set('user', JSON.stringify(user.id));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loginLoading = false;
@@ -121,7 +143,27 @@ const authSlice = createSlice({
         state.signupLoading = false;
         state.islogin = false;
         state.error = action.payload;
-      });
+      })
+
+      .addCase(getUserById.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(getUserById.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+      state.islogin = true;
+      // console.log('uihfueif',state.user);
+       
+      // Cookies.set("user", JSON.stringify(action.payload)); 
+    })
+    .addCase(getUserById.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+      state.islogin = false;
+    });
+
+
   }
 });
 
