@@ -41,7 +41,9 @@ const SignUpCard = () => {
       navigate('/login')
     } catch (err) {
       // toast.error(err || "An unknown error occurred during signup.");
-      console.error("Signup failed:", err);
+      console.log('ddd',err);
+      
+      toast.error(err);
     }
   };
 

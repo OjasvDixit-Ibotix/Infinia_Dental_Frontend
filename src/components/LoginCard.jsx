@@ -18,20 +18,16 @@ const LoginCard = ({ onSwitchToSignUp,onSwitchToForgotPass }) => {
   const dispatch = useDispatch();
    const navigate= useNavigate();
 
-    const formSubmit = async (data) => {   
-      // console.log(data);
-           try{
-        await dispatch(loginUser(data)).unwrap()
-        console.log('logged in ');
-        toast.success("Login successful!")
-        navigate('/dashboard')
-      }
-      catch(error){
-        //  toast.error(error); 
-        // console.log(error);
-      }
+      const formSubmit = async (data) => {
+        try {
+          await dispatch(loginUser(data)).unwrap();
+          toast.success("Login successful!");
+          navigate("/dashboard");
+        } catch (error) {
+          toast.error(error);
+        }
+      };
 
-    };
  
   return (
     
