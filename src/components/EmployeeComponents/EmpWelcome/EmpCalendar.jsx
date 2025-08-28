@@ -26,15 +26,15 @@ const EmpCalendar = () => {
         <h2 className="text-[#444] font-normal text-[24px] leading-[24px] tracking-[-0.6px] font-[Segoe UI Symbol]">Calendar</h2>
       </div>
 
-      {/* Calendar Grid */}
+      {/* Calendar Grid a*/}
 
       <div className="w-full grid grid-cols-7 gap-2 text-center text-sm font-medium text-[#3a312a] ">
         {["S", "M", "T", "W", "T", "F", "S"].map((day) => (
           <div className="" key={day}>{day}</div>
         ))}
-        {days.map((day) => (
+        {days.map((day,index) => (
           <div
-            key={day}
+            key={day+index}
             className={`w-10 h-8 flex items-center justify-center rounded-md text-[#444] text-center text-[12px] leading-[16px] font-normal font-[Segoe UI Symbol] ${
               events[day] ? "bg-[#EFCD78] text-[#FFFFFF] " : "" 
             }`}
