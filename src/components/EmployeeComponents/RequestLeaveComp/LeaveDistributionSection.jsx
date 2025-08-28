@@ -73,7 +73,7 @@ const LeaveDistributionSection = () => {
   if (status === 'failed') return <p>Failed to load leave data</p>;
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm self-stretch bg-white p-6 rounded-2xl shadow-sm">
+    <div className="flex flex-col gap-4 w-full  self-stretch bg-white p-6 rounded-2xl shadow-sm">
       <div className="flex items-center gap-4 self-stretch">
         <div className="h-[44px] w-[44px] flex-shrink-0 flex items-center justify-center bg-[#444444] p-2.5 rounded-lg">
           <div className="w-6 h-6">

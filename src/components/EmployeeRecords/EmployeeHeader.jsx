@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import AddEmployeeCard from './AddEmployeeCard';
-
+import { useSelector } from 'react-redux';
 const EmployeeHeader = () => {
-  const [addEmp,setAddEmp] = useState(false)
+  
+  const [addEmp,setAddEmp] = useState(false);
+    const { employees, status: employeeStatus } = useSelector((state) => state.emp);
+    const totalempl=()=>{
+      return employees.filter(emp => emp.user_type === 'employee').length;
+    }
+
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center   pt-4 sm:pt-6">
       <div>
@@ -10,7 +16,7 @@ const EmployeeHeader = () => {
           Employee Records
         </h1>
         <p className="text-[#4B5563] font-normal text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-[Segoe UI Symbol]">
-          6 employees found
+          {totalempl()} employees found
         </p>
       </div>
 

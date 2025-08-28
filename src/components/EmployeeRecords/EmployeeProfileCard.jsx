@@ -7,7 +7,6 @@ import OneColView from "../../assets/svgs/WelcomePage/OneColView";
 import { usePagination } from "../../utils/customHooks/usePagination";
 import PaginationControls from "../PaginationControls";
 
-// Helper functions (remain the same)
 const getInitials = (name) => {
     if (!name) return "??";
     const nameParts = name.trim().split(" ");
@@ -62,8 +61,8 @@ const EmployeeProfileCard = () => {
         formattedEmployees.filter(
             (emp) =>
                 emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                emp.department?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                emp.employee_id?.toLowerCase().includes(searchTerm.toLowerCase())
+                (emp.department?.toLowerCase()?? '').includes(searchTerm.toLowerCase()) ||
+                (emp.employee_id?.toLowerCase()?? '').includes(searchTerm.toLowerCase())
         ),
         [formattedEmployees, searchTerm]
     );
@@ -123,7 +122,7 @@ const EmployeeProfileCard = () => {
                 )}
 
                 {view === "table" && (
-                    <div className="bg-[#FFFFFFB2] rounded-xl shadow-md mt-6 overflow-hidden">
+                    <div className="bg-[#FFFFFFB2] rounded-xl shadow-md mt-6  overflow-x-auto">
                         <table className="w-full text-left">
                             <thead className="bg-gray-100 text-[#444] text-sm">
                                 <tr>
