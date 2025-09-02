@@ -1,0 +1,54 @@
+{
+  "conduct_and_behavior": {
+    "title": "CONDUCT AND BEHAVIOR",
+    "general_conduct_guidelines": {
+      "expectation": "Employees are expected to exercise common sense, courtesy, and professionalism at all times.",
+      "unacceptable_conduct_examples": [
+        "Failure to follow handbook policies.",
+        "Negligent treatment of clients or their information.",
+        "Theft or unauthorized use of property.",
+        "Sharing trade secrets or confidential information.",
+        "Falsifying company records.",
+        "Damaging property.",
+        "Taking or giving bribes.",
+        "Violating safety regulations.",
+        "Unauthorized use of a personal vehicle for Company business.",
+        "Illegal conduct.",
+        "Creating a disturbance.",
+        "Use of abusive language.",
+        "Rude or unbusinesslike behavior.",
+        "Insubordination.",
+        "Leaving during work hours without permission.",
+        "Sleeping on the job.",
+        "Time clock fraud.",
+        "Use or possession of illegal drugs or alcohol during working hours.",
+        "Unauthorized possession of a weapon.",
+        "Illegal gambling."
+      ]
+    },
+    "sexual_and_other_unlawful_harassment": {
+      "policy": "The Company is committed to providing a work environment free of harassment. Retaliation against anyone who reports harassment is strictly prohibited.",
+      "harassment_examples": [
+        "Unwanted sexual advances.",
+        "Offering employment benefits for sexual favors.",
+        "Retaliation for refusing advances.",
+        "Leering, sexual gestures, or jokes.",
+        "Displaying sexually suggestive content.",
+        "Displaying derogatory materials.",
+        "Making derogatory epithets or slurs.",
+        "Ongoing teasing about protected characteristics.",
+        "Physical conduct like touching, assault, or blocking movements."
+      ],
+      "enforcement": "All managers and supervisors are responsible for implementing the policy, ensuring employee understanding, reporting complaints, and taking corrective action."
+    },
+    "abusive_conduct": {
+      "definition": "Malicious conduct in the workplace that a reasonable person would find hostile or offensive and unrelated to an employer's legitimate business interests.",
+      "reporting": "Employees should report abusive conduct to a manager or Human Resources. All reports will be investigated."
+    },
+    "complaint_procedure": {
+      "step_1": "Submit the complaint orally or in writing to a supervisor or manager within three working days of the incident if possible. The manager will provide a written summary of the meeting within three business days.",
+      "step_2": "If not satisfied with the Step 1 resolution, submit a request for review to the Corporate Officer or a designated investigator within three working days. A final decision will be rendered within 10 working days."
+    },
+    "corrective_action": "If job performance or behavior is unacceptable, corrective action may be taken, including coaching, warnings, suspension, demotion, or termination. The type and order of actions are at management's sole discretion."
+  }
+}

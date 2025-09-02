@@ -1,0 +1,47 @@
+{
+  "benefits": {
+    "title": "BENEFITS",
+    "holidays": {
+      "eligibility": "Regular full-time employees are entitled to paid holidays.",
+      "observed_holidays": [
+        "New Year's Day",
+        "Memorial Day",
+        "Independence Day",
+        "Labor Day",
+        "Thanksgiving",
+        "Friday after Thanksgiving",
+        "Christmas Day",
+        "New Year's Eve"
+      ]
+    },
+    "sick_leave": {
+      "accrual_rate": "One hour of paid sick leave for every 30 hours worked.",
+      "eligibility": "Eligible to use accrued sick leave on the 107th day of employment.",
+      "limits": "Yearly accrual is limited to 40 hours; yearly use is limited to 64 hours. Total bank may not exceed 64 hours.",
+      "usage": "For diagnosis, care, or treatment for an employee or family member, or for victims of domestic violence, sexual assault, or stalking.",
+      "payout": "Unused sick leave is not paid out at termination."
+    },
+    "paid_time_off": {
+      "purpose": "For vacation, personal matters, or recovery from illness.",
+      "eligibility": "Full-time exempt and non-exempt employees.",
+      "accrual_schedule": "Eligible after the first year. 40 hours during the second year. 80 hours per year after the second year.",
+      "payout": "Unused PTO will be paid out upon employment separation."
+    },
+    "simple_ira": {
+      "purpose": "To assist employees in saving for retirement.",
+      "employee_contribution_eligibility": "After one year of service.",
+      "company_contribution": "Company contributes 2% of annual salary after two years of service.",
+      "vesting": "All contributions are fully vested."
+    },
+    "public_health_emergency_leave": "Unpaid leave for employees ordered to isolate or quarantine by the Secretary of the Maryland Department of Health.",
+    "temporary_disability_leave": "The Company may grant unpaid leave for a temporary disability. Employees must use available paid sick leave concurrently.",
+    "pregnancy_leave": "Employees with a temporary disability due to pregnancy are entitled to the same benefits and leave as those with other temporary disabilities. Reasonable accommodations will be provided.",
+    "maryland_parental_leave_act": "Eligible employees may receive up to six weeks of unpaid leave for the birth, adoption, or foster care placement of a child.",
+    "military_leave": "Leave is granted in accordance with USERRA and state law for military duty.",
+    "civil_air_patrol_leave": "Up to 15 days per calendar year of unpaid leave to respond to an emergency mission.",
+    "jury_service_leave": "Unpaid leave will be granted for jury duty.",
+    "witness_leave": "Unpaid leave will be granted to serve as a witness in response to a subpoena or for a victim of a crime to attend a proceeding.",
+    "voting_leave": "Up to two hours of paid leave to vote if the employee does not have two consecutive hours free while polls are open.",
+    "organ_and_bone_marrow_donation_leave": "Eligible employees may receive up to 60 business days of unpaid leave for organ donation and up to 30 business days for bone marrow donation."
+  }
+}

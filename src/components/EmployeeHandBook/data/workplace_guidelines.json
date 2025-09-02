@@ -1,0 +1,58 @@
+{
+  "workplace_guidelines": {
+    "title": "WORKPLACE GUIDELINES",
+    "hours_of_work": "Employees are expected to be at their work area and ready to work at their scheduled time.",
+    "off_the_clock_work": "Prohibited for non-exempt employees. All time worked must be accurately recorded.",
+    "meal_periods": "Minors will take an unpaid meal period of 60 minutes no later than five hours after the beginning of their workday.",
+    "lactation_accommodation": "A private space, other than a bathroom, will be provided for breastfeeding employees to express milk for up to one year following the birth of a child.",
+    "attendance_and_tardiness": "If unable to be at work on time, employees must notify their manager no later than 30 minutes before their scheduled start time. Excessive tardiness or absences are unacceptable. Absence for three consecutive days without proper notification is considered a voluntary quit.",
+    "personal_appearance_and_hygiene": {
+      "standard": "Employees must present a professional image and wear work-appropriate attire.",
+      "unacceptable_attire_examples": [
+        "Bare feet or flip flops",
+        "Spandex, sweats, or workout attire",
+        "Sagging pants, shorts, or skirts",
+        "Sexually provocative clothing or exposed undergarments",
+        "Clothing with offensive slogans or pictures",
+        "Clothing showing excessive wear and tear",
+        "Anything presenting a safety hazard",
+        "Visible tattoos that are not appropriate in content"
+      ],
+      "hygiene": "All employees are expected to maintain appropriate oral and bodily hygiene. The excessive use of perfume or cologne is unacceptable."
+    },
+    "confidentiality": "Employees may not disclose any confidential information or trade secrets to anyone outside the Company without authorization.",
+    "solicitation_and_distribution": "Solicitation during work time and in work areas is prohibited. This does not apply during approved breaks outside of work areas.",
+    "hipaa": {
+      "policy": "Protecting the privacy of patients' medical information (Protected Health Information or PHI) is required by HIPAA. Unauthorized use or disclosure of PHI is prohibited and will result in disciplinary action.",
+      "phi_definition": "Any patient health information that is individually identifiable.",
+      "permitted_disclosures": "PHI may be used and disclosed without patient authorization for treatment, payment, healthcare operations, and other specific circumstances outlined by HIPAA."
+    },
+    "conflict_of_interest": "Employees must avoid any activity that could be detrimental to the company or where their position is used for personal gain. This includes avoiding the appearance of a conflict of interest.",
+    "business_gifts": "Employees are prohibited from requesting or accepting a gift for themselves or the company with a value of $50 or more.",
+    "outside_activities": "Employees may engage in outside employment if it does not interfere with their job performance or create a conflict of interest. Prior notification to a manager is required.",
+    "reporting_irregularities": "Employees must immediately report any actual or suspected theft, fraud, embezzlement, or misuse of Company funds or property.",
+    "inspections_and_searches": "Any items on Company premises and all Company assets (desks, computers, email, etc.) are subject to inspection or search at any time.",
+    "hardware_and_software_use": {
+      "policy": "Company internet and email may not be used for transmitting defamatory, discriminatory, harassing, or obscene communications. Personal use should be held to a reasonable limit.",
+      "restrictions": [
+        "Disparaging or offensive language is forbidden.",
+        "Respect all copyrights.",
+        "Avoid activities that consume large amounts of bandwidth.",
+        "Do not download programs without prior approval."
+      ],
+      "monitoring": "The Company reserves the right to monitor all email and internet usage."
+    },
+    "social_media": {
+      "guiding_rule": "Conduct that negatively affects job performance or the Company's business interests may result in disciplinary action.",
+      "guidelines": {
+        "harassment": "Do not use statements or media that could be viewed as malicious, obscene, or threatening.",
+        "defamation": "Do not post anything known or suspected to be false about the Company or its associates.",
+        "confidentiality": "Maintain the confidentiality of trade secrets and private information.",
+        "representation": "Do not represent yourself as a spokesperson for the Company unless authorized."
+      }
+    },
+    "personal_cell_phone_use": "Should be held to a reasonable limit during work hours and not interfere with productivity.",
+    "personal_property": "The Company is not liable for lost, misplaced, or stolen personal property.",
+    "parking": "All parking is at the employee's own risk. Do not park in areas reserved for visitors."
+  }
+}

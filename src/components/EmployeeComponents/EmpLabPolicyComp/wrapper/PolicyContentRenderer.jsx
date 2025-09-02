@@ -8,10 +8,8 @@ const PolicyContentRenderer = ({ content }) => {
     <div className="space-y-6">
       {content.map((section, idx) => (
         <div key={idx} className="space-y-2">
-          {/* Section Header */}
           <h4 className="text-lg font-semibold text-gray-800">{section.header}</h4>
 
-          {/* Section Points */}
           <ul className="list-disc pl-6 space-y-1">
             {section.points.map((point, i) => (
               <li

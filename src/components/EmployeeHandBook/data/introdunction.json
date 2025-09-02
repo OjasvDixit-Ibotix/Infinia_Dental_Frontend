@@ -1,0 +1,49 @@
+{
+  "introduction": {
+    "title": "INTRODUCTION",
+    "welcome_message": "We're very happy to welcome you to our Company. Thanks for joining us! The Company would like you to feel that your employment with us will be mutually beneficial and enjoyable. You are joining an organization that has established an outstanding reputation for quality products and services. Credit for this goes to every one of our employees and we hope that you will find satisfaction and take pride in your work here.",
+    "history": {
+      "mark_choi": "Mark Choi has 14 years of experience. He is a Certified Dental Technician, a member of Dawson Academy, and an exceptional technical consultant where he'll be able to easily guide you through the intricacies to solve complicated cases.",
+      "ryan_hwang": "Ryan Hwang holds a degree in dental technology, has 8 years of experience as the in-house dental lab manager at a leading prosthodontist office. He has a total experience of 20 years. Their technical and communication skills were forged through many years of fabricating a variety of complex cases with many dentists and direct feedback from patients."
+    },
+    "mission_and_vision": "We hire only technicians with at least 7 years of experience, and they must either be licensed or have a degree in dental technology. We believe that it's essential for us to have a team of proficient and experienced technicians to provide quality work. And to make sure we do that, we have a list of key factors that we pay particularly close attention to.",
+    "core_values": [
+      {
+        "factor": 1,
+        "title": "Model Workroom",
+        "description": "Everything in our model workroom is measured and monitored. We have approximate liquid to powder ratios to predict set times and expansion resulting in predictive physical properties which significantly improve accuracy. In addition, we control the temperature and the moisture of the room in order to preserve the quality of all of our products which results in much better accuracy."
+      },
+      {
+        "factor": 2,
+        "title": "Occlusion",
+        "description": "We put a tremendous amount of focus on occlusion including phonetics, long-centric, protrusion, canine-guidance, premature contact, the envelope of function, and lateral movements which improve our precision when it comes to creating the restorations. We have learned these skills through experience, working with many specialists, and at Dawson seminars and spears study clubs."
+      },
+      {
+        "factor": 3,
+        "title": "Longevity",
+        "description": "We strive to make our products long-lasting for up to 20 years and above and provide a 5-year warranty if any problems were to arise. We only use high-quality materials, and when it comes to a particular diagnosis, we select the materials accordingly and have techniques to prevent things like fracturing, checking lateral movements, and especially taking into consideration of critical things like premature contact which could create problems to the TMJ and much greater problems down the line."
+      },
+      {
+        "factor": 4,
+        "title": "Periodontics",
+        "description": "We take gum health into serious consideration and design our crowns to prevent food impaction, gingivitis, and plaque buildup, and manage that by keeping the proximal contacts broad, factoring in the interdental papilla, creating thin margins and glazing very effectively."
+      },
+      {
+        "factor": 5,
+        "title": "Aesthetics",
+        "description": "Our standard in creating outstanding aesthetics, and to do that we take very important things into account like the smile design, golden proportion, the incisal edges, and the selection of shades."
+      },
+      {
+        "factor": 6,
+        "title": "Cost and Time Efficiency",
+        "description": "Our main objective is to minimize your expenses and to significantly reduce your chairside time so that it gives you the opportunity to see more clients and in turn pull in more revenue. You'll be saving money not only by how we price our restorations but also by the quality of products and design you'll be receiving from us. This will increase your earnings on a short and long-term basis."
+      },
+      {
+        "factor": 7,
+        "title": "Communication",
+        "description": "We're really big on communication and our forms of communication with our current doctors are through diagrams, apps like Sketch, Keynote, photos, text, and of course emails & phone calls. We dedicate a few hours a day analyzing cases and communicating to doctors to solve any issues that arise."
+      }
+    ],
+    "handbook_purpose": "This employee handbook is presented as a matter of information and has been prepared to inform employees about the Company's philosophy, employment practices, policies, and the benefits provided to our valued employees, as well as the conduct expected from them. It is not a contract and can be amended at any time, except for the at-will employment provisions."
+  }
+}

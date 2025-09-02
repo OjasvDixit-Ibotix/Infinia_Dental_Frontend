@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Search } from "lucide-react"; 
 
 const EmpLabPolicyFilter = () => {
+  
 //   const filters = [
 //     { name: "All Sections", count: 8 },
 //     { name: "Product Policy", count: 3 },

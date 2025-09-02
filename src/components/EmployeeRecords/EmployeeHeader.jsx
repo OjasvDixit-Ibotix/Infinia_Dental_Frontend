@@ -10,7 +10,7 @@ const EmployeeHeader = () => {
     }
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center   pt-4 sm:pt-6">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center  pt-2 sm:pt-4">
       <div>
         <h1 className="text-[#444] font-normal text-[24px] sm:text-[30px] leading-[32px] sm:leading-[36px] font-[Segoe UI Symbol]">
           Employee Records
