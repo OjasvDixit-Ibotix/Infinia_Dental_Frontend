@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Search } from "lucide-react"; 
 
 const EmpHandBookFilter = () => {
-  const filters = [
-    { name: "All Sections", count: 8 },
-    { name: "Policies", count: 3 },
-    { name: "Benefits", count: 2 },
-    { name: "Code of Conduct", count: 1 },
-    { name: "Safety", count: 2 },
-  ];
+  // const filters = [
+  //   { name: "All Sections", count: 8 },
+  //   { name: "Policies", count: 3 },
+  //   { name: "Benefits", count: 2 },
+  //   { name: "Code of Conduct", count: 1 },
+  //   { name: "Safety", count: 2 },
+  // ];
 
-  const [activeFilter, setActiveFilter] = useState("All Sections");
+  // const [activeFilter, setActiveFilter] = useState("All Sections");
 
+
+  
   return (
     <div className="bg-[#F3F3F3] p-5 rounded-xl shadow-sm  ">
       <div className="relative">
@@ -23,7 +25,7 @@ const EmpHandBookFilter = () => {
         />
       </div>
 
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <p className="text-sm text-[#444] mb-2">Quick Filters:</p>
         <div className="flex flex-wrap gap-2">
           {filters.map((filter, idx) => (
@@ -40,7 +42,7 @@ const EmpHandBookFilter = () => {
             </button>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

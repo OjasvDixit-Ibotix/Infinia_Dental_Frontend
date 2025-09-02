@@ -1,0 +1,15 @@
+{
+  "employee_handbook_acknowledgement": {
+    "title": "EMPLOYEE HANDBOOK ACKNOWLEDGEMENT",
+    "acknowledgement_summary": "The employee acknowledges receipt of the handbook and agrees to follow its guidelines.",
+    "key_points": [
+      "Receipt of the handbook does not create an employment contract or alter the at-will employment status.",
+      "The employee is not entitled to any particular sequence of disciplinary measures before termination.",
+      "The handbook may be modified at any time, except for the at-will employment policy.",
+      "Violation of any policy may be grounds for discipline, up to and including termination.",
+      "The handbook is not exhaustive; discipline can occur for issues not explicitly addressed.",
+      "If any provision conflicts with the law, only that provision will be ineffective.",
+      "It is the employee's responsibility to ask a manager or HR for clarification on any policy."
+    ]
+  }
+}

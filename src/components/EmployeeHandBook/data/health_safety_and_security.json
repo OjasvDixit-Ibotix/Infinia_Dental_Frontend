@@ -1,0 +1,31 @@
+{
+  "health_safety_and_security": {
+    "title": "HEALTH, SAFETY, AND SECURITY",
+    "non_smoking": "Smoking, vaping, and use of chew are not permitted in any Company buildings, work sites, or vehicles.",
+    "drug_and_alcohol": "The workplace is drug and alcohol-free. Employees are prohibited from being under the influence, possessing illegal drugs, or misusing prescription drugs on Company premises. The company reserves the right to test employees.",
+    "reasonable_accommodations": "The Company will engage in an interactive process to determine reasonable accommodations for an employee's known disability.",
+    "pregnancy_rights_notice": "Reasonable accommodations will be granted for known limitations resulting from pregnancy, childbirth, or related medical conditions, as long as they do not create an undue hardship.",
+    "injury_and_accident_response_and_reporting": "All work-related injuries or accidents must be reported immediately to the nearest manager and an injury reporting form must be completed.",
+    "workers_compensation": "The Company carries workers' compensation insurance to cover work-related injuries and illnesses. Benefits are governed by the insurance carrier.",
+    "workplace_violence_and_security": "Acts or threats of violence or intimidation will not be tolerated and are subject to discipline, up to immediate termination. Employees must report any such incidents.",
+    "driving_safety": {
+      "policy": "Employees who drive on Company business must do so safely and responsibly.",
+      "rules": [
+        "Maintain a valid driver's license.",
+        "Receive authorization to use a Company vehicle.",
+        "Maintain minimum state-required insurance if using a personal vehicle.",
+        "Wear seat belts at all times.",
+        "Use of electronic devices for purposes other than navigation is strictly prohibited while driving.",
+        "Avoid distracting activities like eating or personal grooming.",
+        "Driving under the influence of impairing substances is prohibited.",
+        "Follow all traffic laws.",
+        "All passengers must be approved by management.",
+        "Report all accidents and moving violations promptly."
+      ]
+    },
+    "inclement_weather_and_outages": {
+      "policy": "The Company will remain open in all but the most extreme circumstances. Employees should exercise their best judgment regarding travel safety.",
+      "closing_procedures": "Only designated managers can authorize a closing. If unable to report to work, employees must notify their supervisor and may use accrued time off or take the day unpaid."
+    }
+  }
+}

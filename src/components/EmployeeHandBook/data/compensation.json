@@ -1,0 +1,52 @@
+{
+  "compensation": {
+    "title": "COMPENSATION",
+    "pay_periods": {
+      "workweek_start": "12:00 a.m. Sunday",
+      "pay_frequency": "Semi-monthly",
+      "paydays": "Every 1st and 16th"
+    },
+    "working_hours": {
+      "office_and_admin_staff": "8:00 a.m. - 5:00 p.m.",
+      "lab_technicians": "9:00 a.m. - 6:00 p.m."
+    },
+    "timekeeping": "All non-exempt employees must use the timekeeping system to accurately record all hours worked, including clocking in/out for unpaid lunch periods. Falsifying time records is prohibited.",
+    "overtime": "Non-exempt employees are paid 1.5 times their regular rate for hours worked over 40 in a workweek. All overtime must be authorized in advance.",
+    "payroll_deductions": {
+      "policy": "The Company complies with FLSA salary basis requirements for exempt employees. Permissible deductions from exempt salaries may occur under specific circumstances.",
+      "permissible_deductions": [
+        "Absence for one or more full days for personal reasons.",
+        "Absence for one or more full days due to sickness if part of a bona fide sick leave plan.",
+        "To offset witness, jury, or military fees.",
+        "Disciplinary suspensions of one or more full days for serious violations.",
+        "Penalties for serious safety infractions.",
+        "Unpaid FMLA leave.",
+        "During the first and last week of employment if less than a full week is worked."
+      ]
+    },
+    "pay_adjustments_promotions_and_demotions": "Pay increases are based on merit, market factors, and company profitability, not automatic. Pay may also be adjusted downward. Demotion is a reduction in responsibility, usually with a reduction in salary.",
+    "performance_evaluation": "Employees will generally receive a semi-annual performance appraisal, which may be written or oral. The signed evaluation will be placed in the employee's personnel file.",
+    "work_assignments": "Employees may be required to perform duties outside their normal job description as needed.",
+    "expense_reimbursement": {
+      "policy": "The Company covers all reasonable, pre-approved business-related expenses. Receipts are required for expenses greater than $25.00.",
+      "reimbursable_expenses": [
+        "Lodging",
+        "Travel expenses (airfare, train, taxi, etc.)",
+        "Meals (tips up to 20%)",
+        "Laundry (for trips over five days)",
+        "Car rental, parking, tolls",
+        "Personal vehicle mileage (at IRS rate)",
+        "Conference fees",
+        "Business entertainment (pre-approved)"
+      ],
+      "non_reimbursable_expenses": [
+        "Airline club dues",
+        "Traffic fines",
+        "Tips over 20%",
+        "Personal entertainment (in-flight movies, mini-bar)",
+        "First-class airfare"
+      ],
+      "company_credit_cards": "For company business purchases only. Personal use is prohibited."
+    }
+  }
+}

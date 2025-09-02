@@ -1,0 +1,49 @@
+{
+  "employment": {
+    "title": "EMPLOYMENT",
+    "equal_employment": {
+      "policy": "It is the policy of the Company to provide equal employment opportunities to all qualified individuals and to administer all aspects and conditions of employment without regard to protected classes.",
+      "protected_classes": [
+        "Race",
+        "Color",
+        "Age",
+        "Sex",
+        "Sexual orientation",
+        "Gender",
+        "Gender identity",
+        "Religion",
+        "National origin",
+        "Pregnancy",
+        "Marital status",
+        "Physical or mental disability",
+        "Military or veteran status",
+        "Citizenship and/or immigration status",
+        "Genetic information, including family medical history",
+        "Traits historically associated with race, such as hairstyle",
+        "Child or spousal support withholding",
+        "Credit report or credit information",
+        "Any other protected class, in accordance with applicable federal, state, and local laws"
+      ]
+    },
+    "background_checks": "The Company may conduct a background check on any applicant or employee with their signed consent. All offers of employment and continued employment are contingent upon a satisfactory background check.",
+    "at_will_notice": "The employment relationship is at-will, meaning employment may be terminated at any time, with or without cause, by either the Company or the employee. This Handbook does not create an employment contract.",
+    "anniversary_date_and_seniority": "The employee's date of hire is their anniversary date. Seniority is the length of continuous service. Previously accrued seniority is lost upon rehire.",
+    "immigration_law_compliance": "All employees must complete Section 1 of Form I-9 on their first day and produce acceptable proof of identity and eligibility to work in the United States within three business days.",
+    "introductory_period": {
+      "duration": "The first 90 days of employment.",
+      "purpose": "A try-out time for the employee and the Company to evaluate suitability. Completion does not alter the at-will employment relationship.",
+      "rehire": "A former employee rehired after more than 6 months is considered an introductory employee for the first 90 days."
+    },
+    "employment_classifications": {
+      "regular_full_time": "Scheduled to work no less than 30 hours per week; generally eligible for all benefits.",
+      "regular_part_time": "Scheduled to work less than 30 hours per week; may be eligible for some benefits.",
+      "temporary": "Scheduled to work on a specific need of the Company; will not receive benefits unless authorized in writing.",
+      "exempt": "Employees whose positions meet FLSA tests and are exempt from overtime pay requirements.",
+      "non_exempt": "Employees whose positions do not meet FLSA exemption tests and are paid overtime. All employees are non-exempt unless notified otherwise."
+    },
+    "personnel_records": "The Company maintains employee files. Employees must notify their manager of any changes in personal information and may review their own personnel file by making a written request.",
+    "employee_references": "All reference check requests should be forwarded to Human Resources. Generally, only positions held and dates of employment will be confirmed.",
+    "job_transfers": "The Company aspires to promote qualified internal candidates. All job transfers are at the discretion of the Company.",
+    "employment_of_relatives": "An employee will generally not be hired, transferred, or promoted into a position where they will be managed, directly or indirectly, by a family member or romantic partner."
+  }
+}

@@ -5,9 +5,8 @@ const LabPolicySectionWrap = ({ title, category, updatedOn, isOpen, onToggle, ch
   const color = categoryColor || defaultcolor;
 
   return (
-    <div className="w-full flex flex-col rounded-md border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300">
-      {/* Header Row */}
-      <div className="flex justify-between items-center w-full cursor-pointer" onClick={onToggle}>
+    <div className="w-full flex flex-col rounded-md border cursor-pointer border-gray-200 bg-white p-4 shadow-sm transition-all duration-300">
+      <div className="flex justify-between items-center w-full " onClick={onToggle}>
         <div className="flex flex-col">
           <h3 className="text-[#020817] text-[16px] font-medium">{title}</h3>
           <div className="flex items-center gap-3 mt-1">
@@ -42,7 +41,7 @@ const LabPolicySectionWrap = ({ title, category, updatedOn, isOpen, onToggle, ch
         <button className="text-gray-500 p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-5 h-5 transition-transform cursor-pointer duration-300 ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -52,7 +51,6 @@ const LabPolicySectionWrap = ({ title, category, updatedOn, isOpen, onToggle, ch
         </button>
       </div>
 
-      {/* Content */}
       {isOpen && (
         <div className="mt-4 pt-4 border-t border-gray-200 text-sm">
           {children}
