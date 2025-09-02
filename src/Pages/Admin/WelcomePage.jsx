@@ -8,10 +8,16 @@ import WhatNewComp from '../../components/welcome/WhatNewComp';
 import EmpVideoComp from '../../components/EmployeeComponents/EmpWelcome/EmpVideoComp';
 import EmpCalendar from '../../components/EmployeeComponents/EmpWelcome/EmpCalendar';
 import { useSelector } from 'react-redux';
+import Spinner from '../../utils/customHooks/Spinner';
 
 
 const WelcomePage = () => {
-      
+
+  // const { user, loading  } = useSelector((state) => state.auth);
+  // if(loading && !user)  {
+  //   return <div className='place-items-center grid'><Spinner/></div>
+  // }
+
   return (
     <div className=" bg-[rgb(234,234,234)]">
 

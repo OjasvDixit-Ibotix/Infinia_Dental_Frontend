@@ -8,21 +8,18 @@ import SignUpCard from "../components/SignUpCard";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import ForgotPasswordCard from "../components/ForgotPasswordCard";
-
+import  Cookies  from "js-cookie";
 const BgLoginRegister = () => {
   const navigate= useNavigate()
   const islogin = useSelector((state)=>state.auth.islogin);
-  const [isAuthivew, setIsAuthView] = useState('login');
 
-  // const handleSwitch = useCallback(() => {
-  //   setIsAuthView((prevIsSignup) => !prevIsSignup);
-  // }, []);
 
   useEffect(()=>{
-    if(islogin){
+    const token = Cookies.get('token');
+    if(token){
         navigate('/dashboard')
     }
-  },[islogin,navigate])
+  },[])
 
   return (
     <div className=" overflow-y-hidden relative min-h-screen w-full flex flex-col md:flex-row">
