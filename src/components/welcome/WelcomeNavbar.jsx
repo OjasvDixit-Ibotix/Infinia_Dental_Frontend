@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
   
 
 const WelcomeNavbar = () => {
-const { user } = useSelector((state) => state.auth);
+const { user, loading  } = useSelector((state) => state.auth);
 
 const routes = {
   ...(user?.user_type === "admin" ?  { "Directory": "/directory"}: { "Time Off": "/time-off" }),
@@ -19,8 +19,6 @@ const routes = {
   "Forms": "/forms",
   "Lab Protocols": "/lab-policy",
 };  
-
-
 
   const dispatch = useDispatch();
 
@@ -31,6 +29,7 @@ const routes = {
    
 
   console.log('fef',user);
+  
 
   return (
     <div className="flex flex-col gap-3 rounded-[20px] w-full  mx-auto ">

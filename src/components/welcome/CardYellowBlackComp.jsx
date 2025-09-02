@@ -30,7 +30,7 @@ const CardYellowBlackComp = () => {
   
   return ( 
 
-    <div className=" flex flex-wrap  content-center gap-4 sm:gap-5 md:gap-6 lg:gap-6  w-full mx-auto">
+    <div className=" flex flex-wrap justify-center sm:justify-start sm:content-center gap-4 sm:gap-5 md:gap-6 lg:gap-6  w-full mx-auto">
         
       {
         user?.user_type==='admin' &&(
@@ -59,15 +59,12 @@ const CardYellowBlackComp = () => {
 
       <CardYellowBlackWrap navigateTo='/products' logos={<AllAoutProductsIcon/>} logodesc="All about Products" bgColor="EFCD78" textColor="444" /> 
           
-      <CardYellowBlackWrap  logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
+      <CardYellowBlackWrap navigateTo='/lab-policy' logos={<PolicyContolaSvg />} logodesc="Policy & control" bgColor="444" textColor="FFF" /> 
       <CardYellowBlackWrap navigateTo='/my-profile' logos={<MyProfileIcon/>} logodesc="My Profile" bgColor="EFCD78" textColor="444" /> 
 
         </>
       )
     }
-
-   
-
     </div>
   );
 };

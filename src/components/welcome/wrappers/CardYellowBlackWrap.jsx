@@ -26,3 +26,4 @@ const CardYellowBlackWrap = ({ logos, logodesc, bgColor, textColor, navigateTo }
 };
 
 export default CardYellowBlackWrap;
+

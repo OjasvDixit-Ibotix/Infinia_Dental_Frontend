@@ -1,9 +1,8 @@
 import React from "react";
 
 const LabPolicySectionWrap = ({ title, category, updatedOn, isOpen, onToggle, children, categoryColor }) => {
-  // Define fallback colors in case the prop is not provided
-  const fallbackColor = { bg: '#F1F5F9', text: '#444' };
-  const color = categoryColor || fallbackColor;
+  const defaultcolor = { bg: '#F1F5F9', text: '#444' };
+  const color = categoryColor || defaultcolor;
 
   return (
     <div className="w-full flex flex-col rounded-md border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300">

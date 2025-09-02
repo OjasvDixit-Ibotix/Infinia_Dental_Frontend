@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, roles }) => {
   const location = useLocation();
 
   if (loading) {
-    return <div className='grid  min-h-screen place-items-center'><Spinner/></div>;
+    return <div className='grid min-h-screen place-items-center'><Spinner/></div>;
   }
 
   if (!islogin) {
@@ -17,9 +17,7 @@ const PrivateRoute = ({ children, roles }) => {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  // If roles are required, and we don't have a user object yet, show loading.
-  // This handles the case where `islogin` is true from cookies, but the full user object
-  // hasn't been fetched yet.
+  
   if (roles && !user) {
     return <div>Loading...</div>;
   }
