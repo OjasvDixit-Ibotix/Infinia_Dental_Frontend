@@ -29,7 +29,7 @@ const FullNameIcon1 = () => <div className="w-4 h-4 flex items-center justify-ce
           </div>
         </div>
 
-        <div className="flex flex-col gap-1">
+        {/* <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 self-stretch">
             <JoiningDateIcon />
             <span className="font-normal text-sm text-[#646e82]">Pan Number</span>
@@ -37,7 +37,7 @@ const FullNameIcon1 = () => <div className="w-4 h-4 flex items-center justify-ce
           <div className="pt-1 pl-6">
             <span className="font-normal text-base text-[#444444]">HSH********</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

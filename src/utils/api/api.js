@@ -92,6 +92,12 @@ apiClient.interceptors.response.use(
     if (error.response) {
       const status = error.response.status;
 
+      if(status===500){
+        console.log('servver error');
+        
+        toast.error('Internal Server Error. Please try again later.');
+      }
+
       if (status === 403) {
         //   toast.error('Access denied: You do not have permission.');
         Cookies.remove('user');

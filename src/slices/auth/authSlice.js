@@ -53,6 +53,8 @@ export const fetchCurrentUser = createAsyncThunk(
       
       return response.data;
     } catch (error) {
+      // if(error.response)
+      toast.error(error.response?.data?.message || 'Failed to fetch current user');
       console.error("Failed to fetch current user:", error);
       const errorMessage = error.response?.data?.error || 'Session expired or invalid';
       Cookies.remove('token');
