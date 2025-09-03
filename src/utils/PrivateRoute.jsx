@@ -22,7 +22,7 @@ const PrivateRoute = ({ children, roles }) => {
     return <div>Loading...</div>;
   }
 
-  if (roles && !roles.includes(user?.user_type)) {
+  if (roles && !roles.includes(user?.user_type.toLowerCase())) {
     toast.warning("You are not authorized to view this page.");
     return <Navigate to="/dashboard" replace />;
   }
