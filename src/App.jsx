@@ -43,11 +43,13 @@ const App = () => {
 
   const leaveStatus = useSelector((state) => state.leaveHistory.status);
 
+
   useEffect(() => {
-    if (islogin && leaveStatus === 'idle' && user?.user_type==='employee') {
-      // console.log('oooo',user?.user_type);
+
+    if (islogin && leaveStatus === 'idle' && user?.user_type.toLowerCase() === 'employee') {
       dispatch(fetchLeaveHistory());
     }
+
   }, [islogin, leaveStatus, dispatch]);
 
 

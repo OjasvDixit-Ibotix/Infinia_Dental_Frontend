@@ -11,7 +11,7 @@ const EmplSummaryCard = () => {
         if (!employees || employees.length === 0) {
             return { total: 0, active: 0, onLeave: 0 };
         }
-        const total = employees.filter(e => e.user_type === 'employee').length;
+        const total = employees.filter(e => e.user_type.toLowerCase() === 'employee').length;
         const active = employees.filter(e => e.user_status === 'active' && e.user_type === 'employee').length;
         const onLeave = employees.filter(e => e.user_status === 'on_leave' && e.user_type === 'employee').length;
 

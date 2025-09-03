@@ -8,12 +8,7 @@ import QuickStats from '../../components/EmployeeComponents/RequestLeaveComp/Qui
 import { fetchLeaveHistory } from '../../slices/leaveHistorySlice';
 
 const EmpLeaveBalancePage = () => {
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(fetchLeaveHistory());
-    // }, [dispatch]);
-
+ 
     return (
         <>
             <EmpLeaveBalanceHeader />

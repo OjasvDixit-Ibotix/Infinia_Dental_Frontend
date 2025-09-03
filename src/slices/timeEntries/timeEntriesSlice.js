@@ -35,18 +35,12 @@ const formatDuration = (totalHours) => {
   return `${hours}h ${minutes}m`;
 };
 
-
-/**
- * Async thunk to fetch time entries from the API.
- * It handles the API call and data transformation.
- */
 export const fetchTimeEntries = createAsyncThunk(
   'timeEntries/fetchTimeEntries',
   async (_, { rejectWithValue }) => {
     try {
       const response = await apiClient.get("/time-entries");
       if (response.data && response.data.time_entries) {
-        // Map over the entries and format them for the UI
         return response.data.time_entries.map((entry) => ({
           id: entry.id,
           date: formatDate(entry.date),
@@ -57,29 +51,24 @@ export const fetchTimeEntries = createAsyncThunk(
           notes: entry.notes ?? "--",
         }));
       }
-      return []; // Return an empty array if no entries are found
+      return []; 
     } catch (error) {
-      // Use rejectWithValue to pass the error message to the reducer
       return rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
 
-// Define the initial state for the slice
 const initialState = {
   timeEntries: [],
   isLoading: false,
   error: null,
 };
 
-/**
- * The slice definition, including reducers and extraReducers for the async thunk.
- */
+
 const timeEntriesSlice = createSlice({
   name: 'timeEntries',
   initialState,
   reducers: {
-    // You can add synchronous reducers here if needed
   },
   extraReducers: (builder) => {
     builder
