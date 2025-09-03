@@ -1,5 +1,6 @@
 import React from "react";
 import FullNameIcon from "./FullNameIcon";
+import { useSelector } from "react-redux";
 const PersonalInfoContent = () => {
 
   const FullNameIcon1 = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500"><FullNameIcon/></div>;
@@ -7,7 +8,8 @@ const PersonalInfoContent = () => {
   const ContactNumberIcon = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500">📞</div>;
   const EmailIcon = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500">✉️</div>;
   const WorkLocationIcon = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500">📍</div>;
-
+               const {user} = useSelector(state=>state.auth)
+             
   return (
     <div className="flex flex-col gap-6 self-stretch bg-white p-6 rounded-2xl border border-solid border-[#e8eaed]">
       <div className="w-full flex items-center gap-2">
@@ -20,16 +22,16 @@ const PersonalInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Full Name</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Dr. Priya Sharma</span>
+            <span className="font-normal text-base text-[#444444]">{user?.name}</span>
           </div>
         </div>
 
         <div className="flex flex-col gap-1">
           <div className="flex items-center self-stretch">
-            <span className="font-normal text-sm text-[#646e82] pl-6">Employee Code</span>
+            <span className="font-normal text-sm text-[#646e82] pl-6">Employee ID</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">INFXXXXXXX</span>
+            <span className="font-normal text-base text-[#444444]">{user?.employee_id}</span>
           </div>
         </div>
 
@@ -39,7 +41,7 @@ const PersonalInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Joining Date</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">March 15, 1992</span>
+            <span className="font-normal text-base text-[#444444]">{user?.join_date}</span>
           </div>
         </div>
 
@@ -49,7 +51,7 @@ const PersonalInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Contact Number</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">+91 98765 43210</span>
+            <span className="font-normal text-base text-[#444444]">{user?.phone}</span>
           </div>
         </div>
 
@@ -59,7 +61,7 @@ const PersonalInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Email Address</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">priya.sharma@infiniadental.com</span>
+            <span className="font-normal text-base text-[#444444]">{user?.email}</span>
           </div>
         </div>
 
@@ -70,7 +72,7 @@ const PersonalInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Work Location</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Bangalore</span>
+            <span className="font-normal text-base text-[#444444]">{user?.address}</span>
           </div>
         </div>
       </div>

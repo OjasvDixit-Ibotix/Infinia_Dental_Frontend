@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import FullNameIcon from "./FullNameIcon";
 
 const JobInfoContent = () => {
-
+               const {user} = useSelector(state=>state.auth)
+  
   const FullNameIcon1 = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500"><FullNameIcon/></div>;
   const JoiningDateIcon = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500">📅</div>;
   const ContactNumberIcon = () => <div className="w-4 h-4 flex items-center justify-center text-gray-500">📞</div>;
@@ -21,7 +23,7 @@ const JobInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Joining Date</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">January 14, 2023</span>
+            <span className="font-normal text-base text-[#444444]">{user?.join_date}</span>
           </div>
         </div>
 
@@ -30,7 +32,7 @@ const JobInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82] pl-6">Employment Type</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Full - Time</span>
+            <span className="font-normal text-base text-[#444444]">{user?.employment_type  ?user?.employment_type: 'Full Time'}</span>
           </div>
         </div>
 
@@ -40,7 +42,7 @@ const JobInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Department</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Dental</span>
+            <span className="font-normal text-base text-[#444444]">{user?.department}</span>
           </div>
         </div>
 
@@ -50,7 +52,7 @@ const JobInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Reporting Manager</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Dr. Rajesh</span>
+            <span className="font-normal text-base text-[#444444]">{user?.report_manager}</span>
           </div>
         </div>
 
@@ -60,7 +62,7 @@ const JobInfoContent = () => {
             <span className="font-normal text-sm text-[#646e82]">Work Location</span>
           </div>
           <div className="pt-1 pl-6">
-            <span className="font-normal text-base text-[#444444]">Noida, Sector 3</span>
+            <span className="font-normal text-base text-[#444444]">{user?.address}</span>
           </div>
         </div>
 

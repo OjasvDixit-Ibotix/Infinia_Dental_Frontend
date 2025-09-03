@@ -8,7 +8,6 @@ const MyProfilePage = () => {
    <>
    <MyProfileHeader/>
    <div className="flex flex-col gap-7">
-
    <MyProfileBanner/>
    <MyProfileEmpDetails/>
    </div>

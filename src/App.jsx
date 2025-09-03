@@ -35,14 +35,13 @@ const App = () => {
   const { islogin, token, user, loading } = useSelector((state) => state.auth);
 
   useEffect(() => {
-   
+
     if (token && !user) {
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, token, user]);
 
   const leaveStatus = useSelector((state) => state.leaveHistory.status);
-
 
   useEffect(() => {
 
