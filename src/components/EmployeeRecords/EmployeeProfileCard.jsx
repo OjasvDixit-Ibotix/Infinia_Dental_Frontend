@@ -6,6 +6,7 @@ import RowColView from "../../assets/svgs/WelcomePage/RowColView";
 import OneColView from "../../assets/svgs/WelcomePage/OneColView";
 import { usePagination } from "../../utils/customHooks/usePagination";
 import PaginationControls from "../PaginationControls";
+import Spinner from "../../utils/customHooks/Spinner";
 
 const getInitials = (name) => {
     if (!name) return "??";
@@ -48,7 +49,7 @@ const EmployeeProfileCard = () => {
 
     const formattedEmployees = useMemo(() =>
         employees
-            .filter(emp => emp.user_type === 'employee')
+            .filter(emp => emp.user_type.toLowerCase() === 'employee')
             .map((emp) => ({
                 ...emp,
                 initials: getInitials(emp.name),
@@ -78,7 +79,9 @@ const EmployeeProfileCard = () => {
 
     let content;
     if (employeeStatus === "loading") {
-        content = <p className="text-center mt-6">Loading employees...</p>;
+        content = <div className="grid place-items-center h-[400px]">
+        <Spinner />; </div>
+            
     } else if (employeeStatus === "succeeded") {
         content = (
             <>
@@ -102,8 +105,13 @@ const EmployeeProfileCard = () => {
                                     <span className={`text-xs px-3 py-[2px] rounded-full ${statusColors[emp.status]}`}>{emp.status}</span>
                                 </div>
                                 <div className="text-[13px] mt-5 space-y-[6px]">
-                                    <div className="flex justify-between"><span className="text-[#6B7280]">Role:</span><span>{capitalize(emp.user_role)}</span></div>
-                                    <div className="flex justify-between"><span className="text-[#6B7280]">Department:</span><span>{capitalize(emp.department)}</span></div>
+                                    <div className="flex justify-between"><span className="text-[#6B7280]">Role:</span><span> {emp?.user_role.length > 15
+                                                                                                                                    ? `${emp.user_role.substring(0, 15)}...`
+                                                                                                                                    : emp.user_role}</span></div>
+                                    <div className="flex justify-between"><span className="text-[#6B7280]">Department:</span><span> {emp.department.length > 15
+                                                                                                                                    ? `${emp.department.substring(0, 15)}...`
+                                                                                                                                    : emp.department}
+                                                                                                                                </span></div>
                                     <div className="flex justify-between"><span className="text-[#6B7280]">Joined:</span><span>{emp.joined}</span></div>
                                     <div className="mt-4">
                                         <div className="flex justify-between text-sm mb-1">

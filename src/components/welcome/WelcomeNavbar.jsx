@@ -13,7 +13,7 @@ const WelcomeNavbar = () => {
 const { user, loading  } = useSelector((state) => state.auth);
 
 const routes = {
-  ...(user?.user_type === "admin" ?  { "Directory": "/directory"}: { "Time Off": "/time-off" }),
+  ...(user?.user_type.toLowerCase() === "admin" ?  { "Directory": "/directory"}: { "Time Off": "/time-off" }),
   "Handbook": "/employee-handbook",
   "Seminars": "/seminars-events",
   "Forms": "/forms",
@@ -44,7 +44,7 @@ const routes = {
               Welcome, { user?.name}!
             </p>
             <p className="text-[#444] font-[400] text-[13px] sm:text-[14px] leading-[18px] sm:leading-[20px] font-[Segoe UI Symbol]">
-              Infinia Dental {user?.user_type==='admin'?'admin':'employee'} Portal
+              Infinia Dental {user?.user_type.toLowerCase() === 'admin' ? 'admin' : 'employee'} Portal
             </p>
           </div>
         </div>

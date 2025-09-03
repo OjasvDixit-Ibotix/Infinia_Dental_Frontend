@@ -18,8 +18,6 @@ export const fetchLeaveHistory = createAsyncThunk(
   }
 );
 
-
-
 const leaveHistorySlice = createSlice({
   name: 'leaveHistory',
   initialState: {

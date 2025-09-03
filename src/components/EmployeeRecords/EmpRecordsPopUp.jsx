@@ -198,10 +198,9 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
     </div>
     {
       editPopUp &&(
-        <EditProfilePopUp onClose={()=>setEditPop(editPopUp=>!editPopUp)}/>
+        <EditProfilePopUp selectedEmp={selectedEmp} onClose={()=>setEditPop(editPopUp=>!editPopUp)}/>
       )
     }
-
     </>
   );
 };

@@ -33,7 +33,7 @@ const CardYellowBlackComp = () => {
     <div className=" flex flex-wrap justify-center sm:justify-start sm:content-center gap-4 sm:gap-5 md:gap-6 lg:gap-6  w-full mx-auto">
         
       {
-        user?.user_type==='admin' &&(
+        user?.user_type.toLowerCase() === 'admin' &&(
           <>
       <CardYellowBlackWrap navigateTo="/leave-request" logos={<LeaveRequestBlackIcon />} logodesc="Leave Request" bgColor="EFCD78" textColor="444" />
       <CardYellowBlackWrap navigateTo="/employee-details" logos={<EmpDetailsIcon />} logodesc="Employee Details" bgColor="444" textColor="FFF" />
@@ -52,7 +52,7 @@ const CardYellowBlackComp = () => {
       {/* Employeee cards */}
 
     {
-      user?.user_type === 'employee' &&(
+      user?.user_type.toLowerCase() === 'employee' &&(
         <>
       <CardYellowBlackWrap   navigateTo="/my-time" logos={<EmpClockIcon />} logodesc="My Time" bgColor="EFCD78" textColor="444" /> 
       <CardYellowBlackWrap navigateTo="/employee-handbook" logos={<EmpResourcesicon/>} logodesc="Employee Resources" bgColor="444" textColor="FFF" />
