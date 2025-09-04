@@ -39,7 +39,6 @@ const SelectDropdown = ({ options, value, onChange, placeholder, className }) =>
     </div>
 );
 
-// Date selector component
 const DateSelector = ({ date, onDateChange }) => {
     const handleDayChange = (e) => {
         const newDate = new Date(date || new Date());
@@ -107,19 +106,16 @@ const EmpLeaveRequestForm = () => {
     // ];
 
     const leaveTypeOptions = [
-        { value: 'annual', label: 'Annual Leave' },
         { value: 'sick', label: 'Sick Leave' },
-        { value: 'casual', label: 'Casual Leave' },
-        { value: 'emergency', label: 'Emergency Leave' },
-        { value: 'compensatory', label: 'Compensatory Off' },
+        { value: 'paid', label: 'Paid Leave' },
+        { value: 'unpaid', label: 'Unpaid Leave' },
     ];
 
-    // Calculate number of days
     useEffect(() => {
         if (fromDate && toDate && toDate >= fromDate) {
             const diffTime = Math.abs(toDate - fromDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-            setNumberOfDays(diffDays);
+            setNumberOfDays(diffDays-1);
         } else {
             setNumberOfDays(0);
         }
@@ -127,11 +123,12 @@ const EmpLeaveRequestForm = () => {
 
     const handleLeaveRequestForm = async () => {
         const leaveData = {
-            // request_by: requestBy,
+
             leave_type: leaveType,
-             from_date: fromDate.toISOString().split('T')[0],
+            from_date: fromDate.toISOString().split('T')[0],
             to_date: toDate.toISOString().split('T')[0],
             reason: reason,
+
         };
 
         console.log(leaveData);
@@ -156,10 +153,9 @@ const EmpLeaveRequestForm = () => {
 
                         <label className="text-[#3C3C3C] font-medium">Request By*</label>
                         <div className="md:col-span-2">
-                        <input className='w-full appearance-none cursor-pointer px-4 py-2 rounded-[8px] border-[0.2px] border-[#444] opacity-80 shadow-[0_4px_12px_0_rgba(239,205,120,0.20)] bg-white text-gray-700 text-sm focus:outline-none focus:border-amber-400' 
+                        <input disabled  className=' w-full appearance-none cursor-pointer px-4 py-2 rounded-[8px] border-[0.2px] border-[#444] opacity-80 shadow-[0_4px_12px_0_rgba(239,205,120,0.20)] bg-white text-gray-700 text-sm focus:outline-none focus:border-amber-400' 
                                   placeholder={user.name}
-                                disabled
-                                
+                                                  
                                 />                             
                         </div>
 
@@ -214,14 +210,13 @@ const EmpLeaveRequestForm = () => {
                     </div>
                 </div>
 
-                {/* Right Side - Rules and Calendar */}
                 <div className="pt-3 flex flex-col gap-5 flex-1">
                     <span className="font-semibold text-xl text-[#444444]">Rules</span>
                     <div className="flex flex-row gap-5">
                         {[
-                            { label: 'Balance CL', count: 12, bg: '#EFCD78', text: '#444444' },
-                            { label: 'Balance EL', count: 23, bg: '#444444', text: 'white' },
-                            { label: 'Balance PL', count: 11, bg: '#EFCD78', text: '#444444' },
+                            { label: 'Balance SL', count: 5, bg: '#EFCD78', text: '#444444' },
+                            { label: 'Balance PL', count: 2, bg: '#444444', text: 'white' },
+                            { label: 'Balance Unpaid Leave', count: '∞', bg: '#EFCD78', text: '#444444' },
                         ].map((item, i) => (
                             <div key={i} className="w-[140px] h-[100px] flex-shrink-0 rounded-lg flex flex-col items-center justify-between pb-2 text-center font-semibold bg-[#EFCD7866]">
                                 <div className="w-full h-[60px] flex items-center justify-center rounded-t-lg" style={{ backgroundColor: item.bg, color: item.text }}>

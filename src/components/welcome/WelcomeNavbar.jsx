@@ -13,11 +13,12 @@ const WelcomeNavbar = () => {
 const { user, loading  } = useSelector((state) => state.auth);
 
 const routes = {
-  ...(user?.user_type.toLowerCase() === "admin" ?  { "Directory": "/directory"}: { "Time Off": "/time-off" }),
-  "Handbook": "/employee-handbook",
+  ...(user?.user_type.toLowerCase() === "admin" ?  { "Directory": "/directory"}: { "Request Leave": "/request-leave" }),
+  ...(user?.user_type.toLowerCase() === "admin" ?  { "Handbook": "/employee-handbook",}: { "Leave Balance": "/leave-balance"}),
   "Seminars": "/seminars-events",
   "Forms": "/forms",
-  "Lab Protocols": "/lab-policy",
+    ...(user?.user_type.toLowerCase() === "admin" ?  {"Lab Protocols": "/lab-policy"}: { "Directory": "/directory"}),
+
 };  
 
   const dispatch = useDispatch();
