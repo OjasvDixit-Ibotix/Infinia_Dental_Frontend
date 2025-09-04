@@ -9,13 +9,14 @@ export const fetchLeaves = createAsyncThunk(
     try {
       const token = Cookies.get('token');
       const response = await apiClient.get('/all-leaves');
-      console.log(response.data);  
+      console.log('all-leaves', response.data);
       return response.data.all_leaves;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
+
 
 const leaveSlice = createSlice({
   name: 'leave',
