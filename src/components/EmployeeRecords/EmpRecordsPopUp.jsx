@@ -115,7 +115,7 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
                 <p className="text-sm text-[#444] mt-2 font-[Segoe UI Symbol]">
                   <strong>Employee ID</strong>
                   <br />
-                  EMP001
+                  {selectedEmp?.employee_id}
                 </p>
               </div>
             </div>
@@ -133,15 +133,15 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
                 </div>
                 <div>
                   <strong>Department</strong>
-                  <p>{selectedEmp.department}</p>
+                  <p>{selectedEmp?.department}</p>
                 </div>
                 <div>
                   <strong>Employment Type</strong>
-                  <p>{selectedEmp?.type ? selectedEmp?.type : '--' }</p>
+                  <p>{selectedEmp?.employee_type ? selectedEmp?.employee_type : '--' }</p>
                 </div>
                 <div>
                   <strong>Reporting Manager</strong>
-                  <p>{selectedEmp?.rm ? selectedEmp?.rm : '--' }</p>
+                  <p>{selectedEmp?.report_manager ? selectedEmp?.report_manager : '--' }</p>
                 </div>
               </div>
             </div>
@@ -154,9 +154,9 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
               </h3>
               <div className="flex gap-4  ">
                 {[
-                  { label: "Days Remaining", value: 3 },
-                  { label: "Days Used", value: 8 },
-                  { label: "Total Allocation", value: 20 },
+                  { label: "Days Remaining", value: '--' },
+                  { label: "Days Used", value: '--' },
+                  { label: "Total Allocation", value: '--' },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -182,12 +182,12 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
                   <p className="text-[#444] font-[Segoe UI Symbol]">
                     Monthly Attendance Rate
                   </p>
-                  <p className="text-[#444] font-[Segoe UI Symbol]">89%</p>
+                  <p className="text-[#444] font-[Segoe UI Symbol]">{selectedEmp?.attendance_percentage}%</p>
                 </div>
                 <div className="h-[10px] w-full bg-[#E5E7EB] rounded-full">
                   <div
                     className="h-[10px] bg-[#444] rounded-full"
-                    style={{ width: "89%" }}
+                    style={{ width: `${selectedEmp?.attendance_percentage}%` }}
                   ></div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ const EmpRecordsPopUp = ({ selectedEmp, setSelectedEmp }) => {
     </div>
     {
       editPopUp &&(
-        <EditProfilePopUp selectedEmp={selectedEmp} onClose={()=>setEditPop(editPopUp=>!editPopUp)}/>
+        <EditProfilePopUp selectedEmp={selectedEmp} onClose={()=>setEditPop(editPopUp=>!editPopUp)} setSelectedEmp={setSelectedEmp}/>
       )
     }
     </>

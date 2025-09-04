@@ -35,6 +35,8 @@ const capitalize = (str) => {
 
 const EmployeeProfileCard = () => {
     const { employees, status: employeeStatus, error } = useSelector((state) => state.emp);
+    console.log('employees',employees);
+    
 
     const [selectedEmp, setSelectedEmp] = useState(null);
     const [view, setView] = useState("cards");
@@ -96,21 +98,21 @@ const EmployeeProfileCard = () => {
                                 <input type="checkbox" className="absolute top-4 left-4 h-4 w-4 accent-[#F3C85C]" />
                                 <div className="flex justify-center mt-2">
                                     <div className="w-12 h-12 bg-[#444] text-white font-semibold text-sm rounded-full flex items-center justify-center">
-                                        {emp.initials}
+                                        {emp?.initials}
                                     </div>
                                 </div>
-                                <h2 className="text-[15px] font-medium text-center mt-3">{emp.name}</h2>
-                                <p className="text-xs text-center text-[#6B7280]">{emp.employee_id}</p>
+                                <h2 className="text-[15px] font-medium text-center mt-3">{emp?.name}</h2>
+                                <p className="text-xs text-center text-[#6B7280]">{emp?.employee_id}</p>
                                 <div className="mt-2 flex justify-center">
-                                    <span className={`text-xs px-3 py-[2px] rounded-full ${statusColors[emp.status]}`}>{emp.status}</span>
+                                    <span className={`text-xs px-3 py-[2px] rounded-full ${statusColors[emp?.status]}`}>{emp?.status}</span>
                                 </div>
                                 <div className="text-[13px] mt-5 space-y-[6px]">
                                     <div className="flex justify-between"><span className="text-[#6B7280]">Role:</span><span> {emp?.user_role.length > 15
                                                                                                                                     ? `${emp.user_role.substring(0, 15)}...`
-                                                                                                                                    : emp.user_role}</span></div>
+                                                                                                                                    : emp?.user_role}</span></div>
                                     <div className="flex justify-between"><span className="text-[#6B7280]">Department:</span><span> {emp.department.length > 15
                                                                                                                                     ? `${emp.department.substring(0, 15)}...`
-                                                                                                                                    : emp.department}
+                                                                                                                                    : emp?.department}
                                                                                                                                 </span></div>
                                     <div className="flex justify-between"><span className="text-[#6B7280]">Joined:</span><span>{emp.joined}</span></div>
                                     <div className="mt-4">
