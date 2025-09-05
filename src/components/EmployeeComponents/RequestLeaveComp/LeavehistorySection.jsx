@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLeaveHistory } from '../../../slices/leaveHistorySlice';
+// import { fetchLeaveHistory } from '../../../slices/leaveHistorySlice';
 import LeaveHistoryIcon from '../../../assets/svgs/EmpRequestLeave/LeaveHistoryIcon';
 
 const statusStyles = {

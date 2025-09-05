@@ -34,11 +34,11 @@ const LeaveDistributionSection = () => {
   };
 
   leaves?.forEach((leave) => {
-    const type = leave.leave_type?.toLowerCase();
+    const type = leave?.leave_type;
     if (leave?.number_of_days) {
-      if (type === 'paid') leaveCounts.paid += leave.number_of_days;
-      else if (type === 'sick') leaveCounts.sick += leave.number_of_days;
-      else if (type === 'unpaid') leaveCounts.unpaid += leave.number_of_days;
+      if (type === 'Paid Leave') leaveCounts.paid += leave.number_of_days;
+      else if (type === 'Sick Leave') leaveCounts.sick += leave.number_of_days;
+      else if (type === 'Unpaid Leave') leaveCounts.unpaid += leave.number_of_days;
     }
   });
 

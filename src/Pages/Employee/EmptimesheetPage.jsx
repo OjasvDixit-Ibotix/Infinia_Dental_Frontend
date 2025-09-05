@@ -11,9 +11,10 @@ import { useEffect } from 'react';
 
 const EmptimesheetPage = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchTimeEntries());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

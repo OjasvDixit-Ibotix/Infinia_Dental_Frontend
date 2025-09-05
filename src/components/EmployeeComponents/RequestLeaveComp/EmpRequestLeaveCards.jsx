@@ -9,22 +9,30 @@ const EmpRequestLeaveCards = () => {
   const { leaves } = useSelector((state) => state.leaveHistory);
   console.log("leaves", leaves);
 
-  const usedSickDays =
-    leaves?.reduce((sum, leave) => {
-      return leave?.leave_type === "sick"
-        ? sum + (leave.number_of_days || 0)
-        : sum;
-    }, 0) || 0;
+const usedSickDays =
+  leaves?.reduce((sum, leave) => {
+    return leave?.leave_type === "Sick Leave"
+      ? sum + (leave.number_of_days || 0)
+      : sum;
+  }, 0) || 0;
+
+const usedPaidDays =
+  leaves?.reduce((sum, leave) => {
+    return leave?.leave_type === "Paid Leave"
+      ? sum + (leave.number_of_days || 0)
+      : sum;
+  }, 0) || 0;
 
 
-  const usedPaidDays =
-    leaves?.reduce((sum, leave) => {
-      return leave?.leave_type === "paid"
-        ? sum + (leave.number_of_days || 0)
-        : sum;
-    }, 0) || 0;
+// const usedUnpaidDays =
+//   leaves?.reduce((sum, leave) => {
+//     return leave?.leave_type === "Unpaid Leave"  ? sum + (leave.number_of_days || 0)
+//       : sum;
+//   }, 0) || 0;
 
-  const totalLeaves = usedSickDays + usedPaidDays;
+
+const totalLeaves = usedSickDays + usedPaidDays;
+
   console.log(totalLeaves);
   
 

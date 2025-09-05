@@ -19,26 +19,23 @@ const LeaveTypeCards = () => {
   const usedSickDays =
     leaves?.reduce(
       (sum, leave) =>
-        leave?.leave_type === 'sick' ? sum + (leave.number_of_days || 0) : sum,
+        leave?.leave_type === 'Sick Leave' ? sum + (leave.number_of_days || 0) : sum,
       0
     ) || 0;
 
   const usedPaidDays =
     leaves?.reduce(
       (sum, leave) =>
-        leave?.leave_type === 'paid' ? sum + (leave.number_of_days || 0) : sum,
+        leave?.leave_type === 'Paid Leave' ? sum + (leave.number_of_days || 0) : sum,
       0
     ) || 0;
 
   const usedUnpaidDays =
     leaves?.reduce(
       (sum, leave) =>
-        leave?.leave_type === 'unpaid' ? sum + (leave.number_of_days || 0) : sum,
+        leave?.leave_type === 'Unpaid Leave' ? sum + (leave.number_of_days || 0) : sum,
       0
     ) || 0;
-
-
-//   const totalLeavesUsed = usedPaidDays + usedSickDays;
 
   const cards = [
     {
