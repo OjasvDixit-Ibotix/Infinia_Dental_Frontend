@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 const RequestLeaveCardWrap = ({ logo, typeofleave, totalleave, daysleft }) => {
 
   const daysUsed = totalleave - daysleft;
@@ -10,7 +8,6 @@ const RequestLeaveCardWrap = ({ logo, typeofleave, totalleave, daysleft }) => {
   const percentRemaining = totalleave > 0 ? Math.round((daysleft / totalleave) * 100) : 0;
   
   const leaveLeftOutOfString = `${daysleft}/${totalleave}`;
-
 
   return (
     <div className="flex flex-col flex-1 bg-white p-4 sm:p-6 rounded-2xl shadow-sm">
@@ -33,7 +30,6 @@ const RequestLeaveCardWrap = ({ logo, typeofleave, totalleave, daysleft }) => {
             <span className="text-sm font-medium text-[#444444]">{typeofleave}</span>
             <span className="text-sm font-semibold text-[#efcd78]">{leaveLeftOutOfString}</span>
           </div>
-
           <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-2 bg-[#efcd78] rounded-full transition-all duration-500"

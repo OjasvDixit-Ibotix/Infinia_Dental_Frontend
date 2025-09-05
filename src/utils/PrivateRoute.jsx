@@ -11,7 +11,7 @@ const PrivateRoute = ({ children, roles }) => {
   if (loading) {
     return <div className='grid min-h-screen place-items-center'><Spinner/></div>;
   }
-  if ( !token) {
+  if (!token) {
     console.log('fjeiofjeiofj');
     
     return <Navigate to="/" state={{ from: location }} replace />;

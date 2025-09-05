@@ -11,9 +11,12 @@ import healthsecuityData from './data/health_safety_and_security.json';
 import worklaceData from './data/workplace_guidelines.json'
 import empSeperationData from './data/employment_separation.json'
 import empHandAcknoData from './data/employee_handbook_acknowledgement.json'
-import { be } from "zod/v4/locales";
-
+// import { be } from "zod/v4/locales";
+import PaginationControls from "../PaginationControls";
+import { usePagination } from "../../utils/customHooks/usePagination";
 const HandBookSectionsComp = () => {
+
+  const ITEMS_PER_PAGE = 6;
 
   const categoryColors = [
     { text: '#1E40AF', bg: '#DBEAFE' }, // Blue
@@ -35,9 +38,17 @@ const HandBookSectionsComp = () => {
     {...empSeperationData.employment_separation, category: "HR", updatedOn: "Feb 1, 2024" },
     {...empHandAcknoData.employee_handbook_acknowledgement, category: "General", updatedOn: "Feb 5, 2024" },
   ];
+  const {
+    paginatedData,
+    currentPage,
+    totalPages,
+    nextPage,
+    prevPage,
+    goToPage,
+    } = usePagination(sections, ITEMS_PER_PAGE);
 
   return (
-    <div className="w-full flex flex-col p-6 items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
+    <div className="w-full h-full  flex flex-col p-6 items-start gap-6 rounded-2xl bg-white/80 shadow-md backdrop-blur-sm">
       {/* Header */}
       <div className="flex items-center gap-[10px] self-stretch">
         <div className="p-[10px] gap-[10px] flex items-center justify-center bg-[#444] rounded-md">
@@ -57,16 +68,26 @@ const HandBookSectionsComp = () => {
 
       {/* Sections */}
       <div className="flex flex-col items-start gap-[8px] self-stretch">
-        {sections.map((section, index) => (
+        {paginatedData.map((section, index) => (
           <HandBookSectionWrap
             key={index}
-            title={section.title}
+            title={section.title.charAt(0).toUpperCase() + section.title.toLowerCase().slice(1)}
             category={section.category}
             updatedOn={section.updatedOn}
             content={section}
             color={categoryColors[index % categoryColors.length]}
           />
         ))}
+        <div className="flex items-center justify-center w-full">
+
+         <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          goToPage={goToPage}
+          />
+          </div>
       </div>
     </div>
   );

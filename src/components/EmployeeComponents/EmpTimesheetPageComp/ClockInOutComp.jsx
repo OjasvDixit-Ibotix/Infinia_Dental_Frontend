@@ -56,7 +56,6 @@ const ClockInOutComp = () => {
   };
 
 
-
   const clockOut = async () => {
     try {
       const res = await apiClient.post('/clock-out');
@@ -159,7 +158,6 @@ const ClockInOutComp = () => {
             <span className="font-normal text-lg text-white">Clock In</span>
           </button>
           <button
-            // RESPONSIVE: Make buttons take full width when stacked
             className={`h-14 sm:h-16 w-full sm:w-auto flex justify-center items-center gap-2 px-5 py-2 rounded-xl transition-all duration-200 ${
               isClockedIn
                 ? 'bg-red-600 hover:bg-red-700'
@@ -173,7 +171,6 @@ const ClockInOutComp = () => {
           </button>
         </div>
 
-        {/* RESPONSIVE: Adjusted font size for mobile */}
         <div className="text-center text-3xl sm:text-4xl font-medium text-gray-800 tracking-wider">
           {formatTime(seconds)}
         </div>

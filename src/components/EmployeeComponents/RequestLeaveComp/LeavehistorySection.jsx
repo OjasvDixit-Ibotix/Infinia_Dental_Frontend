@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLeaveHistory } from '../../../slices/leaveHistorySlice';
+// import { fetchLeaveHistory } from '../../../slices/leaveHistorySlice';
 import LeaveHistoryIcon from '../../../assets/svgs/EmpRequestLeave/LeaveHistoryIcon';
 
 const statusStyles = {
@@ -44,7 +44,9 @@ const LeaveRow = ({ leave }) => (
 
 
 function LeaveHistorySection() {
-    const { leaves, status, error } = useSelector((state) => state.leaveHistory);    
+    const { leaves, status, error } = useSelector((state) => state.leaveHistory); 
+    console.log('leaves', leaves);
+       
     
     return (
         <div className="flex flex-col h-fit gap-5 self-stretch w-full bg-white p-6 rounded-2xl shadow-sm">

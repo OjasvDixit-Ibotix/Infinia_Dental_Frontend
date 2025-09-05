@@ -1,24 +1,81 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import LeaveTypeCardWrap from './wrapper/LeaveTypeCardWrap';
 import AnnualLeaveicon from '../../../assets/svgs/EmpRequestLeave/AnnualLeaveicon';
 import SickLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/SickLeaveIcon';
-import EmergencyLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/EmergencyLeaveIcon';
 import CasualLeaveIcons from '../../../assets/svgs/EmpLeaveBalance/CasualLeaveIcons';
-import CompesatoryLeaveIcon from '../../../assets/svgs/EmpLeaveBalance/CompesatoryLeaveIcon';
 
 const LeaveTypeCards = () => {
-    return (
-        // --- RESPONSIVE CHANGE ---
-        // Switched from flexbox to a responsive grid.
-        // 1 column on mobile, 2 on small screens, 3 on medium, up to 5 on xl screens.
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 pt-5">
-            <LeaveTypeCardWrap logo={<AnnualLeaveicon />} typeofLeave={'Annual'} available={12} total={20} used={8} usage={'40%'} />
-            <LeaveTypeCardWrap logo={<SickLeaveIcon />} typeofLeave={'Sick'} available={9} total={12} used={3} usage={'25%'} />
-            <LeaveTypeCardWrap logo={<CasualLeaveIcons />} typeofLeave={'Casual'} available={5} total={10} used={5} usage={'50%'} />
-            <LeaveTypeCardWrap logo={<EmergencyLeaveIcon />} typeofLeave={'Emergency'} available={4} total={5} used={1} usage={'20%'} />
-            <LeaveTypeCardWrap logo={<CompesatoryLeaveIcon />} typeofLeave={'Compensatory Off'} available={4} total={5} used={1} usage={'20%'} />
-        </div>
-    );
+  const { leaves } = useSelector((state) => state.leaveHistory);
+
+  console.log('asdf',leaves);
+  
+  const totals = {
+    paid: 2,
+    sick: 5,
+    unpaid: leaves?.unpaid || 0,
+  };
+
+  const usedSickDays =
+    leaves?.reduce(
+      (sum, leave) =>
+        leave?.leave_type === 'Sick Leave' ? sum + (leave.number_of_days || 0) : sum,
+      0
+    ) || 0;
+
+  const usedPaidDays =
+    leaves?.reduce(
+      (sum, leave) =>
+        leave?.leave_type === 'Paid Leave' ? sum + (leave.number_of_days || 0) : sum,
+      0
+    ) || 0;
+
+  const usedUnpaidDays =
+    leaves?.reduce(
+      (sum, leave) =>
+        leave?.leave_type === 'Unpaid Leave' ? sum + (leave.number_of_days || 0) : sum,
+      0
+    ) || 0;
+
+  const cards = [
+    {
+      logo: <AnnualLeaveicon />,
+      typeofLeave: 'Paid',
+      total: totals.paid,
+      used: usedPaidDays,
+      available: Math.max(totals.paid - usedPaidDays, 0),
+    },
+    {
+      logo: <SickLeaveIcon />,
+      typeofLeave: 'Sick',
+      total: totals.sick,
+      used: usedSickDays,
+      available: Math.max(totals.sick - usedSickDays, 0),
+    },
+    {
+      logo: <CasualLeaveIcons />,
+      typeofLeave: 'Unpaid',
+      total: totals.unpaid,
+      used: usedUnpaidDays,
+      available: Math.max(totals.unpaid - usedUnpaidDays, 0),
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 pt-5">
+      {cards.map((c, i) => (
+        <LeaveTypeCardWrap
+          key={i}
+          logo={c.logo}
+          typeofLeave={c.typeofLeave}
+          available={c.available}
+          used={c.used}
+          total={c.total}
+          status={leaves.status}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default LeaveTypeCards;
