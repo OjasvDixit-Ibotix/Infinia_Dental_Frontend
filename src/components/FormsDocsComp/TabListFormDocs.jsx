@@ -1,26 +1,27 @@
-import React from 'react'
-import BlackIconWrapper from '../BlackIconWrapper'
-import TotalEmpl from '../../assets/svgs/WelcomePage/TotalEmpl'
+import React from 'react';
+import BlackIconWrapper from '../BlackIconWrapper';
+import TotalEmpl from '../../assets/svgs/WelcomePage/TotalEmpl';
 
-const TabListFormDocs = () => {
+// 1. Accept props: 'tabs', 'activeTab', 'onTabChange', and 'formsCount'
+const TabListFormDocs = ({ tabs, activeTab, onTabChange, formsCount }) => {
   return (
     <div className="w-full flex flex-col gap-6">
-        
       <div className="flex w-full flex-wrap p-1 items-center justify-between rounded-md bg-[#EFCD7880] gap-2 sm:gap-4">
-        {[
-          { label: 'HR Forms', active: false },
-          { label: 'Tax Forms', active: true },
-          { label: 'Product Related', active: false },
-        ].map((tab, idx) => (
+        {/* 2. Map over the 'tabs' prop from the parent */}
+        {tabs.map((tab, idx) => (
           <div
             key={idx}
+            // 4. Add the onClick handler! This is the most important part.
+            // It calls the function passed down from the parent.
+            onClick={() => onTabChange(tab.label)}
+            // 3. The 'active' style now comes from comparing with the 'activeTab' prop
             className={`flex flex-1 min-w-[100px] justify-center items-center gap-2 rounded px-4 sm:px-6 py-2 cursor-pointer transition ${
-              tab.active ? 'bg-white shadow-sm' : 'hover:bg-white'
+              activeTab === tab.label ? 'bg-white shadow-sm' : 'hover:bg-white'
             }`}
           >
             <div
               className={`w-2 h-2 rounded-full ${
-                tab.active ? 'bg-[#EAB308]' : 'bg-[#444]'
+                activeTab === tab.label ? 'bg-[#EAB308]' : 'bg-[#444]'
               }`}
             ></div>
             <p className="text-[#444] text-sm sm:text-base leading-5 sm:leading-6 font-[Segoe UI Symbol]">
@@ -34,11 +35,12 @@ const TabListFormDocs = () => {
         <div className="flex items-center gap-3">
           <BlackIconWrapper logo={<TotalEmpl />} />
           <div className="flex flex-col items-start">
+            {/* 5. The title and count are now dynamic based on props */}
             <p className="text-[#444] text-lg sm:text-xl md:text-2xl leading-5 sm:leading-6 font-[Segoe UI Symbol]">
-              HR Forms
+              {activeTab}
             </p>
             <p className="text-[#444] text-sm sm:text-base leading-5 sm:leading-6 font-[Segoe UI Symbol]">
-              3 forms available
+              {formsCount} forms available
             </p>
           </div>
         </div>

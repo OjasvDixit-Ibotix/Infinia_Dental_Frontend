@@ -13,7 +13,7 @@ import EmpFormsDocsPage from './Pages/Admin/EmpFormsDocsPage';
 import EmpDirectoryPage from './Pages/Admin/EmpDirectoryPage';
 import EmployeeRecordsPage from './Pages/Admin/EmployeeRecordsPage';
 import EmptimesheetPage from './Pages/Employee/EmptimesheetPage';
-import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
+// import EmpPromotionsPage from './Pages/Admin/EmpPromotionsPage';
 import EmpRequestLeavePage from './Pages/Employee/EmpRequestLeavePage';
 import { Toaster } from 'sonner';
 import PrivateRoute from './utils/PrivateRoute';
@@ -80,7 +80,7 @@ const App = () => {
           <Route path="/directory" element={<EmpDirectoryPage />} />
           <Route path="/seminars-events" element={<SeminarAndEventPage />} />
           <Route path="/forms" element={<EmpFormsDocsPage />} />
-          <Route path="/promotions" element={<EmpPromotionsPage />} />
+          {/* <Route path="/promotions" element={<EmpPromotionsPage />} /> */}
           <Route path="/my-profile" element={<MyProfilePage />} />
           <Route path="/employee-handbook" element={<EmployeehandBooksPage />} />
           <Route path="/lab-policy" element={<EmployeelabPolicy />} />
@@ -90,6 +90,8 @@ const App = () => {
         </Route>
 
         <Route path="*" element={<Navigate to={islogin ? "/dashboard" : "/"} replace />} />
+          {/* <Route path="/promotions" element={<EmpPromotionsPage />} /> */}
+
 
         {/* Test Route */}
         <Route element={<Layout />}>
