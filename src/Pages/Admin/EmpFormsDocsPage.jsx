@@ -4,6 +4,7 @@ import HeaderFormDocs from '../../components/FormsDocsComp/HeaderFormDocs';
 import TabListFormDocs from '../../components/FormsDocsComp/TabListFormDocs';
 import FormDocsCardWrap from '../../components/FormsDocsComp/wrapper/FormDocsCardWrap';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
 
 const TABS_CONFIG = [
   { label: 'HR Forms', fileType: 'HR_form' },
@@ -18,6 +19,8 @@ const parseFileTypeToTag = (fileTypeStr) => {
 };
 
 // SECTION 1: Uploader UI component extracted for clarity
+
+
 const FileUploader = ({
   activeTab,
   selectedFile,
@@ -70,6 +73,9 @@ const EmpFormsDocsPage = () => {
   const [uploadLoading, setUploadLoading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState('Select a file to upload');
   const fileInputRef = useRef(null);
+
+  const {user} = useSelector((state) => state.auth)
+ console.log('oijioef', user);
 
   // All logic (fetchForms, handlers) remains the same
   const fetchForms = useCallback(async () => {
@@ -188,7 +194,11 @@ const EmpFormsDocsPage = () => {
         />
 
         {renderDocumentList()}
-        <FileUploader
+
+        {
+          user?.user_type.toLowerCase() === 'admin' && (
+
+             <FileUploader
           activeTab={activeTab}
           selectedFile={selectedFile}
           uploadLoading={uploadLoading}
@@ -198,6 +208,11 @@ const EmpFormsDocsPage = () => {
           onSelectFileClick={handleSelectFileClick}
           onUpload={handleUpload}
         />
+
+          )
+        }
+        
+       
       </div>
     </div>
   );

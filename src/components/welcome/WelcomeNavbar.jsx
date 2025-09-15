@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 
 const WelcomeNavbar = () => {
 const { user, loading  } = useSelector((state) => state.auth);
+// console.log('usernavbar', user);
+
 
 const routes = {
   ...(user?.user_type.toLowerCase() === "admin" ?  { "Directory": "/directory"}: { "Request Leave": "/request-leave" }),
