@@ -63,7 +63,7 @@ const routes = {
         <Link 
           key={label} 
           to={path} 
-          className="flex items-center px-3 sm:px-4 py-1 rounded-full border border-[#EFCD78] bg-[rgba(239,205,120,0.3)]"
+          className="flex items-center px-3 sm:px-4 py-1 rounded-full border border-[#EFCD78] bg-[rgba(239,205,120,0.3)] "
         >
           <p className="text-[#444] text-xs sm:text-[12px] leading-[15px] sm:leading-[16px] font-[400] font-[Segoe UI Symbol]">
             {label}
