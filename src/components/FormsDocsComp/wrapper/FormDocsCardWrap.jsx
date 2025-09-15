@@ -47,11 +47,11 @@ const FormDocsCardWrap = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="flex h-fit py-1 px-2 rounded-md bg-[#444]">
+          {/* <div className="flex h-fit py-1 px-2 rounded-md bg-[#444]">
             <p className="text-[#EFCD78] text-xs font-normal leading-4 font-[Segoe UI Symbol]">
               {fileType}
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-wrap gap-2 ">
           <CommonButtonWhiteBgTextYellow

@@ -15,7 +15,7 @@ const { user, loading  } = useSelector((state) => state.auth);
 const routes = {
   ...(user?.user_type.toLowerCase() === "admin" ?  { "Directory": "/directory"}: { "Request Leave": "/request-leave" }),
   ...(user?.user_type.toLowerCase() === "admin" ?  { "Handbook": "/employee-handbook",}: { "Leave Balance": "/leave-balance"}),
-  "Seminars": "/seminars-events",
+ 
   "Forms": "/forms",
     ...(user?.user_type.toLowerCase() === "admin" ?  {"Lab Protocols": "/lab-policy"}: { "Directory": "/directory"}),
 
