@@ -79,7 +79,7 @@ const EmpFormsDocsPage = () => {
 const handleDelete = async (id) => {
   try {
    const res=  await apiClient.delete(`/delete/${id}`);
-    toast.success(res.data.message);
+    toast.success('File deleted successfully!');
     setForms((prev) => prev.filter((form) => form.id !== id));
   } catch (error) {
     toast.error('File delete failed!');
@@ -100,7 +100,7 @@ const handleDelete = async (id) => {
       const filteredData = response.data.filter(
         (item) => item.file_type === `FileType.${currentTabConfig.fileType}`
       );
-      
+
       const transformedData = filteredData.map((item) => ({
         id: item.id,
         title: item.file_name,
