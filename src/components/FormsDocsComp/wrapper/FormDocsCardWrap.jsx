@@ -6,14 +6,21 @@ import CommonButtonWhiteBgTextYellow from '../../CommonButtonWhiteBgTextYellow';
 import EyeIcon from '../../../assets/svgs/WelcomePage/EyeIcon';
 import EyeIconYellow from '../../../assets/svgs/WelcomePage/EyeIconYellow';
 import PrintYellowIcon from '../../../assets/svgs/WelcomePage/PrintYellowIcon';
+import { Delete } from 'lucide-react';
+import axios from 'axios';
+import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
 
-const FormDocsCardWrap = ({ data }) => {
+const FormDocsCardWrap = ({ data , onDelete}) => {
+  console.log('dataerw',data);
+  
   const { 
     title = 'Untitled Document', 
     description = 'No date available.', 
     tags = [], 
     fileType = 'File',
-    url = '#'
+    file_name = '',
+    id
   } = data;
 
   const handleAction = (actionUrl) => {
@@ -22,9 +29,13 @@ const FormDocsCardWrap = ({ data }) => {
     window.open(actionUrl, '_blank');
   };
 
+
+  
+  const {user}= useSelector(state =>state.auth);
+
   return (
     <div className="flex flex-col w-full items-start p-[1px] rounded-lg border border-[#F3F4F6] bg-white shadow-sm">
-      <div className="flex p-4 sm:p-6 flex-col items-start gap-3 w-full">
+      <div className="flex p-1 sm:p-4 flex-col items-start gap-3 w-full">
         <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
           <div className="flex items-start gap-3 flex-1">
             <BlackIconWrapper logo={<DocumentIcon />} />
@@ -53,27 +64,35 @@ const FormDocsCardWrap = ({ data }) => {
             </p>
           </div> */}
         </div>
-        <div className="flex flex-wrap gap-2 ">
-          <CommonButtonWhiteBgTextYellow
+        <div className="w-full flex flex-wrap  gap-2 px-1">
+          <CommonButtonWhiteBgTextYellow 
             onClick={() => handleAction(url)}
             icon={<EyeIconYellow />}
             hovericon={<EyeIcon />}
             text={'View'}
           />
-          <button onClick={() => handleAction(url)} className="flex h-9 px-1 justify-center items-center gap-1 rounded-md bg-[#EFCD78] w-auto">
-            <div className="flex w-[24px] h-[16px] pr-2 items-center">
+          <button onClick={() => handleAction(file_name)} className="cursor-pointer flex h-9 px-2 justify-center items-center  rounded-md bg-[#EFCD78] w-auto">
+            <div className="flex w-[27px] h-[16px]  items-center">
               <DownloadSvg />
             </div>
             <p className="text-[#444] text-center font-normal text-sm leading-5 font-[Segoe UI Symbol]">
               Download
             </p>
           </button>
+          {
+            user?.user_type.toLowerCase() === 'admin' &&
+            
+          <div
+
+            onClick={() => onDelete(id)}>
           <CommonButtonWhiteBgTextYellow
-            onClick={() => handleAction(url)}
-            icon={<PrintYellowIcon />}
-            hovericon={<EyeIcon />}
-            text={'Print'}
-          />
+            icon={<Delete />}
+            hovericon={<Delete />}
+            text={'Delete'}
+            />
+            
+            </div>
+          }
         </div>
       </div>
     </div>

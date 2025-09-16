@@ -62,7 +62,7 @@ const apiClient = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
-const publicRoutes = ['/users', '/login','/auth/forget-password/send','/auth/forget-password/verify', '/auth/forget-password'];
+const publicRoutes = [ '/delete','/list','/upload','/download', '/users', '/login','/auth/forget-password/send','/auth/forget-password/verify', '/auth/forget-password'];
 
 
 apiClient.interceptors.request.use(

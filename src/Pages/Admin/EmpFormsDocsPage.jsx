@@ -5,6 +5,7 @@ import TabListFormDocs from '../../components/FormsDocsComp/TabListFormDocs';
 import FormDocsCardWrap from '../../components/FormsDocsComp/wrapper/FormDocsCardWrap';
 import { toast } from 'sonner';
 import { useSelector } from 'react-redux';
+import apiClient from '../../utils/api/api';
 
 const TABS_CONFIG = [
   { label: 'HR Forms', fileType: 'HR_form' },
@@ -17,9 +18,6 @@ const parseFileTypeToTag = (fileTypeStr) => {
   const typePart = fileTypeStr.split('.')[1] || '';
   return typePart.split('_')[0];
 };
-
-// SECTION 1: Uploader UI component extracted for clarity
-
 
 const FileUploader = ({
   activeTab,
@@ -77,18 +75,32 @@ const EmpFormsDocsPage = () => {
   const {user} = useSelector((state) => state.auth)
  console.log('oijioef', user);
 
-  // All logic (fetchForms, handlers) remains the same
+
+const handleDelete = async (id) => {
+  try {
+   const res=  await apiClient.delete(`/delete/${id}`);
+    toast.success(res.data.message);
+    setForms((prev) => prev.filter((form) => form.id !== id));
+  } catch (error) {
+    toast.error('File delete failed!');
+    // console.error('Delete error:', error);
+  }
+};
+
   const fetchForms = useCallback(async () => {
     setIsFetching(true);
     setFetchError(null);
     try {
-      const response = await axios.get('http://54.84.66.89:8000/list');
+      const response = await apiClient.get('/list');
+      console.log('response_file', response);
+      
       const currentTabConfig = TABS_CONFIG.find(
         (tab) => tab.label === activeTab
       );
       const filteredData = response.data.filter(
         (item) => item.file_type === `FileType.${currentTabConfig.fileType}`
       );
+      
       const transformedData = filteredData.map((item) => ({
         id: item.id,
         title: item.file_name,
@@ -138,9 +150,14 @@ const EmpFormsDocsPage = () => {
     formData.append('file', selectedFile);
     formData.append('file_type', currentTab.fileType);
     try {
-      await axios.post('http://54.84.66.89:8000/upload', formData, {
+   const res=    await apiClient.post('/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      }
+      
+    );
+      console.log('file', res);
+
+
       toast.success('File Upload successful!');
       setSelectedFile(null);
       setUploadMessage('Select a file to upload');
@@ -170,7 +187,7 @@ const EmpFormsDocsPage = () => {
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full">
           {forms.map((form) => (
-            <FormDocsCardWrap key={form.id} data={form} />
+            <FormDocsCardWrap onDelete= {handleDelete} key={form.id} data={form} />
           ))}
         </div>
       );
