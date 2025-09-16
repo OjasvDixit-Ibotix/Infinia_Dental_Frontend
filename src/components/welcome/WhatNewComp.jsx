@@ -7,7 +7,7 @@ import newproduct from "../../assets/svgs/WelcomePage/new-product-training.svg";
 const cards = [
   {
     title: "Latest Events",
-    description: "Show off your workspace! Submit photos by March 15th.",
+    description: "Show off your workspace!",
     image: homeOffice,
     badge: "Contest",
     linkto: "https://infiniadental.com/our-events/",

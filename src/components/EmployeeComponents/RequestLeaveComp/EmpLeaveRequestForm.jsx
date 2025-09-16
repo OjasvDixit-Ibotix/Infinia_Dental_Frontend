@@ -102,9 +102,9 @@ const EmpLeaveRequestForm = () => {
   const [numberOfDays, setNumberOfDays] = useState(0);
 
   const leaveTypeOptions = [
-    { value: 'Sick Leave', label: 'Sick Leave' },
-    { value: 'Paid Leave', label: 'Paid Leave' },
-    { value: 'Unpaid Leave', label: 'Unpaid Leave' },
+    { value: 'sick', label: 'Sick Leave' },
+    { value: 'paid', label: 'Paid Leave' },
+    { value: 'unpaid', label: 'Unpaid Leave' },
   ];
 
   useEffect(() => {

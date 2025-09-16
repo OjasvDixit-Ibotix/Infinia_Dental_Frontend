@@ -11,14 +11,14 @@ const EmpRequestLeaveCards = () => {
 
 const usedSickDays =
   leaves?.reduce((sum, leave) => {
-    return leave?.leave_type === "Sick Leave"
+    return leave?.leave_type === "sick"
       ? sum + (leave.number_of_days || 0)
       : sum;
   }, 0) || 0;
 
 const usedPaidDays =
   leaves?.reduce((sum, leave) => {
-    return leave?.leave_type === "Paid Leave"
+    return leave?.leave_type === "paid"
       ? sum + (leave.number_of_days || 0)
       : sum;
   }, 0) || 0;
