@@ -4,7 +4,7 @@ import productPDF from '../../assets/documents/Product-Pictures.pdf';
 
 const ProductResourceComp = () => {
   const handleDownload = () => {
-    window.open(productPDF, "_blank"); // opens in new tab
+    window.open(productPDF, "_blank"); 
   };
 
   return (
